@@ -1,0 +1,21 @@
+instructions_begintime
+instructions_completime
+instructions_failed_tries [number or informaiton about each]
+
+survey1_
+
+workcompleted_time
+allocation1_begintime
+allocation1_p1_complettime, [1-3]
+allocation1_choice1, allocation1_choice2 [1-5],
+allocation1_freetext
+
+regulation1_choice1, [1-5]
+regulation1_suggestions1, [1-5]
+regulation1_begintime, regulation1_p1_complettime [1-4]
+regulation1_optimal11 [11 - 26]
+regulation1_distribution11 [11 - 26]
+regulation1_sentiment, regulation1_freetext, 
+regulation1_harm, regulation1_help,
+
+work1_sentiment_before, work1_sentiment_after,

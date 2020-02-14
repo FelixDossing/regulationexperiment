@@ -1,0 +1,132 @@
+<div class="container">
+  <h1 class="main-heading">Survey</h1>
+  <div style="width:100%;margin-top:50px;" *ngIf="!survey_completed">
+    <mat-tab-group color="warn" dynamicHeight [selectedIndex]="selected_tab" (selectedIndexChange)="tabClicked($event)">
+
+      <mat-tab label="Part 1">
+        <div class="survey-part">
+
+          <p>Which year were you born?</p>
+          <mat-form-field appearance="outline" style="margin-left:10px;">
+            <mat-label>Birth year</mat-label>
+            <input matInput [(ngModel)]="choices[0]" (change)="choices_check[0]=null;">
+            <small *ngIf="choices_check[0] != null && choices_check[0] != true" style="color:red;">{{choices_check[0]}}</small>
+          </mat-form-field>
+
+          <div>
+            <p>In which country were you born?</p>
+            <mat-form-field appearance="outline" style="margin-left:10px;">
+              <mat-label>Select country</mat-label>
+              <mat-select [(ngModel)]="choices[1]" (selectionChange)="choices_check[1]=null;">
+                <mat-option *ngFor="let country of countries" [value]="country.value">{{country.text}}</mat-option>
+              </mat-select>
+              <small *ngIf="choices_check[1] != null && choices_check[1] != true" style="color:red;">{{choices_check[1]}}</small>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <label id="label_home">Which of the following most accurately describes the place where you grew up?</label>
+            <small *ngIf="choices_check[2] != null && choices_check[2] != true" style="color:red;"> {{choices_check[2]}}</small>
+            <mat-radio-group [(ngModel)]="choices[2]" (change)="choices_check[2]=null;" class="radio-group" aria-labelledby="label_home" color="primary">
+              <mat-radio-button class="radio-button" value="majorcity">One of the major cities</mat-radio-button>
+              <mat-radio-button class="radio-button" value="suburbs">Outside one of the major cities (suburban area)</mat-radio-button>
+              <mat-radio-button class="radio-button" value="countryside">The countryside</mat-radio-button>
+              <mat-radio-button class="radio-button" value="other">Other</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <button class="active-button" mat-raised-button (click)="nextTab()">Next</button>
+        </div>
+      </mat-tab>
+      <mat-tab label="Part 2">
+        <div class="survey-part">
+
+          <div>
+            <p>What is the highest interest rate you are paying on a loan or on credit card debt?</p>
+            <mat-form-field appearance="outline" style="margin-left:10px;">
+              <mat-label>Interest rate in %</mat-label>
+              <input matInput [(ngModel)]="choices[3]" (change)="choices_check[3]=null;">
+              <small *ngIf="choices_check[3] != null && choices_check[3] != true" style="color:red;">{{choices_check[3]}}</small>
+            </mat-form-field>
+
+            <p>Sometimes people need to borrow money quickly and take out short-term, high-interest loans. These loans are sometimes refered to as "payday loans" or 
+              "kviklån" in danish. It does not include credit card debt.<br><br>Do you have any experience with short-term, high-interest loans?
+            </p>
+            <small *ngIf="choices_check[4] != null && choices_check[4] != true" style="color:red;"> {{choices_check[4]}}</small>
+            <mat-radio-group [(ngModel)]="choices[4]" (change)="choices_check[4]=null;setNext();" class="radio-group" color="primary">
+              <mat-radio-button class="radio-button" value="never">No, I have never taken out such a loan</mat-radio-button>
+              <mat-radio-button class="radio-button" value="notregularly">Yes I have taken out such a loan, but I don't do it regularly</mat-radio-button>
+              <mat-radio-button class="radio-button" value="regularly">I regularly take out such loans</mat-radio-button>
+            </mat-radio-group>
+
+            <p>If you have taken out a short-term, high-interest loan in the past: How did repayment work out? (If you have taken out multiple of such loans please choose the answer, which 
+              best describes what normally happens.
+            </p>
+            <small *ngIf="choices_check[5] != null && choices_check[5] != true" style="color:red;">{{choices_check[5]}}</small>
+            <mat-radio-group [(ngModel)]="choices[5]" (change)="choices_check[5]=null;" class="radio-group" color="primary">
+              <mat-radio-button class="radio-button" value="neverloaned">I have never taken out such a loan</mat-radio-button>
+              <mat-radio-button class="radio-button" value="asplanned">I repaid the loan at the planned date</mat-radio-button>
+              <mat-radio-button class="radio-button" value="longer">I held the loan longer than I had planned</mat-radio-button>
+              <mat-radio-button class="radio-button" value="neverpaid">I was unable to pay back the loan</mat-radio-button>
+            </mat-radio-group>
+
+            <p>How tall are you in centimeters?</p>
+            <mat-form-field appearance="outline" style="margin:10px;">
+              <mat-label>Height in cm</mat-label>
+              <input matInput [(ngModel)]="choices[6]" (change)="choices_check[6]=null;">
+              <small *ngIf="choices_check[6] != null && choices_check[6] != true" style="color:red;">{{choices_check[6]}}</small>
+            </mat-form-field>
+
+            <p>How much do you weigh in kilograms?</p>
+            <mat-form-field appearance="outline" style="margin:10px;">
+              <mat-label>Weight in kg</mat-label>
+              <input matInput [(ngModel)]="choices[7]" (change)="choices_check[7]=null">
+              <small *ngIf="choices_check[7] != null && choices_check[7] != true" style="color:red;">{{choices_check[7]}}</small>
+            </mat-form-field>
+
+            <p>Which of the following categories describe you best?</p>
+            <small *ngIf="choices_check[8] != null && choices_check[8] != true" style="color:red;"> {{choices_check[8]}}</small>
+            <mat-radio-group [(ngModel)]="choices[8]" (change)="choices_check[8]=null" class="radio-group" color="primary">
+              <mat-radio-button class="radio-button" value="neversmoke">I have never smoked cigarettes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="usedtosmoke">I don't smoke cigarettes, but I used to</mat-radio-button>
+              <mat-radio-button class="radio-button" value="sometimessmoke">I occasionally smoke cigarettes</mat-radio-button>
+              <mat-radio-button class="radio-button" value="smoker">I am a smoker</mat-radio-button>
+            </mat-radio-group>
+
+            <p>How often do you have five or more alcoholic drinks?</p>
+            <small *ngIf="choices_check[9] != null && choices_check[9] != true" style="color:red;"> {{choices_check[9]}}</small>
+            <mat-radio-group [(ngModel)]="choices[9]" (change)="choices_check[9]=null;" class="radio-group" color="primary">
+              <mat-radio-button class="radio-button" value="neverdrink">Never</mat-radio-button>
+              <mat-radio-button class="radio-button" value="peryear">A couple of times per year</mat-radio-button>
+              <mat-radio-button class="radio-button" value="permonth">A couple of times per month</mat-radio-button>
+              <mat-radio-button class="radio-button" value="perweek">A couple of times per week</mat-radio-button>
+              <mat-radio-button class="radio-button" value="everyweek">Almost every week</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <button class="active-button" mat-raised-button (click)="nextTab()">Next</button>
+        </div>
+      </mat-tab>
+      <mat-tab label="Part 3">
+        <div class="survey-part">
+          <div>
+            <p>Below you see 100 boxes. A bomb has been placed in one randomly chosen box. For each box you open, you will 
+              increase your total payment by 1 DKK. If you open the box with the bomb in it, you will however not add anything 
+              to your total payment.
+            </p>
+            <mat-grid-list cols="20">
+              <mat-grid-tile *ngFor="let box of boxes" style="background-color:rgb(120, 120, 120);border:4px solid white;"></mat-grid-tile>
+            </mat-grid-list>
+            <p>How many boxes do you wish to open?</p>
+            <mat-form-field appearance="outline" style="margin-left:10px;">
+              <mat-label>Number of boxes</mat-label>
+              <input matInput [(ngModel)]="choices[10]" (change)="choices_check[10]=null;">
+              <small *ngIf="choices_check[10] != null && choices_check[10] != true" style="color:red;">{{choices_check[10]}}</small>
+            </mat-form-field>
+          </div>
+          <button class="active-button-extra" mat-raised-button (click)="completeSurvey()">Submit</button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>  
+
+</div>

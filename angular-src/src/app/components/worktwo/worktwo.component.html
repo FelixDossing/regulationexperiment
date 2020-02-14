@@ -1,0 +1,44 @@
+<div class="container">
+  <h1 class="main-heading">Work week 2</h1>
+
+  <mat-horizontal-stepper color="warn" [linear]="true" #stepper>
+
+    <mat-step editable="false" label="Step 1" completed="false">
+      <app-allocation-info [work_assignment]="work_assignment" [user]="user"></app-allocation-info>
+      <div style="margin-top:50px;" class="input-content tab-content">
+        <h3 style="text-align: center;">How happy are you with this allocation?</h3>
+        <div style="display:flex;">
+          <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_dissatisfied</mat-icon>
+          <input [(ngModel)]="sentiment_before" class="dist_slider" [ngClass]="sentiment_before == null ? 'idle_slider' : ''" [min]="0" max="10" style="width:100%;" type="range" (click)="sentiment_after = sentiment_after==null ? 5 : sentiment_after" onclick="blur(this)">
+          <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_satisfied</mat-icon>
+        </div>
+      </div>
+      <div class="button-box">
+        <p *ngIf="!belief_done">Please complete all choices in order to move forward in the experiment.</p>
+        <button [disabled]="sentiment_before==null" class="active-button" mat-raised-button (click)="submit(0)">Submit</button>
+      </div>
+    </mat-step>
+
+    <mat-step editable="false" label="Step 2" completed="false">
+      <app-work *ngIf="!work_done" [target]="pages_to_complete" [completed]="work_completed" [ranges_per_page]="range_number" (pageDoneEvent)="addWork()"></app-work>
+    </mat-step>
+
+    <mat-step editable="false" label="Step 3" completed="false">
+      <div style="text-align: initial;">
+        <app-allocation-info [work_assignment]="work_assignment" [user]="user"></app-allocation-info>
+        <div style="margin-top:50px;" class="input-content tab-content">
+          <h3 style="text-align: center;">How happy are you with this allocation?</h3>
+          <div style="display:flex;">
+            <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_dissatisfied</mat-icon>
+            <input [(ngModel)]="sentiment_after" class="dist_slider" [ngClass]="sentiment_after == null ? 'idle_slider' : ''" [min]="0" max="10" style="width:100%;" type="range" (click)="sentiment_after = sentiment_after==null ? 5 : sentiment_after" onclick="blur(this)">
+            <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_satisfied</mat-icon>
+          </div>
+        </div>
+        <div class="button-box">
+          <p *ngIf="!belief_done">Please complete all choices in order to move forward in the experiment.</p>
+          <button [disabled]="sentiment_after==null" class="active-button" mat-raised-button (click)="submit(2)">Submit</button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

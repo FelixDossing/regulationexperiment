@@ -1,0 +1,26 @@
+<div class="container" style="height:100%;">
+  <mat-card style="max-width:500px;display:block;margin-right:auto;margin-left:auto;top:10%;padding:4%;border-radius:10px;">
+    <img mat-card-image src="https://designguide.ku.dk/download/co-branding/ku_logo_uk_h.png" alt="ku_logo">
+    <!-- <mat-card-header style="justify-content:center">
+      <mat-card-title style="font-size:2rem;font-weight:normal">Sign in</mat-card-title>
+    </mat-card-header> -->
+    <mat-card-content style="display:flex;flex-direction: column;">
+      <!-- form -->
+      <mat-form-field appearance="outline" style="flex:1;">
+        <mat-label>Email</mat-label>
+        <input [(ngModel)]="email" matInput (keyup)="keyUp($event)">
+        <mat-icon matSuffix>mail_outline</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline" style="flex:1;">
+        <mat-label>Password</mat-label>
+        <input [(ngModel)]="password" matInput type="password" (keyup)="keyUp($event)">
+        <mat-icon matSuffix>lock_outline</mat-icon>
+      </mat-form-field>
+      <a (click)="resetPassword()" style="text-align:center;margin-top:10px;color:blue;cursor:pointer;text-decoration: underline;">Forgot your password?</a>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button (click)="loginSubmit()" mat-raised-button style="width:100%;color:white;background:#901A1E;font-weight:normal;">Sign in</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

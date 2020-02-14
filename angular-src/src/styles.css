@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.mat-drawer-container {
+    background:white;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.my-flash-message {
+    padding-top: 15px;
+    padding-bottom:15px;
+    padding-left: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top:10px;
+    border-radius:5px;
+    font-size:15px;
+
+    color:white;
+}
+.success-flash {
+    background:rgba(0,230,118,0.9);
+}
+.alert-flash {
+    background:rgba(255, 23, 68, 0.9);
+}
+
+.active-button {
+    background:rgb(216, 51, 57);
+    color:white;
+}
+.active-button-extra {
+    background:rgb(255, 13, 73);
+    color:white;
+}
+.slider-style {
+    margin-top:10px;
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 5px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+  .slider-style:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+.slider-style::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background:rgb(255,13, 73);
+    border-radius:50%;
+    cursor:pointer;
+}
+.slider-style::-webkit-slider-thumb:hover {
+    border:2px solid grey;
+}

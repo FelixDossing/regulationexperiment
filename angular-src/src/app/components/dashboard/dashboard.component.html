@@ -1,0 +1,47 @@
+<div class="grid-container">
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="picker_date" (dateChange)="setDate(); setCards(); checkWork()">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div style="text-align:center;margin-bottom:50px;">
+    <h1 style="font-weight:lighter;font-size:2.6rem;margin-bottom:10px;">Welcome, <span *ngIf="this.user">{{ user.first_name }}</span></h1>
+    <p>This is your dashboard. On your dashboard you can see all the parts you have to complete in order to complete the experiment.</p>
+  </div>
+
+  <div *ngIf="work_to_do" style="width:100%;background:rgb(241, 185, 0);text-align:center;padding-bottom:10px;margin-bottom:10px;padding-top:10px;">
+    <h3 style="font-weight:normal;color:white;">There is work left to do today</h3>
+    <button (click)="doWorkClick()" mat-flat-button class="active-button">Complete work</button>
+  </div>
+  <app-allocation-info [user]="user" [work_assignment]="work_assignment"></app-allocation-info>
+
+  <mat-grid-list [cols]="columns" rowHeight="500px" *ngIf="this.cards && this.cards.length > 0 && this.user">
+    <mat-grid-tile *ngFor="let align of alignment | async; let i = index;" [colspan]="align.cols" [rowspan]="align.rows">
+      <mat-card class="dashboard-card mat-elevation-z5" style="display:flex;flex-direction:column;">
+        <div style="display:flex;justify-content: space-between;margin-left:10px;">
+          <span class="mat-headline" style="flex:1;display:flex;font-weight:regular;">
+            <div class="mat-h1" [ngStyle]="{background:cards[i].active ? 'rgb(223, 51, 94)' : 'gainsboro' }" style="width:30px;height:30px; border-radius:50%; text-align:center;vertical-align:middle;color:white;margin-right:10px;">{{i+1}}</div>
+            <span>{{cards[i].title}}</span>
+          </span>
+          <span class="mat-headline" style="margin-right:20px;flex:1;text-align:right;">Week {{cards[i].week}}</span>
+        </div>
+        <mat-card-content class="dashboard-card-content" style="flex-grow:1;background:whitesmoke;">
+          <div>
+              <p style="margin-bottom:2px;">Must be completed between</p>
+              <h1 style="margin-top:5px;" class="mat-h1">{{ cards[i].begin.format('MMMM Do, HH:mm') }}</h1>
+              <p style="margin-bottom:2px;">and</p>
+              <h1 style="margin-top:5px;" class="mat-h1">{{ cards[i].end.format('MMMM Do, HH:mm') }}</h1>
+          </div>
+          <div style="max-width:700px;margin:0 auto; padding:0 10px;">
+              <p class="mat-body-1" style="margin-left:5%;margin-right:5%;">{{cards[i].text}}</p>
+          </div>
+        </mat-card-content>
+        <mat-card-actions style="text-align:center;margin:0 10px 5px;">
+          <button (click)="cardClick(cards[i].link, cards[i].tag)" *ngIf="!cards[i].completed" [disabled]="!cards[i].active" mat-flat-button [ngClass]="{'active-button':cards[i].active}" style="width:100%;height:40px;">BEGIN</button>
+          <p *ngIf="cards[i].completed">COMPLETED</p>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

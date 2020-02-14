@@ -1,0 +1,56 @@
+.container {
+    text-align:center;
+    margin-top:40px;
+    padding-left:5%;
+    padding-right:5%;
+}
+.main-heading {
+    font-weight:lighter;
+    font-size:2rem;
+}
+.instructions-part {
+    text-align:left;
+    margin-top:40px;
+    margin-bottom:20px;
+}
+th, td {
+    padding:10px;
+}
+td {
+    padding-left:30px;
+}
+
+@media(min-width: 600px) {
+    .container {
+        padding-left:20%;
+        padding-right:20%;
+    }
+    .main-heading {
+        font-size:2.5rem;
+    }
+}
+.button-box {
+    margin-top:20px;
+    margin-bottom:20px;
+    text-align: initial;
+}
+.idle_slider::-webkit-slider-thumb {
+    visibility:hidden;
+}
+.idle_slider::-moz-range-thumb {
+    visibility:hidden;
+}
+.reverseSlider {
+    direction:rtl;
+}
+
+.tab-content {
+    margin-left:5%;
+    margin-right:5%;
+}
+.idle_slider::-webkit-slider-thumb {
+    visibility:hidden;
+}
+.idle_slider::-moz-range-thumb {
+    visibility:hidden;
+}

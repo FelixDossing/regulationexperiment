@@ -1,0 +1,112 @@
+<div class="container">
+    <h1>Sessoion page</h1>
+    <mat-form-field>
+      <mat-select [(value)]="session_number" placeholder="Session number" [ngModel]="session_number" (selectionChange)="sessionChange()">
+        <mat-option *ngFor="let session of sessions" [value]="session">{{session}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div style="display:flex;flex-direction:column;" *ngIf="session_number && !session_participants">
+      <div style="display:flex;">
+        <mat-form-field class="participant-input">
+          <input matInput placeholder="Number of participants" [(ngModel)]="participants_count">
+        </mat-form-field>
+        <mat-form-field class="participant-input">
+          <input matInput placeholder="Number of KU students" [(ngModel)]="ku_students">
+        </mat-form-field>
+      </div>
+    </div>
+    <button *ngIf="session_number && !session_participants" mat-raised-button style="background:#9C27B0;color:white;" (click)="createSession()">Submit</button>
+
+    <mat-accordion *ngIf="session_number && session_participants">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Participation codes
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div style="display:flex;flex-direction: column">
+          <span *ngFor="let participant of session_participants">{{participant.participation_code}} <strong *ngIf="participant.ku_student">(KU student)</strong></span>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <div *ngIf="session_number && session_participants" style="margin-bottom:150px;">
+      <h3 style="margin-top:50px;">Session data <button mat-button (click)="sessionChange()">Update</button></h3>
+
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+        <ng-container matColumnDef="session">
+          <th mat-header-cell *matHeaderCellDef> Session</th>
+          <td mat-cell *matCellDef="let participant"> {{participant.session}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="first_name">
+          <th mat-header-cell *matHeaderCellDef>First name </th>
+          <td mat-cell *matCellDef="let participant"> {{participant.first_name}} </td>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="last_name">
+          <th mat-header-cell *matHeaderCellDef> Last name </th>
+          <td mat-cell *matCellDef="let participant"> {{participant.last_name}} </td>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let participant"> {{participant.email}} </td>
+        </ng-container>
+    
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef> Role</th>
+          <td mat-cell *matCellDef="let participant"> {{participant.role}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="register_date">
+          <th mat-header-cell *matHeaderCellDef> Register date</th>
+          <td mat-cell *matCellDef="let participant"> {{participant.register_date}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="instructions">
+          <th mat-header-cell *matHeaderCellDef> Instructions</th>
+          <td mat-cell *matCellDef="let participant"> {{participant.instructions}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="allocation1">
+          <th mat-header-cell *matHeaderCellDef> Allocation 1</th>
+          <td mat-cell *matCellDef="let participant"> {{participant.allocation1}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="allocation2">
+          <th mat-header-cell *matHeaderCellDef> Allocation 2</th>
+          <td mat-cell *matCellDef="let participant"> {{participant.allocation2}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="regulation1">
+          <th mat-header-cell *matHeaderCellDef> Regulation 1</th>
+          <td mat-cell *matCellDef="let participant"> {{participant.regulation1}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="regulation2">
+          <th mat-header-cell *matHeaderCellDef> Regulation 2</th>
+          <td mat-cell *matCellDef="let participant"> {{participant.regulation2}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="survey1">
+          <th mat-header-cell *matHeaderCellDef> Survey 1</th>
+          <td mat-cell *matCellDef="let participant"> {{participant.survey1}}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="survey2">
+          <th mat-header-cell *matHeaderCellDef> Survey 2</th>
+          <td mat-cell *matCellDef="let participant"> {{participant.survey2}}</td>
+        </ng-container>
+    
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+          
+
+    </div>
+  </div>

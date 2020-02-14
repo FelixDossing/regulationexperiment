@@ -1,0 +1,82 @@
+<div class="container">
+  <h1>Admin page</h1>
+  <a href="/session"><button mat-raised-button style="background:#9C27B0;color:white;">Go to sessions</button></a>
+  <h3 style="margin-top:50px;">Data</h3>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+    <ng-container matColumnDef="session">
+      <th mat-header-cell *matHeaderCellDef> Session</th>
+      <td mat-cell *matCellDef="let participant"> {{participant.session}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell *matHeaderCellDef>First name </th>
+      <td mat-cell *matCellDef="let participant"> {{participant.first_name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell *matHeaderCellDef> Last name </th>
+      <td mat-cell *matCellDef="let participant"> {{participant.last_name}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef="let participant"> {{participant.email}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="role">
+      <th mat-header-cell *matHeaderCellDef> Role</th>
+      <td mat-cell *matCellDef="let participant"> {{participant.role}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="register_date">
+      <th mat-header-cell *matHeaderCellDef> Register date</th>
+      <td mat-cell *matCellDef="let participant"> {{participant.register_date}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="instructions">
+      <th mat-header-cell *matHeaderCellDef> Instructions</th>
+      <td mat-cell *matCellDef="let participant"> {{participant.instructions}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="allocation1">
+      <th mat-header-cell *matHeaderCellDef> Allocation 1</th>
+      <td mat-cell *matCellDef="let participant"> {{participant.allocation1}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="allocation2">
+      <th mat-header-cell *matHeaderCellDef> Allocation 2</th>
+      <td mat-cell *matCellDef="let participant"> {{participant.allocation2}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="regulation1">
+      <th mat-header-cell *matHeaderCellDef> Regulation 1</th>
+      <td mat-cell *matCellDef="let participant"> {{participant.regulation1}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="regulation2">
+      <th mat-header-cell *matHeaderCellDef> Regulation 2</th>
+      <td mat-cell *matCellDef="let participant"> {{participant.regulation2}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="survey1">
+      <th mat-header-cell *matHeaderCellDef> Survey 1</th>
+      <td mat-cell *matCellDef="let participant"> {{participant.survey1}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="survey2">
+      <th mat-header-cell *matHeaderCellDef> Survey 2</th>
+      <td mat-cell *matCellDef="let participant"> {{participant.survey2}}</td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <button mat-button style="margin-top:30px;" (click)="toData()">View data</button>
+
+</div>

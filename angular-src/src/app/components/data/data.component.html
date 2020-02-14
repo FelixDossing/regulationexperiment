@@ -1,0 +1,9 @@
+<div style="padding:10px;line-height:1;">
+    <mat-button-toggle-group style="margin-bottom:10px;" [(ngModel)]="data_show" (change)="changeView()">
+        <mat-button-toggle value="userdata">User data</mat-button-toggle>
+        <mat-button-toggle value="timedata">Time data</mat-button-toggle>
+        <mat-button-toggle value="instructions">Instructions</mat-button-toggle>
+    </mat-button-toggle-group>
+    <p style="margin:0px;">{{datahead}}<br>
+    <span *ngFor="let row of data;">{{row}}<br></span></p>
+</div>
