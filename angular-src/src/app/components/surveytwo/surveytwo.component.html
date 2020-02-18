@@ -29,10 +29,17 @@
               <small *ngIf="questions[1].check != null && questions[1].check != true" style="color:red;"> {{questions[1].check}}</small>
             </mat-form-field>
 
-            <div *ngFor="let question of questions | slice:2:9">
+            <p>{{questions[2].text}}</p>
+            <small *ngIf="questions[2].check != null && questions[2].check != true" style="color:red;"> {{questions[2].check}}</small>
+            <mat-form-field appearance="outline">
+              <mat-label>{{questions[2].label}}</mat-label>
+              <input matInput [(ngModel)]="questions[2].answer" (change)="questions[2].check = null;">
+            </mat-form-field>
+
+            <div *ngFor="let question of questions | slice:3:10">
               <p>{{question.text}}</p>
               <small *ngIf="question.check != null && question.check != true" style="color:red;">{{question.check}}</small>
-              <mat-radio-group color="primary" style="display:flex;flex-direction:column;" [(ngModel)]="question.answer" (change)="questions.check=null;">
+              <mat-radio-group color="primary" style="display:flex;flex-direction:column;" [(ngModel)]="question.answer" (change)="question.check=null;">
                 <mat-radio-button class="radio-button" *ngFor="let option of question.options" [value]="option.val">{{option.txt}}</mat-radio-button>
               </mat-radio-group> 
             </div>
@@ -48,7 +55,7 @@
             a member of the European Union, policy changes in Norway have no direct effect on Denmark.
           </p>
 
-          <div *ngFor="let question of questions | slice:9:12">
+          <div *ngFor="let question of questions | slice:10:13">
             <h3>{{question.title}}</h3>
             <p>The following questions relate to the selling and consumption of <em>{{question.tag}}</em>.</p>
             <p>{{question.text}}</p>
@@ -69,12 +76,12 @@
             </mat-radio-group>
           </div>
           <div>
-            <h3>{{questions[12].title}}</h3>
-            <p>{{questions[12].text}}</p>
-            <p>{{questions[12].question}}</p>
-            <small *ngIf="questions[12].check != null && questions[12].check != true" style="color:red;">{{questions[12].check}}</small>
-            <mat-radio-group [(ngModel)]="questions[12].answer" (change)="questions[12].check=null;" color="primary" style="display:flex;flex-direction: column;">
-              <mat-radio-button class="radio-button" *ngFor="let option of questions[12].options" [value]="option.val">{{option.txt}}</mat-radio-button>
+            <h3>{{questions[13].title}}</h3>
+            <p>{{questions[13].text}}</p>
+            <p>{{questions[13].question}}</p>
+            <small *ngIf="questions[13].check != null && questions[13].check != true" style="color:red;">{{questions[13].check}}</small>
+            <mat-radio-group [(ngModel)]="questions[13].answer" (change)="questions[13].check=null;" color="primary" style="display:flex;flex-direction: column;">
+              <mat-radio-button class="radio-button" *ngFor="let option of questions[13].options" [value]="option.val">{{option.txt}}</mat-radio-button>
             </mat-radio-group>
           </div>
           <button class="active-button" mat-raised-button (click)="nextTab()">Next</button>
@@ -83,10 +90,51 @@
       <mat-tab label="Part 3">
         <div class="survey-part">
           <p>Which party did you vote for at the last general election in Denmark?</p>
-          <small *ngIf="questions[13].check != null && questions[13].check != true" style="color:red;">{{questions[13].check}}</small>
-          <mat-radio-group [(ngModel)]="questions[13].answer" (change)="questions[13].check=null;" color="primary" style="display:flex;flex-direction: column;">
-            <mat-radio-button class="radio-button" *ngFor="let option of questions[13].options" [value]="option.val">{{option.txt}}</mat-radio-button>
+          <small *ngIf="questions[14].check != null && questions[14].check != true" style="color:red;">{{questions[14].check}}</small>
+          <mat-radio-group [(ngModel)]="questions[14].answer" (change)="questions[14].check=null;" color="primary" style="display:flex;flex-direction: column;">
+            <mat-radio-button class="radio-button" *ngFor="let option of questions[14].options" [value]="option.val">{{option.txt}}</mat-radio-button>
           </mat-radio-group>
+
+          <p>{{questions[15].text}}</p>
+          <p>{{questions[15].question}}</p>
+          <small *ngIf="questions[15].check != null && questions[15].check != true" style="color:red;">{{questions[15].check}}</small>
+          <mat-radio-group [(ngModel)]="questions[15].answer" (change)="questions[15].check=null;" color="primary" style="display:flex;flex-direction: column;">
+            <mat-radio-button class="radio-button" *ngFor="let option of questions[15].options" [value]="option.val">{{option.txt}}</mat-radio-button>
+          </mat-radio-group>
+          <button class="active-button" mat-raised-button (click)="nextTab()">Next</button>
+
+        </div>
+      </mat-tab>
+      <mat-tab label="Payment information">
+        <div class="survey-part">
+          <p>In which way would you prefer to recieve payment for participation in this experiment?</p>
+          <small *ngIf="questions[16].check != null && questions[16].check != true" style="color:red;">{{questions[16].check}}</small>
+          <mat-radio-group [(ngModel)]="questions[16].answer" color="primary" style="display:flex;flex-direction: column;">
+            <mat-radio-button class="radio-button" value="showup">Show up at the lab</mat-radio-button>
+            <mat-radio-button class="radio-button" value="transfer">Bank transfer</mat-radio-button>
+            <mat-radio-button class="radio-button" value="mobilepay">Mobile pay transfer</mat-radio-button>
+          </mat-radio-group>
+          <p *ngIf="questions[16].answer == undefined || questions[16].answer == 'showup'">If you choose "Show up at the lab", you will recieve an email with dates at which you can show up to recieve the payment in cash.</p>
+
+          <div *ngIf="questions[16].answer == 'transfer'">
+            <mat-form-field appearance="outline">
+              <mat-label>Registration number</mat-label>
+              <input matInput [(ngModel)]="questions[16].regnum">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Account number</mat-label>
+              <input matInput [(ngModel)]="questions[16].accnum">
+            </mat-form-field><br>
+            <small>You will typically be able to find your registration and account number on the back of your credit card. Your registration number should be 4 digits.</small>
+          </div>
+
+          <div *ngIf="questions[16].answer == 'mobilepay'">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone number</mat-label>
+              <input matInput [(ngModel)]="questions[16].phonenum">
+            </mat-form-field><br>
+          </div>
+
           <button class="active-button-extra" mat-raised-button (click)="completeSurvey()">Submit</button>
         </div>
       </mat-tab>

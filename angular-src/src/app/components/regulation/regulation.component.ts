@@ -87,7 +87,7 @@ export class RegulationComponent implements OnInit {
   
       // If not this.week then we just want to render at screen that says when they can complete the assignment
       if (this.week) {
-        this.task = this.user.tasks[this.user.tasks.map(e => e.task_tag).indexOf('regulation'+this.week)]
+        this.task = this.user.tasks.find(e => e.task_tag === 'regulation'+this.week)
 
         this.regulation_choices.forEach((choice, index) => {
           for (let i = 0; i <= 50; i++) {
@@ -118,6 +118,8 @@ export class RegulationComponent implements OnInit {
           }
         })
         this.navigate()    
+      } else {
+        this.router.navigate(['/dashboard']);
       }
 
     });
@@ -134,7 +136,7 @@ export class RegulationComponent implements OnInit {
     } else {
       this.week = null;
     }
-    this.task = this.user.tasks[this.user.tasks.map(e => e.task_tag).indexOf('regulation'+this.week)]
+    this.task = this.user.tasks.find(e => e.task_tag === 'regulation'+this.week)
     this.totally_completed = false;
     this.navigate();
   }

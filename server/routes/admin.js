@@ -6,6 +6,8 @@ const config = require('../config/database');
 
 const User = require('../models/user');
 const Session = require('../models/session');
+const mailgun = require('mailgun-js');
+const url = "http://localhost:4200"
 
 // Create session
 router.post('/session', (req,res) => {
@@ -87,6 +89,41 @@ router.get('/session', passport.authenticate('jwt',{session:false}), (req, res) 
     });
 });
 
+// Send reminder
+router.post('/sendreminder', passport.authenticate('jwt',{session:false}), (req, res) => {
+    let recievers = req.body;
+    let success = true;
+    recievers.forEach(r => {
+        const DOMAIN = "sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org";
+        const mg = mailgun({apiKey: "77f75174a3f4cc3adabc29491b91b379-7238b007-7a0849c6", domain: DOMAIN});
+        const data = {
+            from: "Experiment <postmaster@sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org>",
+            to: r.email,
+            subject: "Experiment reminder",
+            text: `Dear ${r.name},
+            We are writing to remind you that you have tasks to complete in our experiment today. Today's tasks must be completed before midnight. If you have not already completed them, follow the link above to sign in:
+            
+            ${url}
+            
+            If you have any questions, please contact uc.experiment2019@gmail.com
+            
+            Thank you`
+        };
+        mg.messages().send(data, function (error, body) {
+            if (error) {
+                success = false;
+            } else {
+                success = true;
+            }
+        });
+        if (success) {
+            res.json({success:true, msg:"Emails sent"})
+        } else {
+            res.json({success:false, msg:"Something went wrong"})
+        }
+    })
+})
+
 // Get data
 router.get('/data', passport.authenticate('jwt',{session:false}), (req, res) => {
     if (req.user.admincode != "79k8uioa3l8") {
@@ -122,6 +159,27 @@ router.get('/data', passport.authenticate('jwt',{session:false}), (req, res) => 
                 res.json({success: false, msg: 'Could not get users'})
             }
         })
+    }
+});
+
+router.post('/deletesession',  passport.authenticate('jwt',{session:false}), (req, res) => {
+    let info = req.body;
+    if (info.password === "ceb14l1fe") {
+        Session.deleteOne({session_number:info.sessionnum}, (error, response) => {
+            if (error) {
+                res.json({success:false, msg:"Could not delete session"})
+            } else {
+                User.deleteMany({session:info.sessionnum}, (e, r) => {
+                    if (e) {
+                        res.json({success:false, msg:'Could not delete participants'})
+                    } else {
+                        res.json({success:true, msg:"Everything deleted"})
+                    }
+                })
+            }
+        });
+    } else {
+        res.json({success:false, msg:"Wrong password"})
     }
 });
 

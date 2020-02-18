@@ -187,15 +187,17 @@
         <textarea [(ngModel)]="free_text" style="width:100%;height:300px;padding:12px 20px; box-sizing:border-box;resize:none;border:2px solid #ccc;font-size:16px;font-family:'Roboto'" placeholder="Input answer here"></textarea>
       </div>
       <div class="input-container" style="text-align: left; margin-top:50px;">
-        <p>Do you wish to add 50 DKK to the total earnings of another worker (not the one you have regulated)?</p>
-        <mat-radio-group color="warn" [(ngModel)]="help" aria-label="Do you wish to add 50 DKK to the total earnings of another worker (not the one you have regulated)?">
+        <p>Do you wish to add 50 DKK to the total earnings of another worker (not the one you have regulated)? Your choice will not affect your own payment.</p>
+        <mat-radio-group color="warn" [(ngModel)]="help" aria-label="Do you wish to add 30 DKK to the total earnings of another worker (not the one you have regulated)?">
           <mat-radio-button style="margin-left:10px;" value="yes">Yes</mat-radio-button><br>
           <mat-radio-button value="no" style="margin-left:10px;margin-top:10px;">No</mat-radio-button>
         </mat-radio-group>
       </div>
       <div class="input-container" style="text-align: left; margin-top:50px;">
-        <p>Do you wish to subtract 50 DKK from the total earnings of a third worker (not the one you have regulated and not the one you affect above)</p>
-        <mat-radio-group color="warn" [(ngModel)]="harm" aria-label="Do you wish to add 50 DKK to the total earnings of another worker (not the one you have regulated)?">
+        <p>Do you wish to subtract 50 DKK from the total earnings of a third worker (not the one you have regulated and not the one you affect above)? Your choice will not 
+          affect your own payment.
+        </p>
+        <mat-radio-group color="warn" [(ngModel)]="harm" aria-label="Do you wish to add 30 DKK to the total earnings of another worker (not the one you have regulated)?">
           <mat-radio-button style="margin-left:10px;" value="yes">Yes</mat-radio-button><br>
           <mat-radio-button value="no" style="margin-left:10px;margin-top:10px;">No</mat-radio-button>
         </mat-radio-group>

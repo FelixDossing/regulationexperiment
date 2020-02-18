@@ -24,6 +24,8 @@ export class DataComponent implements OnInit {
       this.displayTimeData();
     } else if (this.data_show == 'instructions') {
       this.displayInstructionsData();
+    } else if (this.data_show == 'payment') {
+      this.displayPaymentData();
     }
   }
   displayInstructionsData() {
@@ -51,6 +53,27 @@ export class DataComponent implements OnInit {
       }
     })
   }
+  displayPaymentData() {
+    this.adminService.getData().subscribe(data => {
+      this.datahead = "userid; firstname; lastname; email; role; payment_method; regnum; accnum; phonenum; instr_completed; allo1_completed; allo2_copmleted; reg1_completed; reg2_completed; work1_completed; work2_completed; survey1_completed; survey2_completed;"
+      this.data = [];
+      for (let i = 0; i < data.length; i++) {
+        this.data.push(`${data[i]._id}; ${data[i].first_name}; ${data[i].last_name}; ${data[i].email}; ${data[i].role}`);
+        let survey2 = data[i].tasks.find(e => e.task_tag == 'survey2');
+        if (survey2.completed) {
+          let payment = survey2.answers.find(e => e.name == 'paymentmethod');
+          this.data[i] += `; ${payment.answer}; ${payment.regnum}; ${payment.accnum}; ${payment.phonenum}`
+        } else {
+          this.data[i] += `; .; .; .; .`;
+        }
+        this.data[i] += `; ${data[i].tasks.find(e => e.task_tag =='instructions').completed}; ${data[i].tasks.find(e => e.task_tag =='allocation1').completed}`+
+                        `; ${data[i].tasks.find(e => e.task_tag =='allocation2').completed}; ${data[i].tasks.find(e => e.task_tag =='regulation1').completed}`+
+                        `; ${data[i].tasks.find(e => e.task_tag =='regulation2').completed}; ${data[i].tasks.find(e => e.task_tag =='work1').completed}`+
+                        `; ${data[i].tasks.find(e => e.task_tag =='work2').completed}; ${data[i].tasks.find(e => e.task_tag =='survey1').completed}`+
+                        `; ${data[i].tasks.find(e => e.task_tag =='survey2').completed}`
+      }
+    })
+  }
 
   displayUserData() {
     this.adminService.getData().subscribe(data => {
@@ -61,7 +84,7 @@ export class DataComponent implements OnInit {
       // Survey 1
       this.datahead += "; birthyear; country; hometype; interestrate; highinteretexp; highinterestpayment; height; weight; smoking; drinking; risk"
       // Survey 2
-      this.datahead += "; gender; faculty; leftright; equalincomes; publicownership; responsibility; compitition; hardwork; zerosum; prohibitsugar; taxsugar; hidesugar"+
+      this.datahead += "; gender; faculty; field; leftright; equalincomes; publicownership; responsibility; compitition; hardwork; zerosum; prohibitsugar; taxsugar; hidesugar"+
                                     "; prohibitalcohol; taxalcohol; hidealcohol; prohibittobacco; taxtobacco; hidetobacco; reginterests; vote"
       // Allocation 1+2
       for (let i = 1; i<3; i++) {
@@ -104,9 +127,9 @@ export class DataComponent implements OnInit {
           this.data[i] += `; ${survey2[0].answer}; ${survey2[1].answer}; ${survey2[2].answer}; ${survey2[3].answer}; ${survey2[4].answer}; ${survey2[5].answer}`+
                                       `; ${survey2[6].answer}; ${survey2[7].answer}; ${survey2[8].answer}; ${survey2[9].answer}; ${survey2[10].answer}; ${survey2[11].answer}`+
                                       `; ${survey2[12].answer}; ${survey2[13].answer}; ${survey2[14].answer}; ${survey2[15].answer}; ${survey2[16].answer}; ${survey2[17].answer}`+
-                                      `; ${survey2[18].answer}; ${survey2[19].answer}`
+                                      `; ${survey2[18].answer}; ${survey2[19].answer}; ${survey2[20].answer}`
         } else {
-          this.data[i] += "; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .";
+          this.data[i] += "; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .";
         }
         // Allocation 1 & 2
         for (let j = 1; j < 3; j++) {

@@ -65,7 +65,7 @@
       <mat-tab label="Part 2">
         <div class="instructions-part">
           <h1>Dashboard</h1>
-          <p>The dashboard is the main screen of the experiment and is where you can see all the tasks that must completed for each part. Each card on the 
+          <p>The dashboard is the main screen of the experiment and is where you can see all the tasks that must be completed for each part. Each card on the 
             dashboard represents a task. On the card is shown the name of the task and when the task is to be carried out. At the relevant 
             time you can click the button at the bottom of the card to enter the task. When you have completed the task, the button will be replaced by the text 
             "Completed". Make sure that every card has been completed on the relevant days.
@@ -86,10 +86,10 @@
           <h1>Work</h1>
           <p>The work which must be completed in Week 2 and Week 3 consists in completing a number of "pages", each with 16 sliders. A half page consists of 8 sliders and a quarter page 
             consists of 4 sliders. So if you have to complete 15.5 pages, this means you will have to complete 15 pages with 16 sliders and one page with 8 sliders. In order to complete the page, all sliders on a 
-            page must be moved from 0 to 50. In order to select the next slider, you press the SPACE BAR and in order to move the slider, you press the ARROW KEYS.
+            page must be moved <strong>from 0 to 50</strong>. In order to select the next slider, you press the <strong>SPACE BAR</strong> and in order to move the slider, you press the <strong>ARROW KEYS</strong>.
           </p>
           <p *ngIf="!work_completed">Please try completing the 
-            three sliders below:</p>
+            three sliders below by moving them all to 50:</p>
           <app-work *ngIf="!work_completed" [target]="pages_to_complete" [completed]="work_completed" [ranges_per_page]="range_number" (pageDoneEvent)="addWork()"></app-work>
           <div *ngIf="work_completed" style="margin:30px auto;text-align:center;">Good job!</div>
           <button class="active-button" mat-raised-button (click)="nextTab()">Next</button>
@@ -174,8 +174,8 @@
           <div style="margin-top:20px;">
             <label id="label1">How long time do you have to finish each part of the experiment?</label>
             <mat-radio-group [(ngModel)]="answers[1]" (change)="answers_check[1]=null;" aria-labeledby="label1" class="radio-group" color="primary">
-              <mat-radio-button class="radio-button" value="1 hour">1 hour</mat-radio-button><br>
-              <mat-radio-button class="radio-button" value="1 day">1 day</mat-radio-button><br>
+              <mat-radio-button class="radio-button" value="1 hour">1 hour</mat-radio-button>
+              <mat-radio-button class="radio-button" value="1 day">1 day</mat-radio-button>
               <mat-radio-button class="radio-button" value="1 week">1 week</mat-radio-button>
               <small *ngIf="answers_check[1]==false" style="color:red;">This is not correct</small>
             </mat-radio-group>
@@ -226,6 +226,29 @@
           </div>
 
           <div style="margin-top:20px;">
+            <label id="label4">Allocation choices are made in...</label>
+            <mat-radio-group [(ngModel)]="answers[6]" (change)="answers_check[6]=null;" aria-labelledby="label4" class="radio-group" color="primary">
+              <mat-radio-button class="radio-button" value="week1">Week 1</mat-radio-button>
+              <mat-radio-button class="radio-button" value="week2">Week 2</mat-radio-button>
+              <mat-radio-button class="radio-button" value="week12">Week 1 and 2</mat-radio-button>
+              <mat-radio-button class="radio-button" value="week123">Week 1, 2 and 3</mat-radio-button>
+              <mat-radio-button class="radio-button" value="week23">Week 2 and 3</mat-radio-button>
+              <small *ngIf="answers_check[6]==false" style="color:red;">This is not correct</small>
+            </mat-radio-group>
+          </div>
+
+          <div style="margin-top:20px;">
+            <label id="label5">Regulation choices made in week 2 affect...</label>
+            <mat-radio-group [(ngModel)]="answers[7]" (change)="answers_check[7]=null;" aria-labelledby="label5" class="radio-group" color="primary">
+              <mat-radio-button class="radio-button" value="random">Allocation choices made by the worker in a random week</mat-radio-button>
+              <mat-radio-button class="radio-button" value="week1">Allocation choices made by the worker in week 1</mat-radio-button>
+              <mat-radio-button class="radio-button" value="week2">Allocation choices made by the worker in week 2</mat-radio-button>
+              <mat-radio-button class="radio-button" value="week12">Allocation choices made by the worker in week 1 and 2</mat-radio-button>
+              <small *ngIf="answers_check[7]==false" style="color:red;">This is not correct</small>
+            </mat-radio-group>
+          </div>
+
+          <div style="margin-top:40px;">
             <p>The last questions relate to the example below</p>
             <mat-card class="mat-elevation-z6" style="background:rgb(236, 236, 236);">
               <p><strong><em>Example: </em></strong>A worker has made the following choices:</p>
@@ -307,19 +330,6 @@
               week 2 (Allocation 2)?</p>
               <mat-form-field appearance="outline" style="margin:10px;">
                 <mat-label>Week 2</mat-label>
-                <input matInput [(ngModel)]="answers[6]" (change)="answers_check[6]=null;">
-                <small *ngIf="answers_check[6] == false" style="color:red;">This is not correct</small>
-              </mat-form-field>
-              <mat-form-field appearance="outline" style="margin:10px;">
-                <mat-label>Week 3</mat-label>
-                <input matInput [(ngModel)]="answers[7]" (change)="answers_check[7]=null;">
-                <small *ngIf="answers_check[7] == false" style="color:red;">This is not correct</small>
-              </mat-form-field>
-            </div>
-            <div style="margin-top:20px;">
-              <p>How many pages will the worker have to do in week 2 and week 3 if <em>the choice that counts</em> is chosen to be choice 5 in week 1 (Allocation 1)?</p>
-              <mat-form-field appearance="outline" style="margin:10px;">
-                <mat-label>Week 2</mat-label>
                 <input matInput [(ngModel)]="answers[8]" (change)="answers_check[8]=null;">
                 <small *ngIf="answers_check[8] == false" style="color:red;">This is not correct</small>
               </mat-form-field>
@@ -328,6 +338,20 @@
                 <input matInput [(ngModel)]="answers[9]" (change)="answers_check[9]=null;">
                 <small *ngIf="answers_check[9] == false" style="color:red;">This is not correct</small>
               </mat-form-field>
+            </div>
+            <div style="margin-top:20px;">
+              <p>How many pages will the worker have to do in week 2 and week 3 if <em>the choice that counts</em> is chosen to be choice 5 in week 1 (Allocation 1)?</p>
+              <mat-form-field appearance="outline" style="margin:10px;">
+                <mat-label>Week 2</mat-label>
+                <input matInput [(ngModel)]="answers[10]" (change)="answers_check[10]=null;">
+                <small *ngIf="answers_check[10] == false" style="color:red;">This is not correct</small>
+              </mat-form-field>
+              <mat-form-field appearance="outline" style="margin:10px;">
+                <mat-label>Week 3</mat-label>
+                <input matInput [(ngModel)]="answers[11]" (change)="answers_check[11]=null;">
+                <small *ngIf="answers_check[11] == false" style="color:red;">This is not correct</small>
+              </mat-form-field>
+              <small *ngIf="answers_check[11] == false" style="color:green;">Hint: How does the regulator's choice affect the allocation?</small>
             </div>
           </div>
           <button class="active-button-extra" mat-raised-button (click)="completeControl()">Submit</button>

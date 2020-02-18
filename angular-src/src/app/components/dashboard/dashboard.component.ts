@@ -23,24 +23,24 @@ export class DashboardComponent {
   work2_active:boolean = false;
 
   worker_cards = [
-    { tag: 'instructions', title: 'Instructions', week:1, text:'In order to complete this part you must read the instructions and answer the control questions correctly.' },
-    { tag: 'survey1', title: 'Survey 1', week:1 },
-    { tag: 'allocation1', title: 'Allocation 1', week:1 },
-    { tag: 'allocation2', title: 'Allocation 2', week:2 },
-    { tag: 'work1', title: 'Work 1', week:2 },
-    { tag: 'work2', title: 'Work 2', week:3 },
-    { tag: 'survey2', title: 'Survey 2', week:3 },
+    { tag: 'instructions', title: 'Instructions', week:1, text:'Read the instructions and answer the control questions correctly.' },
+    { tag: 'survey1', title: 'Survey 1', week:1, text:'Answer survey questions' },
+    { tag: 'allocation1', title: 'Allocation 1', week:1, text:'Choose an allocation of work' },
+    { tag: 'allocation2', title: 'Allocation 2', week:2, text:'Choose an allocation of work' },
+    { tag: 'work1', title: 'Work 1', week:2, text:'Complete work by moving sliders to 50' },
+    { tag: 'work2', title: 'Work 2', week:3, text:'Complete work by moving sliders to 50' },
+    { tag: 'survey2', title: 'Survey 2', week:3, text:'Answer survey questions' },
   ];
   regulator_cards = [
-    { tag: 'instructions', title: 'Instructions', week:1, text:'In order to complete this part you must read the instructions and answer the control questions correctly.' },
-    { tag: 'allocation1', title: 'Allocation 1', week:1 },
-    { tag: 'regulation1', title: 'Regulation 1', week:1 },
-    { tag: 'allocation2', title: 'Allocation 2', week:2 },
-    { tag: 'regulation2', title: 'Regulation 2', week:2 },
-    { tag: 'work1', title: 'Work 1', week:2 },
-    { tag: 'work2', title: 'Work 2', week:3 },
-    { tag: 'survey1', title: 'Survey 1', week:3 },
-    { tag: 'survey2', title: 'Survey 2', week:3 },
+    { tag: 'instructions', title: 'Instructions', week:1, text:'Read the instructions and answer the control questions correctly.' },
+    { tag: 'allocation1', title: 'Allocation 1', week:1, text:'Choose an allocation of work' },
+    { tag: 'regulation1', title: 'Regulation 1', week:1, text:"Choose your prefered regulation of the worker's choices" },
+    { tag: 'allocation2', title: 'Allocation 2', week:2, text:'Choose an allocation of work' },
+    { tag: 'regulation2', title: 'Regulation 2', week:2, text:"Choose your prefered regulation of the worker's choices" },
+    { tag: 'work1', title: 'Work 1', week:2, text:'Complete work by moving sliders to 50' },
+    { tag: 'work2', title: 'Work 2', week:3, text:'Complete work by moving sliders to 50' },
+    { tag: 'survey1', title: 'Survey 1', week:3, text:'Answer survey questions' },
+    { tag: 'survey2', title: 'Survey 2', week:3, text:'Answer survey questions' },
   ]
 
   user:any;
@@ -118,7 +118,7 @@ export class DashboardComponent {
 
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
-      if (this.user.work_assignment && (this.user.role != 'regulator' || this.user.tasks[this.user.tasks.map(e => e.task_tag).indexOf('regulation2')].completed)) {
+      if (this.user.work_assignment && (this.user.role != 'regulator' || this.user.tasks.find(e => e.task_tag === 'regulation2').completed)) {
         this.work_assignment = this.user.work_assignment;
       }
       this.setCards();
@@ -136,18 +136,19 @@ export class DashboardComponent {
   }
 
   checkWork() {
-    this.work1_active = this.cards[this.cards.map(e=>e.tag).indexOf('work1')].active;
-    this.work2_active = this.cards[this.cards.map(e=>e.tag).indexOf('work2')].active;
+    // this.work1_active = this.cards.find(e => e.tag == 'work1').active;
+    this.work1_active = this.cards.find(e => e.tag === 'work1').active;
+    this.work2_active = this.cards.find(e => e.tag === 'work2').active;
     // this.work_completed = this.cards[this.cards.map(e=>e.tag).indexOf('work1')].active;
-    this.work_to_do = this.cards[this.cards.map(e=>e.tag).indexOf('work1')].active || this.cards[this.cards.map(e=>e.tag).indexOf('work2')].active ? true : false;
-    this.work_completed.week1 = this.user.tasks[this.user.tasks.map(e=>e.task_tag).indexOf("work1")].work_completed
+    this.work_to_do = this.cards.find(e => e.tag === 'work1').active || this.cards.find(e=> e.tag === 'work2').active ? true : false;
+    this.work_completed.week1 = this.user.tasks.find(e => e.task_tag === "work1").work_completed;
     this.work_completed.week1 = this.work_completed.week1 ? this.work_completed.week1 : 0;
-    this.work_completed.week2 = this.user.tasks[this.user.tasks.map(e=>e.task_tag).indexOf("work2")].work_completed
+    this.work_completed.week2 = this.user.tasks.find(e => e.task_tag === "work2").work_completed;
     this.work_completed.week2 = this.work_completed.week2 ? this.work_completed.week2 : 0;
   }
 
   doWorkClick() {
-    if (this.cards[this.cards.map(e=>e.tag).indexOf('work1')].active) {
+    if (this.cards.find(e => e.tag === 'work1').active) {
       this.router.navigate(['/workweek2']);
     } else {
       this.router.navigate(['/workweek3']);
@@ -167,7 +168,7 @@ export class DashboardComponent {
     }
     let tasks = this.user.tasks;
     this.cards.forEach(card => {
-      let task = this.user.tasks[this.user.tasks.map(e=>e.task_tag).indexOf(card.tag)];
+      let task = this.user.tasks.find(e => e.task_tag == card.tag)
       card.completed = task.completed ? true : false;
       card.begin = completion_dates[task.completion_week-1];
       card.end = moment(completion_dates[task.completion_week-1]).add(1,'days');
@@ -178,18 +179,18 @@ export class DashboardComponent {
       card.active = task.completed ? false : card.active;
 
       if (this.user.role == 'regulator') {
-        card.active = card.tag == 'work1' && !tasks[tasks.map(e => e.task_tag).indexOf('regulation2')].completed ? false : card.active;
-        card.active = card.tag == 'survey' && !tasks[tasks.map(e => e.task_tag).indexOf('work2')].completed ? false : card.active;
-        card.active = card.tag == 'allocation1' && !tasks[tasks.map(e => e.task_tag).indexOf('instructions')].completed ? false : card.active;
-        card.active = card.tag == 'regulation1' && !tasks[tasks.map(e => e.task_tag).indexOf('allocation1')].completed ? false : card.active;
-        card.active = card.tag == 'regulation2' && !tasks[tasks.map(e => e.task_tag).indexOf('allocation2')].completed ? false : card.active;
-        card.active = card.tag == 'survey1' && !tasks[tasks.map(e => e.task_tag).indexOf('work2')].completed ? false : card.active;
-        card.active = card.tag == 'survey2' && !tasks[tasks.map(e => e.task_tag).indexOf('survey1')].completed ? false : card.active;
+        card.active = card.tag == 'work1' && !tasks.find(e => e.task_tag === 'regulation2').completed ? false : card.active;
+        card.active = card.tag == 'survey' && !tasks.find(e => e.task_tag === 'work2').completed ? false : card.active;
+        card.active = card.tag == 'allocation1' && !tasks.find(e => e.task_tag === 'instructions').completed ? false : card.active;
+        card.active = card.tag == 'regulation1' && !tasks.find(e => e.task_tag === 'allocation1').completed ? false : card.active;
+        card.active = card.tag == 'regulation2' && !tasks.find(e => e.task_tag ==='allocation2').completed ? false : card.active;
+        card.active = card.tag == 'survey1' && !tasks.find(e => e.task_tag === 'work2').completed ? false : card.active;
+        card.active = card.tag == 'survey2' && !tasks.find(e => e.task_tag === 'survey1').completed ? false : card.active;
       } else if (this.user.role == 'worker') {
-        card.active = card.tag == 'work1' && !tasks[tasks.map(e => e.task_tag).indexOf('allocation2')].completed ? false : card.active;
-        card.active = card.tag == 'survey1' && !tasks[tasks.map(e => e.task_tag).indexOf('instructions')].completed ? false : card.active;
-        card.active = card.tag == 'allocation1' && !tasks[tasks.map(e => e.task_tag).indexOf('survey1')].completed ? false : card.active;
-        card.active = card.tag == 'survey2' && !tasks[tasks.map(e => e.task_tag).indexOf('work2')].completed ? false : card.active;
+        card.active = card.tag == 'work1' && !tasks.find(e => e.task_tag === 'allocation2').completed ? false : card.active;
+        card.active = card.tag == 'survey1' && !tasks.find(e => e.task_tag === 'instructions').completed ? false : card.active;
+        card.active = card.tag == 'allocation1' && !tasks.find(e => e.task_tag === 'survey1').completed ? false : card.active;
+        card.active = card.tag == 'survey2' && !tasks.find(e => e.task_tag === 'work2').completed ? false : card.active;
       }
     })
 

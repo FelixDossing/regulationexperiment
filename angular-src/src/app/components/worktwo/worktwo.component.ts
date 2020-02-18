@@ -4,6 +4,7 @@ import { InteractionService } from '../../services/interaction.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { Chart } from 'chart.js';
+import * as moment from 'moment';
 import { MatStepper } from '@angular/material/stepper';
 
 @Component({
@@ -19,6 +20,7 @@ export class WorktwoComponent implements OnInit {
   work_assignment:any;
   right_date:boolean = true;
   selected_tab:number = 0;
+  current_date = moment();
 
   // allocation_done:boolean = false;
   // min_work_done:boolean = false;
@@ -46,6 +48,10 @@ export class WorktwoComponent implements OnInit {
   ngOnInit() {
     this.getUser(() => {
       // this.min_pages_to_complete = this.user.minimal_work;
+      let register_date = moment(this.user.register_date)
+      if (moment(this.current_date).isSame(register_date.add({weeks:2, days:this.user.role == 'worker' ? 1 : 0}), 'day')) this.right_date = true;
+      else { this.right_date=false; this.router.navigate(['/dashboard']); }
+
       let tasks = this.user.tasks;
       if (this.user.work_assignment) {
         this.work_assignment = this.user.work_assignment;

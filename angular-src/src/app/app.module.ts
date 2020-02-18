@@ -31,6 +31,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { ValidateService } from './services/validate.service';
 import { AdminService } from './services/admin.service';
@@ -59,7 +60,7 @@ import { DataComponent } from './components/data/data.component';
 
 const appRoutes: Routes = [
   {path:'login', component:LoginComponent},
-  // {path:'newpassword/:resetcode', component:NewpasswordComponent},
+  {path:'newpassword/:resetcode', component:NewpasswordComponent},
   {path:'register', component:RegisterComponent},
   {path:'', redirectTo: 'dashboard', pathMatch:'full'},
   {path:'dashboard', component:DashboardComponent, canActivate:[AuthGuard]},
@@ -124,7 +125,8 @@ const appRoutes: Routes = [
     MatChipsModule,
     MatRadioModule,
     MatStepperModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDialogModule,
   ],
   providers: [
     ValidateService,

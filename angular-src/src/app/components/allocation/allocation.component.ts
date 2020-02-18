@@ -65,19 +65,21 @@ export class AllocationComponent implements OnInit {
       else if (this.user.role == 'regulator' && moment(this.current_date).isSame(register_date.add(1, 'week'), 'day')) this.allocation_number = 2;
       else if (this.user.role == 'worker' && moment(this.current_date).isSame(register_date.add(8, 'days'),'day')) this.allocation_number = 2;
 
+      if (this.allocation_number === null) { this.router.navigate(['/dahsboard']); }
+
       // Get suggestions for workers
       this.getSuggestions()
 
       // Check if open text has been submitted
-      if (this.user.tasks[this.user.tasks.map(e => e.task_tag).indexOf('allocation'+this.allocation_number)].completed) this.totally_done = true;
+      if (this.user.tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).completed) this.totally_done = true;
       // Check if allocation has already been chosen
-      else if (this.user.tasks[this.user.tasks.map(e => e.task_tag).indexOf('allocation'+this.allocation_number)].allocation) {
+      else if (this.user.tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).allocation) {
         this.work_done = true;
         this.allocation_done = true;
         this.selected_tab = 2;
       }
-      else if (this.allocation_number && tasks[tasks.map(e => e.task_tag).indexOf('allocation'+this.allocation_number)].work_completed) {
-        this.work_completed = tasks[tasks.map(e => e.task_tag).indexOf('allocation'+this.allocation_number)].work_completed;
+      else if (this.allocation_number && tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).work_completed) {
+        this.work_completed = tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).work_completed;
         this.checkIfDone();
       }
     });
@@ -101,6 +103,9 @@ export class AllocationComponent implements OnInit {
         if (res.success && res.suggestions != null) {
           this.waitscreen = false;
           this.suggestions = res.suggestions;
+        } else if (this.allocation_number === 2) {
+          this.waitscreen = false;
+          this.suggestions = [null, null, null, null, null];
         } else {
           let interval = setInterval(() => {
             this.interactionService.getSuggestion(this.user, this.allocation_number).subscribe(res => {
@@ -133,17 +138,17 @@ export class AllocationComponent implements OnInit {
 
       // Check if open text has been submitted
       this.totally_done = false;
-      if (this.user.tasks[this.user.tasks.map(e => e.task_tag).indexOf('allocation'+this.allocation_number)].completed) this.totally_done = true;
+      if (this.user.tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).completed) this.totally_done = true;
       // Check if allocation has already been chosen
-      else if (this.user.tasks[this.user.tasks.map(e => e.task_tag).indexOf('allocation'+this.allocation_number)].allocation) {
+      else if (this.user.tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).allocation) {
         this.totally_done = false;
         this.work_done = true;
         this.allocation_done = true;
         this.selected_tab = 2;
       }
-      else if (this.allocation_number && tasks[tasks.map(e => e.task_tag).indexOf('allocation'+this.allocation_number)].work_completed) {
+      else if (this.allocation_number && tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).work_completed) {
         this.totally_done = false;
-        this.work_completed = tasks[tasks.map(e => e.task_tag).indexOf('allocation'+this.allocation_number)].work_completed;
+        this.work_completed = tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).work_completed;
         this.checkIfDone();
       }
       this.getSuggestions();

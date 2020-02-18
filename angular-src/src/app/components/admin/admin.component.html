@@ -1,9 +1,21 @@
 <div class="container">
   <h1>Admin page</h1>
-  <a href="/session"><button mat-raised-button style="background:#9C27B0;color:white;">Go to sessions</button></a>
-  <h3 style="margin-top:50px;">Data</h3>
+  <a href="/session"><button mat-raised-button style="background:#9C27B0;color:white;">Go to sessions</button></a><br>
+  <button mat-raised-button style="margin-top:30px;" (click)="toData()">View data</button><br>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <h3 style="margin-top:50px;">Data</h3>
+  <div>
+    <mat-button-toggle-group [(ngModel)]="dataview" (change)="changeView()">
+      <mat-button-toggle value="all">All</mat-button-toggle>
+      <mat-button-toggle value="reminder">Reminder</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <mat-form-field *ngIf="dataview == 'reminder'" style="margin-top:20px;">
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="picker_date" (dateChange)="setDate();">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin-top:20px;">
     
     <ng-container matColumnDef="session">
       <th mat-header-cell *matHeaderCellDef> Session</th>
@@ -72,11 +84,10 @@
       <td mat-cell *matCellDef="let participant"> {{participant.survey2}}</td>
     </ng-container>
 
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <button mat-button style="margin-top:30px;" (click)="toData()">View data</button>
+  <button mat-raised-button *ngIf="dataview == 'reminder'" (click)="sendReminder()" style="margin-top:20px;">Send reminder</button>
 
 </div>

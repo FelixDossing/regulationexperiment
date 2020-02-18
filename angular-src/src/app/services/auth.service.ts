@@ -29,6 +29,11 @@ export class AuthService {
     if (!localStorage.id_token) return false;
     return !helper.isTokenExpired(localStorage.id_token);
   }
+  userAdmin() {
+    if (localStorage.user && JSON.parse(localStorage.user).admin) return true;
+    return false;
+  }
+
   isAdmin() {
     if (JSON.parse(localStorage.user).admin) return true;
     else return false;

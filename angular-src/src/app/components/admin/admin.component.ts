@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 export interface participantInfo {
   first_name: string;
@@ -24,22 +26,23 @@ export interface participantInfo {
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  displayedColumns: string[] = ['session','first_name', 'last_name', 'email','role','register_date','instructions',
-                                'allocation1','regulation1','allocation2','regulation2','survey1','survey2'];
+  displayedColumns: string[];
 
   dataSource:participantInfo[] = [];
+
+  today = moment();
+  picker_date = new Date();
+
+  actionspassword:string;
 
   users:any;
   participation_code:string;
   participation_codes:any;
 
-  constructor(private adminService:AdminService, private router:Router) { }
+  dataview:string = "all";
 
-  // Admin page should have data on: Participant name, Role, email, progress, regiser time,
-  // Button only for me to delete all data.
-  // View all data - should also only be for me.
+  constructor(private adminService:AdminService, private router:Router, private flashMessage:FlashMessagesService) { }
 
-  // Admin authentication should be better.
 
   ngOnInit() {
     this.getAdminData()
@@ -50,10 +53,36 @@ export class AdminComponent implements OnInit {
   toData() {
     this.router.navigate(['/data']);
   }
+  changeView() {
+    this.getAdminData()
+  }
+  setDate() {
+    this.today = moment(this.picker_date.toISOString())
+    this.today.minutes(1);
+    this.getAdminData();
+  }
+  sendReminder() {
+    let sendData = this.dataSource.map(e => {
+      return { name: e.first_name, email:e.email }
+    })
+    if (sendData.length > 0) {
+      this.adminService.sendReminder(sendData).subscribe(response => {
+        if (response.success) {
+          this.flashMessage.show(response.msg,{ cssClass:'my-flash-message success-flash', timeout:3000})
+        } else {
+          this.flashMessage.show(response.msg,{ cssClass:'my-flash-message alert-flash', timeout:3000})
+        }
+      })
+    }
+  };
   getAdminData() {
     this.adminService.getData().subscribe(data => {
+      this.displayedColumns = ['session','first_name', 'last_name', 'email','role','register_date','instructions',
+      'allocation1','regulation1','allocation2','regulation2','survey1','survey2'];
       this.dataSource = data.map(p => {
-        let info = { first_name : p.first_name,
+        let info = { 
+                     _id:p._id,
+                     first_name : p.first_name,
                      last_name: p.last_name,
                      email:p.email,
                      session:p.session,
@@ -69,6 +98,14 @@ export class AdminComponent implements OnInit {
                     }
         return info;
         });
+      if (this.dataview == 'reminder') {
+        this.dataSource = this.dataSource.filter(p => {
+          let signup_date = moment(p.register_date, 'YYYY-MM-DD');
+          let second_date = moment(signup_date).add({weeks:1, days:p.role == 'worker' ? 1 : 0});
+          let third_date = moment(second_date).add(1, 'weeks');
+          return this.today.isBetween(second_date, moment(second_date).add(1,'days')) || this.today.isBetween(third_date, moment(third_date).add(1,'days'))
+        });
+      }
     })    
   }
 

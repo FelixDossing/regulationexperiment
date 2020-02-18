@@ -31,6 +31,8 @@ export class SessionComponent implements OnInit {
 
   user_data:any[];
 
+  deletepassword:string = null;
+
   sessions:any[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
   session_number:number;
 
@@ -46,6 +48,15 @@ export class SessionComponent implements OnInit {
 
   ngOnInit() {
     setInterval(() => this.sessionChange(), 5000)
+  }
+
+  deleteSession() {
+    if (this.deletepassword === null) this.deletepassword = '';
+    else {
+      this.adminService.deleteSession(this.deletepassword, this.session_number).subscribe(res => {
+        this.flashMessage.show(res.msg,{ cssClass:`my-flash-message ${res.success ? 'success' : 'alert'}-flash`, timeout:3000});
+      })
+    }
   }
 
   sessionChange() {

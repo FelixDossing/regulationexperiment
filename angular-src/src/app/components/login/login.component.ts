@@ -70,7 +70,6 @@ export class LoginComponent implements OnInit {
           this.flashMessage.show(data.msg, { cssClass: 'my-flash-message success-flash', timeout:3000});
         }
         else if (data && data.msg) {
-          console.log(data)
           this.flashMessage.show(data.msg, { cssClass: 'my-flash-message alert-flash', timeout:3000});
         }
         else {

@@ -42,6 +42,15 @@ export class AdminService {
     this.authToken = token;
   }
 
+  // Deleteparticipant
+  deleteSession(password, sessionnum) {
+    this.loadToken();
+    let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken);
+    if (JSON.parse(localStorage.getItem('user')).admin) {
+      return this.http.post<any>('http://localhost:3000/admin/deletesession', {password, sessionnum}, {headers:headers});
+    }
+  }
+
   // Get all data
   getData(): Observable<User[]> {
     this.loadToken();
@@ -49,6 +58,11 @@ export class AdminService {
       let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
       return this.http.get<User[]>('http://localhost:3000/admin/data', { headers:headers });
     }
+  }
+  sendReminder(info:any) {
+    this.loadToken();
+    let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken);
+    return this.http.post<any>('http://localhost:3000/admin/sendreminder', info, {headers:headers});
   }
 
 }
