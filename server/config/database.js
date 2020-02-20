@@ -1,4 +1,4 @@
 module.exports = {
-    database: 'mongodb://localhost:27017/choice_limits_exp',
+    database: 'mongodb://<dbuser>:<dbpassword>@ds045795.mlab.com:45795/heroku_qw0jp4ts',
     secret: 'uarg84niwrf'
 }
