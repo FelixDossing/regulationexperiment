@@ -33,7 +33,7 @@ const port = process.env.PORT || 8080;
 app.use(cors())
 
 // Set client folder
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 // Body Parser middleware
 app.use(bodyParser.json());
@@ -56,7 +56,7 @@ app.use('/admin', admin);
 // });
 
 app.get('*', (req, res) => {
-    res.sendFile(__dirname+'/client/index.html');
+    res.sendFile(path.join(__dirname,'/../client/index.html'));
 });
 
 // Start server
