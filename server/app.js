@@ -46,6 +46,15 @@ app.use('/users', users);
 // Admin route
 app.use('/admin', admin);
 
+// Handle production
+if (process.env.NODE_ENV == 'production') {
+    app.use(express.static(__dirname+'/client'));
+
+    app.get(/.*/, (req, res) => {
+        res.sendFile(__dirname+'/client/index.html');
+    })
+}
+
 // Index route
 // app.get('/', (req, res) => {
 //     res.send('Invalid endpoint and something');
