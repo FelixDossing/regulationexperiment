@@ -149,6 +149,7 @@ router.get('/data', passport.authenticate('jwt',{session:false}), (req, res) => 
                         minimal_work:user.minimal_work,
                         timestamps:user.timestamps,
                         instructionreports:user.instructionreports,
+                        payoffweek:user.payoffweek,
                     }
                     if (!user.admin) {
                         sendUsers.push(newUser);

@@ -1,9 +1,9 @@
 <div class="grid-container">
-  <mat-form-field>
+  <!-- <mat-form-field>
     <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="picker_date" (dateChange)="setDate(); setCards(); checkWork()">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  </mat-form-field> -->
 
   <div style="text-align:center;margin-bottom:50px;">
     <h1 style="font-weight:lighter;font-size:2.6rem;margin-bottom:10px;">Welcome, <span *ngIf="this.user">{{ user.first_name }}</span></h1>

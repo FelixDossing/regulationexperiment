@@ -27,7 +27,7 @@ export class AllocationComponent implements OnInit {
   pages_to_complete:number;
   work_completed:number = 0;
 
-  exchange_rates = [2, 1.5, 1, 0.75, 0.5];
+  exchange_rates = [2, 1.25, 1, 0.75, 0.5];
 
   picker_date = new Date();
 
@@ -39,7 +39,7 @@ export class AllocationComponent implements OnInit {
 
   allocation_choices = [
     {name:'Choice 1', exchange_rate:2, w2_options:[], w3_options:[], choice:null, selected:false, choiceChart:<any>{}, chartId:"choiceOptions1"},
-    {name:'Choice 2', exchange_rate:1.5, w2_options:[], w3_options:[], choice:null, selected:false, choiceChart:<any>{}, chartId:"choiceOptions2"},
+    {name:'Choice 2', exchange_rate:1.25, w2_options:[], w3_options:[], choice:null, selected:false, choiceChart:<any>{}, chartId:"choiceOptions2"},
     {name:'Choice 3', exchange_rate:1, w2_options:[], w3_options:[], choice:null, selected:false, choiceChart:<any>{}, chartId:"choiceOptions3"},
     {name:'Choice 4', exchange_rate:0.75, w2_options:[], w3_options:[], choice:null, selected:false, choiceChart:<any>{}, chartId:"choiceOptions4"},
     {name:'Choice 5', exchange_rate:0.5, w2_options:[], w3_options:[], choice:null, selected:false, choiceChart:<any>{}, chartId:"choiceOptions5"}

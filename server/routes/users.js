@@ -16,140 +16,162 @@ const url = "http://localhost:4200"
 // Register users
 router.post('/register', (req, res, next) => {
 
-    let newUser = new User({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email,
-        password: req.body.password,
-        participation_code: req.body.participation_code,
-        register_date:new Date().toString(),
-        extra_allocation_info:Math.random() >= 0.5,
-        minimal_work:10,
-    });
+    if (req.body.participation_code === "ceb1X8492") {
+        // Register admin
+        let admin = new User({
+            admin:true,
+            first_name:req.body.first_name,
+            last_name:req.body.last_name,
+            email:req.body.email,
+            password:req.body.password
+        })
 
-    if (req.body.ku_id) {
-        newUser.ku_id = req.body.ku_id;
-    }
-    // (1) Validate that the user is in a session - and validate ku if ku_student
-    // (2) Register in session as registered
-    // (3) Apply session to user
-    // (4) check for KU
-    // (5) Assign role and group_id
-
-    Session.find({}, (err, sessions) => {
-        let user_found = false;
-        let already_registered = false;
-        let ku_login_problem = false;
-
-        let new_logins = [];
-
-        sessions.forEach(session => {
-            let index = session.logins.map(x => x.participation_code).indexOf(newUser.participation_code);
-            if (index != -1) {
-                user_found = true;
-
-                // Check if already registered
-                if (session.logins[index].registered) {
-                    already_registered = true;
-                } else {
-                    // Set session for user
-                    newUser.session = session.session_number;
-                    newUser.role = session.logins[index].role;
-                    newUser.group_id = session.logins[index].group_id;
-
-                    // Set tasks
-                    if (newUser.role == 'worker') {
-                        newUser.tasks = [
-                            { task_tag:'instructions', name:'Instructions', completed:false, completion_week: 1, link:'instructions' },
-                            { task_tag:'survey1', name:'Survey 1', completed:false, completion_week: 1, link:'surveyone'},
-                            { task_tag:'allocation1', name:'Allocation choice', completed:false, completion_week: 1, link:'allocation'},
-                            { task_tag:'allocation2', name:'Allocation choice', completed:false, completion_week: 2, link:'allocation'},
-                            { task_tag:'work1', name:'Week 2 work', completed:false, completion_week: 2, link:'workweek2'},
-                            { task_tag:'work2', name:'Week 3 work', completed:false, completion_week: 3, link:'workweek3'},
-                            { task_tag:'survey2', name:'Survey 2', completed:false, completion_week: 3, link:'surveytwo'},
-                        ]
-                    } else if (newUser.role == 'regulator') {
-                        newUser.tasks = [
-                            { task_tag:'instructions', name:'Instructions', completed:false, completion_week: 1, link:'instructions' },
-                            { task_tag:'allocation1', name:'Allocation choice', completed:false, completion_week: 1, link:'allocation'},
-                            { task_tag:'regulation1', name:'Regulation choice', completed:false , completion_week: 1, link:'regulation'},
-                            { task_tag:'allocation2', name:'Allocation choice', completed:false, completion_week: 2, link:'allocation'},
-                            { task_tag:'regulation2', name:'Regulation choice', completed:false , completion_week: 2, link:'regulation'},
-                            { task_tag:'work1', name:'Week 2 work', completed:false, completion_week: 2, link:'workweek2'},
-                            { task_tag:'work2', name:'Week 3 work', completed:false, completion_week: 3, link:'workweek3'},
-                            { task_tag:'survey1', name:'Survey 1', completed:false, completion_week: 3, link:'surveyone'},
-                            { task_tag:'survey2', name:'Survey 2', completed:false, completion_week: 3, link:'surveytwo'},
-                        ]
-                    }
-
-                    // Check KU
-                    if (session.logins[index].ku_student) {
-                        const valid_ku = /^[a-zA-Z]{3}\d{3}$/;
-                        if (!valid_ku.test(String(newUser.ku_id).toLowerCase())) {
-                            ku_login_problem = true;
-                            return false;
-                        }
-                    }
-                    if (!ku_login_problem) {
-                        // Set as registered in sessions
-                        new_logins = session.logins;
-                        new_logins[index].registered = true;
-                     }
-                }
-
+        User.addUser(admin, (err) => {
+            if (err) {
+                res.json({success:false, msg:"Unable to register admin"});
+            } else {
+                res.json({success:true, msg:"Admin registered"})
             }
+        })
+    } else {
+
+        // (1) Validate that the user is in a session - and validate ku if ku_student
+        // (2) Register in session as registered
+        // (3) Apply session to user
+        // (4) check for KU
+        // (5) Assign role and group_id
+
+        let newUser = new User({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            password: req.body.password,
+            participation_code: req.body.participation_code,
+            register_date:new Date().toString(),
+            extra_allocation_info:Math.random() >= 0.5,
+            minimal_work:10,
+            payoffweek:Math.floor(Math.random()*2)+1,
         });
-        if (user_found && !already_registered && !ku_login_problem) {
-            // addd user
-            User.addUser(newUser, (err, user) => {
-                if(err) {
-                    console.log(err);
-                    res.json({success:false, msg:'Failed to register user'});
-                } else {
-                    Session.updateLogin(newUser.session, new_logins, (err, response) => {
-                        if (err) {
-                            console.log('Error'+err)
+    
+        if (req.body.ku_id) {
+            newUser.ku_id = req.body.ku_id;
+        }
+    
+        Session.find({}, (err, sessions) => {
+            let user_found = false;
+            let already_registered = false;
+            let ku_login_problem = false;
+    
+            let new_logins = [];
+    
+            sessions.forEach(session => {
+                let index = session.logins.map(x => x.participation_code).indexOf(newUser.participation_code);
+                if (index != -1) {
+                    user_found = true;
+    
+                    // Check if already registered
+                    if (session.logins[index].registered) {
+                        already_registered = true;
+                    } else {
+                        // Set session for user
+                        newUser.session = session.session_number;
+                        newUser.role = session.logins[index].role;
+                        newUser.group_id = session.logins[index].group_id;
+    
+                        // Set tasks
+                        if (newUser.role == 'worker') {
+                            newUser.tasks = [
+                                { task_tag:'instructions', name:'Instructions', completed:false, completion_week: 1, link:'instructions' },
+                                { task_tag:'survey1', name:'Survey 1', completed:false, completion_week: 1, link:'surveyone'},
+                                { task_tag:'allocation1', name:'Allocation choice', completed:false, completion_week: 1, link:'allocation'},
+                                { task_tag:'allocation2', name:'Allocation choice', completed:false, completion_week: 2, link:'allocation'},
+                                { task_tag:'work1', name:'Week 2 work', completed:false, completion_week: 2, link:'workweek2'},
+                                { task_tag:'work2', name:'Week 3 work', completed:false, completion_week: 3, link:'workweek3'},
+                                { task_tag:'survey2', name:'Survey 2', completed:false, completion_week: 3, link:'surveytwo'},
+                            ]
+                        } else if (newUser.role == 'regulator') {
+                            newUser.tasks = [
+                                { task_tag:'instructions', name:'Instructions', completed:false, completion_week: 1, link:'instructions' },
+                                { task_tag:'allocation1', name:'Allocation choice', completed:false, completion_week: 1, link:'allocation'},
+                                { task_tag:'regulation1', name:'Regulation choice', completed:false , completion_week: 1, link:'regulation'},
+                                { task_tag:'allocation2', name:'Allocation choice', completed:false, completion_week: 2, link:'allocation'},
+                                { task_tag:'regulation2', name:'Regulation choice', completed:false , completion_week: 2, link:'regulation'},
+                                { task_tag:'work1', name:'Week 2 work', completed:false, completion_week: 2, link:'workweek2'},
+                                { task_tag:'work2', name:'Week 3 work', completed:false, completion_week: 3, link:'workweek3'},
+                                { task_tag:'survey1', name:'Survey 1', completed:false, completion_week: 3, link:'surveyone'},
+                                { task_tag:'survey2', name:'Survey 2', completed:false, completion_week: 3, link:'surveytwo'},
+                            ]
                         }
-                    });
-                    res.json({success:true, msg:'User registered'});
-
-                    let date1 = moment(newUser.register_date).add({weeks:1, days:newUser.role =='regulator' ? 0 : 1});
-                    let date2 = moment(date1).add(1,'weeks');
-
-                    const DOMAIN = "sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org";
-                    const mg = mailgun({apiKey: "77f75174a3f4cc3adabc29491b91b379-7238b007-7a0849c6", domain: DOMAIN});
-                    const data = {
-                        from: "Experiment <postmaster@sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org>",
-                        to: newUser.email,
-                        subject: "Experiment signup",
-                        text: `Dear ${newUser.first_name},
-                        Thank you for participating in our experiment. In order to sign in, you may use the following link:
-                        
-                        ${url}
-                        
-                        In order to complete the experiment, you must sign in and complete tasks on the following dates: ${date1.format("MMM Do YYYY")} and ${date2.format("MMM Do YYYY")}.
-                        
-                        If you have any questions, please contact uc.experiment2019@gmail.com
-                        
-                        Thank you`
-                    };
-                    mg.messages().send(data, function (error, body) {
-                        console.log(body);
-                    });
+    
+                        // Check KU
+                        if (session.logins[index].ku_student) {
+                            const valid_ku = /^[a-zA-Z]{3}\d{3}$/;
+                            if (!valid_ku.test(String(newUser.ku_id).toLowerCase())) {
+                                ku_login_problem = true;
+                                return false;
+                            }
+                        }
+                        if (!ku_login_problem) {
+                            // Set as registered in sessions
+                            new_logins = session.logins;
+                            new_logins[index].registered = true;
+                         }
+                    }
+    
                 }
             });
-
-        } else if (!user_found) {
-            res.json({success:false, msg:'Invalid participation code'});
-        } else if (already_registered) {
-            res.json({success:false, msg:'Participation code has already been used'});
-        } else if (ku_login_problem) {
-            res.json({success:false, msg:'Please input a valid KU ID'});
-        }
-        else {
-            res.json({success:false, msg:'Invalid participation code'});
-        }
-    });
+            if (user_found && !already_registered && !ku_login_problem) {
+                // addd user
+                User.addUser(newUser, (err, user) => {
+                    if(err) {
+                        console.log(err);
+                        res.json({success:false, msg:'Failed to register user'});
+                    } else {
+                        Session.updateLogin(newUser.session, new_logins, (err, response) => {
+                            if (err) {
+                                console.log('Error'+err)
+                            }
+                        });
+                        res.json({success:true, msg:'User registered'});
+    
+                        let date1 = moment(newUser.register_date).add({weeks:1, days:newUser.role =='regulator' ? 0 : 1});
+                        let date2 = moment(date1).add(1,'weeks');
+    
+                        const DOMAIN = "sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org";
+                        const mg = mailgun({apiKey: "77f75174a3f4cc3adabc29491b91b379-7238b007-7a0849c6", domain: DOMAIN});
+                        const data = {
+                            from: "Experiment <postmaster@sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org>",
+                            to: newUser.email,
+                            subject: "Experiment signup",
+                            text: `Dear ${newUser.first_name},
+                            Thank you for participating in our experiment. In order to sign in, you may use the following link:
+                            
+                            ${url}
+                            
+                            In order to complete the experiment, you must sign in and complete tasks on the following dates: ${date1.format("MMM Do YYYY")} and ${date2.format("MMM Do YYYY")}.
+                            
+                            If you have any questions, please contact uc.experiment2019@gmail.com
+                            
+                            Thank you`
+                        };
+                        mg.messages().send(data, function (error, body) {
+                            console.log(body);
+                        });
+                    }
+                });
+    
+            } else if (!user_found) {
+                res.json({success:false, msg:'Invalid participation code'});
+            } else if (already_registered) {
+                res.json({success:false, msg:'Participation code has already been used'});
+            } else if (ku_login_problem) {
+                res.json({success:false, msg:'Please input a valid KU ID'});
+            }
+            else {
+                res.json({success:false, msg:'Invalid participation code'});
+            }
+        });
+    }
 });
 
 // Authenticate/login
@@ -231,6 +253,7 @@ router.post('/completesurvey', passport.authenticate('jwt', {session:false}), (r
     let index = user.tasks.map(e => e.task_tag).indexOf('survey'+num)
     user.tasks[index].completed = true;
     user.tasks[index].answers = choices;
+    user.tasks[index].bombplacement = Math.floor(Math.random()*101);
     const info = { update_type: 'complete_survey', user:user}
     User.updateUser(info, (err, response) => {
         if(err) {

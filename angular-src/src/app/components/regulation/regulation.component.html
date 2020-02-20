@@ -1,11 +1,11 @@
 <div class="container">
 
-  <mat-form-field>
+  <!-- <mat-form-field>
     <h3>{{week}}</h3>
     <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="picker_date" (dateChange)="setDate()">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>    
+  </mat-form-field>     -->
 
   <h1 class="main-heading">Regulation choice</h1>
   <h2 *ngIf="week">Week {{week}}</h2>
@@ -57,8 +57,8 @@
         <mat-card style="background:rgb(0, 109, 64)">
           <h1 style="color:white;">Instructions for step 2</h1>
           <p style="color:white;line-height:1.5;">Each of the following cards illustrates a scenario where a worker has made a certain choice. For each scenario we would like 
-          to know what you think would have been the best choice for the worker to make. The first 6 cards relate to choice 1, which has an exhange rate of 2 and the last 6 cards 
-          relate to choice 2, which has an exchange rate of 1.5. So in both cases moving pages from week 2 to week 3 increases the total amount of work.</p>
+          to know what you think would have been the best choice for the worker to make. The first 6 cards relate to choice 1, which has an exhange rate of {{optimal_choices[0].exchange_rate}} and the last 6 cards 
+          relate to choice 2, which has an exchange rate of {{optimal_choices[1].exchange_rate}}. So in both cases moving pages from week 2 to week 3 increases the total amount of work.</p>
         </mat-card>
 
         <div *ngFor="let choice of optimal_choices; let index = index;">
@@ -174,11 +174,11 @@
     </mat-step>
 
     <mat-step editable="false" label="Step 3" completed="false">
-      <div class="input-content tab-content">
-        <h3 style="text-align: center;">How happy are you with the regulation you have set?</h3>
-        <div style="display:flex;">
+      <div class="input-content">
+        <p style="text-align: center;">How satisfied are you with the regulation you have set?</p>
+        <div style="display:flex;width:50%;margin:0 auto;min-width:300px;">
           <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_dissatisfied</mat-icon>
-          <input [(ngModel)]="sentiment" class="dist_slider" [ngClass]="sentiment == null ? 'idle_slider' : ''" [min]="0" max="10" style="width:100%;" type="range" onclick="blur(this)">
+          <input [(ngModel)]="sentiment" class="dist_slider" [ngClass]="sentiment == null ? 'idle_slider' : ''" [min]="0" max="10" step="1" style="width:100%;" type="range" onclick="blur(this)">
           <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_satisfied</mat-icon>
         </div>
       </div>

@@ -6,8 +6,8 @@
     <mat-step editable="false" label="Step 1" completed="false">
       <app-allocation-info [work_assignment]="work_assignment" [user]="user"></app-allocation-info>
       <div style="margin-top:50px;" class="input-content tab-content">
-        <h3 style="text-align: center;">How happy are you with this allocation?</h3>
-        <div style="display:flex;">
+        <h3 style="text-align: center;">How satisfied are you with this allocation?</h3>
+        <div style="display:flex;width:50%;margin:0 auto;min-width:300px;">
           <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_dissatisfied</mat-icon>
           <input [(ngModel)]="sentiment_before" class="dist_slider" [ngClass]="sentiment_before == null ? 'idle_slider' : ''" [min]="0" max="10" style="width:100%;" type="range" (click)="sentiment_after = sentiment_after==null ? 5 : sentiment_after" onclick="blur(this)">
           <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_satisfied</mat-icon>
@@ -27,8 +27,8 @@
       <div style="text-align: initial;">
         <app-allocation-info [work_assignment]="work_assignment" [user]="user"></app-allocation-info>
         <div style="margin-top:50px;" class="input-content tab-content">
-          <h3 style="text-align: center;">How happy are you with this allocation?</h3>
-          <div style="display:flex;">
+          <h3 style="text-align: center;">How satisfied are you with this allocation?</h3>
+          <div style="display:flex;width:50%;margin:0 auto;min-width:300px;">
             <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_dissatisfied</mat-icon>
             <input [(ngModel)]="sentiment_after" class="dist_slider" [ngClass]="sentiment_after == null ? 'idle_slider' : ''" [min]="0" max="10" style="width:100%;" type="range" (click)="sentiment_after = sentiment_after==null ? 5 : sentiment_after" onclick="blur(this)">
             <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_satisfied</mat-icon>

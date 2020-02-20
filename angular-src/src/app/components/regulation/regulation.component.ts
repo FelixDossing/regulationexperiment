@@ -44,19 +44,19 @@ export class RegulationComponent implements OnInit {
 
   regulation_choices = [
     {name:'Choice 1', exchange_rate:2, w2_options:[], w3_options:[], selected:false, choiceChart:<any>{}, chartId:"choiceOptions1",choice:null, suggestion_min:null,suggestion_text:""},
-    {name:'Choice 2', exchange_rate:1.5, w2_options:[], w3_options:[], selected:false, choiceChart:<any>{}, chartId:"choiceOptions2",choice:null, suggestion_min:null,suggestion_text:""},
+    {name:'Choice 2', exchange_rate:1.25, w2_options:[], w3_options:[], selected:false, choiceChart:<any>{}, chartId:"choiceOptions2",choice:null, suggestion_min:null,suggestion_text:""},
     {name:'Choice 3', exchange_rate:1, w2_options:[], w3_options:[], selected:false, choiceChart:<any>{}, chartId:"choiceOptions3",choice:null, suggestion_min:null,suggestion_text:""},
     {name:'Choice 4', exchange_rate:0.75, w2_options:[], w3_options:[], selected:false, choiceChart:<any>{}, chartId:"choiceOptions4",choice:null, suggestion_min:null,suggestion_text:""},
     {name:'Choice 5', exchange_rate:0.5, w2_options:[], w3_options:[], selected:false, choiceChart:<any>{}, chartId:"choiceOptions5",choice:null, suggestion_min:null,suggestion_text:""},
   ];
   optimal_choices = [
     {name:'Choice 1', exchange_rate:2, w2_options:[], w3_options:[], choiceCharts:[<any>{},<any>{},<any>{},<any>{},<any>{},<any>{}], choices:[],chartId:["optimal00","optimal01","optimal02","optimal03","optimal04","optimal05"]},
-    {name:'Choice 2', exchange_rate:1.5, w2_options:[], w3_options:[], choiceCharts:[<any>{},<any>{},<any>{},<any>{},<any>{},<any>{}], choices:[],chartId:["optimal10","optimal11","optimal12","optimal13","optimal14","optimal15"]},
+    {name:'Choice 2', exchange_rate:1.25, w2_options:[], w3_options:[], choiceCharts:[<any>{},<any>{},<any>{},<any>{},<any>{},<any>{}], choices:[],chartId:["optimal10","optimal11","optimal12","optimal13","optimal14","optimal15"]},
   ];
 
   distribution_choices = [
     {name:'Choice 1', exchange_rate:2, w2_options:[], w3_options:[], choiceCharts:[<any>{},<any>{},<any>{},<any>{},<any>{},<any>{}], distribution_beliefs:[], beliefs_calculated:[],chartId:["d01","d02","d03","d04","d05","d06"]},
-    {name:'Choice 2', exchange_rate:1.5, w2_options:[], w3_options:[], choiceCharts:[<any>{},<any>{},<any>{},<any>{},<any>{},<any>{}], distribution_beliefs:[], beliefs_calculated:[],chartId:["d11","d12","d13","d14","d15","d16"]},
+    {name:'Choice 2', exchange_rate:1.25, w2_options:[], w3_options:[], choiceCharts:[<any>{},<any>{},<any>{},<any>{},<any>{},<any>{}], distribution_beliefs:[], beliefs_calculated:[],chartId:["d11","d12","d13","d14","d15","d16"]},
   ];
   belief_done:any[] = [false,false];
 

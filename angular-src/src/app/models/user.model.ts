@@ -14,4 +14,5 @@ export interface User {
     extra_allocation_info:boolean;
     timestamps:any;
     instructionreports:any;
+    payoffweek:number;
 }

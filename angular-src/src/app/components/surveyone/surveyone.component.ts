@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-surveyone',
@@ -13,6 +14,7 @@ export class SurveyoneComponent implements OnInit {
   user:any;
   survey_completed:boolean = false;
   selected_tab:number = 0;
+  current_date = moment();
 
   choices = new Array(11).fill(null);
   choices_check = new Array(11).fill(null);
@@ -34,6 +36,10 @@ export class SurveyoneComponent implements OnInit {
       this.user = profile.user;
       let tasks = this.user.tasks;
       this.survey_completed = tasks[tasks.map(e => e.task_tag).indexOf('survey1')].completed ? true : false;
+
+      let register_date = moment(this.user.register_date)
+
+      if (!moment(this.current_date).isSame(register_date.add({weeks:this.user.role == 'regulator' ? 2 : 0}), 'day')) this.router.navigate(['/dashboard']);
     })
   }
   nextTab() { this.selected_tab += 1; }

@@ -58,8 +58,8 @@ export class WorkComponent implements OnInit {
     }
   }
   cheat() {
-    this.ranges.forEach(range => range.value=50)
+    this.ranges.forEach(range => range.value=50);
     this.pageDoneEvent.emit();
-    this.ranges.forEach(range => range.value=0)
+    this.ranges.forEach(range => range.value=0);
   }
 }

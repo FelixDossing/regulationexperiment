@@ -2,15 +2,13 @@
 
   <h1 class="main-heading">Allocation choice</h1>
   <h2 *ngIf="allocation_number && !totally_done">Week {{allocation_number}}</h2>
-  <!-- <p *ngIf="allocation_number && !totally_done">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, voluptatibus.
-  </p> -->
-    <mat-form-field>
+
+  <!-- <mat-form-field>
       <h3>{{week}}</h3>
       <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="picker_date" (dateChange)="setDate()">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>    
+    </mat-form-field>     -->
 
     <p *ngIf="totally_done">You have already completed this part of the experiment</p>
     <p *ngIf="!allocation_number && !totally_done">Please return to this page on the right day</p>

@@ -25,7 +25,7 @@ export class InstructionsComponent implements OnInit {
   pages_to_complete:number = 1;
   range_number:number = 3;
 
-  exchange_rates = [2, 1.5, 1, 0.75, 0.5];
+  exchange_rates = [2, 1.25, 1, 0.75, 0.5];
 
   experiment_pay:String = '500 DKK';
   answers = [null,null,null,null,null,null,null,null,null,null, null, null];

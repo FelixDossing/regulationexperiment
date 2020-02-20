@@ -6,7 +6,7 @@ const config = require('../config/database')
 // User schema
 
 const UserSchema = mongoose.Schema({
-    admin: {type:Boolean},
+    admin: {type:Boolean, required:false},
     admincode: {type: String, required:false},
     first_name: {type: String},
     last_name: {type: String},
@@ -25,6 +25,7 @@ const UserSchema = mongoose.Schema({
     resetcode:{type:String, required:false},
     timestamps:{type:Array, required:false},
     instructionreports:{type:Array, required:false},
+    payoffweek:{type:Number, required:false},
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
@@ -184,6 +185,7 @@ module.exports.registerRegChoice = function(submit, user, callback) {
       }
       updateTasks.find(e => e.task_tag === 'regulation'+submit.week).parts.push(submit)
       if (submit.name == 'part4') {
+        updateTasks.find(e => e.task_tag === 'regulation'+submit.week).payoffchoice = Math.floor(Math.random()*2)+1;
         updateTasks.find(e => e.task_tag === 'regulation'+submit.week).completed = true;
       }
       User.updateOne({_id: user.id}, {$set: {tasks:updateTasks }}, callback)
