@@ -32,6 +32,9 @@ const port = process.env.PORT || 8080;
 // Cors middleware
 app.use(cors())
 
+// Set client folder
+app.use(express.static(path.join(__dirname, '../client')));
+
 // Body Parser middleware
 app.use(bodyParser.json());
 
