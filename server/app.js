@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
     res.send('Invalid endpoint and something');
 });
 
-app.get('*', () => {
+app.get('*', (req, res) => {
     console.log('other route')
     console.log(__dirname)
     res.sendFile(__dirname+'/../index.html');
