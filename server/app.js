@@ -51,7 +51,7 @@ if (process.env.NODE_ENV == 'production') {
     app.use(express.static(__dirname+'/client'));
 
     app.get(/.*/, (req, res) => {
-        res.sendFile(__dirname+'/client/index.html');
+        res.sendFile(__dirname+'../client/index.html');
     })
 }
 
