@@ -34,13 +34,13 @@
             <span>Week 2<br><strong>{{choice.choice}}</strong> </span>
           </div>
           <p *ngIf="choice.choice == null" style="width:96.5%;text-align:center;margin-left:3.5%;font-weight:300;font-size:0.8em;margin-bottom:0;">Click and drag on the line below</p>
-          <input class="reverseSlider" [ngClass]="choice.choice == null ? 'idle_slider' : ''" type="range" min="0" max="50" step="1" [(ngModel)]="choice.choice" (input)="regulationChange(index)" style="flex:1;width:96.5%;margin-left:3.5%;margin-top:20px;" [id]="'regulation'+index" [name]="'regulation'+index" (click)="choiceClick(choice.choice, 'regulation', index)" onclick="blur(this)">
+          <input class="reverseSlider" [ngClass]="choice.choice == null ? 'idle_slider' : ''" type="range" min="0" max="50" step="1" [(ngModel)]="choice.choice" (input)="regulationChange(index)" style="flex:1;width:96.5%;margin-left:3.5%;margin-top:20px;" [id]="'regulation'+index" [name]="'regulation'+index" (click)="choiceClick(choice.choice, 'regulation', index,0)" onclick="blur(this)">
           <p *ngIf="choice.choice" style="text-align:center;font-weight:300;font-size:0.8em;">If you do not wish to restrict the choice of the worker, move the slider to the far right.</p>
           <p style="text-align:center;margin-top:50px;margin-bottom:0;">Set a suggested minimum if you wish</p>
           <div style="display:flex;justify-content:space-between;margin-top:20px;text-align:center;">
             <span>Week 2<br><strong>{{choice.suggestion_min}}</strong> </span>
           </div>
-          <input type="range" min="0" max="50" class="reverseSlider" [ngClass]="choice.suggestion_min == null ? 'idle_slider' : ''" style="flex:1;width:96.5%;margin-left:3.5%;margin-top:20px;" [(ngModel)]="choice.suggestion_min" (input)="suggestionChange(index)" (click)="choiceClick(choice.suggestion_min, 'suggestion', index)" onclick="blur(this)">
+          <input type="range" min="0" max="50" class="reverseSlider" [ngClass]="choice.suggestion_min == null ? 'idle_slider' : ''" style="flex:1;width:96.5%;margin-left:3.5%;margin-top:20px;" [(ngModel)]="choice.suggestion_min" (input)="suggestionChange(index)" (click)="choiceClick(choice.suggestion_min, 'suggestion', index, 0)" onclick="blur(this)">
           <p *ngIf="choice.suggestion_min" style="text-align:center;font-weight:300;font-size:0.8em;">Move the slider to the far right if you do not wish to suggest a minimum</p>
         </div>
         <div class="button-box">

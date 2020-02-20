@@ -23,7 +23,7 @@ export class NavbarComponent {
   constructor(private breakpointObserver: BreakpointObserver,
               private router:Router,
               private flashMessage:FlashMessagesService,
-              private authService:AuthService,
+              public authService:AuthService,
     ) {}
 
   signOut() {

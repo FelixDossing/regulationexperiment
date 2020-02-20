@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="button-box">
-        <p *ngIf="!belief_done">Please complete all choices in order to move forward in the experiment.</p>
+        <p>Please complete all choices in order to move forward in the experiment.</p>
         <button [disabled]="sentiment_before==null" class="active-button" mat-raised-button (click)="submit(0)">Submit</button>
       </div>
     </mat-step>
@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="button-box">
-          <p *ngIf="!belief_done">Please complete all choices in order to move forward in the experiment.</p>
+          <p>Please complete all choices in order to move forward in the experiment.</p>
           <button [disabled]="sentiment_after==null" class="active-button" mat-raised-button (click)="submit(2)">Submit</button>
         </div>
       </div>
