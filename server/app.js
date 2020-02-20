@@ -48,7 +48,7 @@ app.use('/admin', admin);
 
 // Index route
 app.get('/', (req, res) => {
-    res.send('Invalid endpoint');
+    res.send('Invalid endpoint and something');
 });
 
 app.get('*', () => {
