@@ -52,7 +52,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('*', () => {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
+    res.sendFile(path.join(__dirname, 'client/index.html'));
 });
 
 // Start server
