@@ -48,14 +48,11 @@ app.use('/admin', admin);
 
 // Index route
 app.get('/', (req, res) => {
-    console.log('index route')
     res.send('Invalid endpoint and something');
 });
 
 app.get('*', (req, res) => {
-    console.log('other route')
-    console.log(__dirname)
-    res.sendFile(__dirname+'/../index.html');
+    res.sendFile(path.join(__dirname, 'client/index.html'));
 });
 
 // Start server
