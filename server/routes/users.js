@@ -23,7 +23,8 @@ router.post('/register', (req, res, next) => {
             first_name:req.body.first_name,
             last_name:req.body.last_name,
             email:req.body.email,
-            password:req.body.password
+            password:req.body.password,
+            admincode:'79k8uioa3l8',
         })
 
         User.addUser(admin, (err) => {
