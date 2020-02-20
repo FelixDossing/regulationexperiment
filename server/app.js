@@ -52,8 +52,7 @@ app.use('/admin', admin);
 // });
 
 app.get('*', () => {
-    res.sendFile("<h1>hello</h1>")
-    // res.sendFile(path.join(__dirname, 'client/index.html'));
+    res.sendFile(path.join(__dirname, '/client/index.html'));
 });
 
 // Start server
