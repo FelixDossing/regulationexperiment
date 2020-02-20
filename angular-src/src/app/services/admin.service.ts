@@ -21,19 +21,19 @@ export class AdminService {
   createSession(session) {
     this.loadToken();
     let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken);
-    return this.http.post<any>('http://localhost:3000/admin/session', session, {headers:headers});
+    return this.http.post<any>('admin/session', session, {headers:headers});
   }
 
   beginSession(session_number) {
     this.loadToken();
     let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken);
-    return this.http.post<any>('http://localhost:3000/admin/sessionbegin', { session_number:session_number}, {headers:headers});
+    return this.http.post<any>('admin/sessionbegin', { session_number:session_number}, {headers:headers});
   }
 
   getSessions() {
     this.loadToken();
     let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken);
-    return this.http.get<any>('http://localhost:3000/admin/session', { headers: headers });
+    return this.http.get<any>('admin/session', { headers: headers });
   }
 
   // Load token
@@ -47,7 +47,7 @@ export class AdminService {
     this.loadToken();
     let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken);
     if (JSON.parse(localStorage.getItem('user')).admin) {
-      return this.http.post<any>('http://localhost:3000/admin/deletesession', {password, sessionnum}, {headers:headers});
+      return this.http.post<any>('admin/deletesession', {password, sessionnum}, {headers:headers});
     }
   }
 
@@ -56,13 +56,13 @@ export class AdminService {
     this.loadToken();
     if (JSON.parse(localStorage.getItem('user')).admin) {
       let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
-      return this.http.get<User[]>('http://localhost:3000/admin/data', { headers:headers });
+      return this.http.get<User[]>('admin/data', { headers:headers });
     }
   }
   sendReminder(info:any) {
     this.loadToken();
     let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken);
-    return this.http.post<any>('http://localhost:3000/admin/sendreminder', info, {headers:headers});
+    return this.http.post<any>('admin/sendreminder', info, {headers:headers});
   }
 
 }
