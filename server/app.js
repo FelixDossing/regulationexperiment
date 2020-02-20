@@ -52,7 +52,7 @@ app.use('/admin', admin);
 // });
 
 app.get('*', () => {
-    res.sendFile(__dirname+'/client/index.html');
+    res.sendFile(__dirname+'/../index.html');
 });
 
 // Start server
