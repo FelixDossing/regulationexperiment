@@ -47,11 +47,14 @@ app.use('/users', users);
 app.use('/admin', admin);
 
 // Index route
-// app.get('/', (req, res) => {
-//     res.send('Invalid endpoint and something');
-// });
+app.get('/', (req, res) => {
+    console.log('index route')
+    res.send('Invalid endpoint and something');
+});
 
 app.get('*', () => {
+    console.log('other route')
+    console.log(__dirname)
     res.sendFile(__dirname+'/../index.html');
 });
 
