@@ -33,7 +33,7 @@ export class SurveytwoComponent implements OnInit {
                                                                                {val:'health',txt:'Health'},
                                                                                {val:'theol', txt:'Theology'},
                                                                                {val:'nonstudent',txt:'I am not a student'}], answer:null, check:null },
-    { name:"field", text:"What is your field of study?", label:"Field", answer:null, check:null},
+    { name:"field", text:"What is the name of the education that you are enrolled at/have finished?", label:"Field", answer:null, check:null},
     { name:"leftright", text:"In political matters, people talk of 'the left' and 'the right'. How would you place your views on this scale, generally speaking?",
         options:[{val:'1',txt:"Left"}].concat(this.numbers).concat([{val:'10',txt:'Right'}]), answer:null, check:null},
     { name:"equalincomes" ,text:"How would you place your views on this scale?",options:[{val:'1',txt:'Incomes should be made more equal'}].concat(this.numbers).concat({val:'10',txt:'We need larger income differences as incentives for individual effort'}), answer:null, check:null},
@@ -69,8 +69,9 @@ export class SurveytwoComponent implements OnInit {
     })
   }
   faculty() {
+    console.log('fac')
     if (this.questions[1].answer == 'nonstudent') {
-      this.questions[1].answer = '-';
+      this.questions[2].answer = 'nonstudent';
     }
   }
 

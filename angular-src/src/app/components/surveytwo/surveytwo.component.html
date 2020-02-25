@@ -59,26 +59,26 @@
             <h2 style="margin-top:30px;">{{question.title}}</h2>
             <p>The following questions relate to the selling and consumption of <em>{{question.tag}}</em>.</p>
             <p>{{question.text}}</p>
-            <p>How good an idea do you think it is to prohibit (forbid by law) the selling of {{question.tag}} in Norway?</p>
+            <p style="font-weight:bold;">How good an idea do you think it is to prohibit (forbid by law) the selling of {{question.tag}} in Norway?</p>
             <small *ngIf="question.prohibit_check != null && question.prohibit_check != true" style="color:red;">{{question.prohibit_check}}</small>
             <mat-radio-group [(ngModel)]="question.prohibit_answer" (change)="question.prohibit_check=null;" color="primary" style="display:flex;flex-direction: column;">
               <mat-radio-button class="radio-button" *ngFor="let option of question.options" [value]="option.val">{{option.txt}}</mat-radio-button>
             </mat-radio-group>
-            <p>{{question.tax_question}}</p>
+            <p style="font-weight:bold;">{{question.tax_question}}</p>
             <small *ngIf="question.tax_check != null && question.tax_check != true" style="color:red;">{{question.tax_check}}</small>
             <mat-radio-group [(ngModel)]="question.tax_answer" (change)="question.tax_check=null;" color="primary" style="display:flex;flex-direction: column;">
               <mat-radio-button class="radio-button" *ngFor="let option of question.options" [value]="option.val">{{option.txt}}</mat-radio-button>
             </mat-radio-group>
-            <p>How good an idea do you think it is to force Norwegian retailers to make {{question.tag}} less visible in stores?</p>
+            <p style="font-weight:bold;">How good an idea do you think it is to force Norwegian retailers to make {{question.tag}} less visible in stores?</p>
             <small *ngIf="question.hide_check != null && question.hide_check != true" style="color:red;">{{question.hide_check}}</small>
             <mat-radio-group [(ngModel)]="question.hide_answer" (change)="question.hide_check=null;" color="primary" style="display:flex;flex-direction: column;">
               <mat-radio-button class="radio-button" *ngFor="let option of question.options" [value]="option.val">{{option.txt}}</mat-radio-button>
             </mat-radio-group>
           </div>
           <div>
-            <h3>{{questions[13].title}}</h3>
+            <h2>{{questions[13].title}}</h2>
             <p>{{questions[13].text}}</p>
-            <p>{{questions[13].question}}</p>
+            <p style="font-weight:bold;">{{questions[13].question}}</p>
             <small *ngIf="questions[13].check != null && questions[13].check != true" style="color:red;">{{questions[13].check}}</small>
             <mat-radio-group [(ngModel)]="questions[13].answer" (change)="questions[13].check=null;" color="primary" style="display:flex;flex-direction: column;">
               <mat-radio-button class="radio-button" *ngFor="let option of questions[13].options" [value]="option.val">{{option.txt}}</mat-radio-button>
@@ -89,7 +89,7 @@
       </mat-tab>
       <mat-tab label="Part 3">
         <div class="survey-part">
-          <p>Which party did you vote for at the last general election in Denmark?</p>
+          <p style="font-weight:bold;">Which party did you vote for at the last general election in Denmark?</p>
           <small *ngIf="questions[14].check != null && questions[14].check != true" style="color:red;">{{questions[14].check}}</small>
           <mat-radio-group [(ngModel)]="questions[14].answer" (change)="questions[14].check=null;" color="primary" style="display:flex;flex-direction: column;">
             <mat-radio-button class="radio-button" *ngFor="let option of questions[14].options" [value]="option.val">{{option.txt}}</mat-radio-button>
