@@ -7,7 +7,7 @@
       <mat-tab label="Part 1">
         <div class="survey-part">
           <div>
-            <p>What is your gender?</p>
+            <p style="font-weight:bold;">What is your gender?</p>
             <small *ngIf="questions[0].check != null && questions[0].check != true" style="color:red;"> {{questions[0].check}}</small>
             <mat-radio-group [(ngModel)]="questions[0].answer" (change)="questions[0].check=null" class="radio-group" color="primary">
               <mat-radio-button class="radio-button" value="female">Female</mat-radio-button>
@@ -20,16 +20,16 @@
               </mat-radio-button>
             </mat-radio-group>
   
-            <p>{{questions[1].text}}</p>
+            <p style="font-weight:bold;">{{questions[1].text}}</p>
             <mat-form-field appearance="outline">
               <mat-label>{{questions[1].label}}</mat-label>
-              <mat-select [(ngModel)]="questions[1].answer" (selectionChange)="questions[1].check=null;faculty()">
+              <mat-select [(ngModel)]="questions[1].answer" (selectionChange)="questions[1].check=null; faculty()">
                 <mat-option *ngFor="let option of questions[1].options" [value]="option.val">{{option.txt}}</mat-option>
               </mat-select>          
               <small *ngIf="questions[1].check != null && questions[1].check != true" style="color:red;"> {{questions[1].check}}</small>
             </mat-form-field>
 
-            <p>{{questions[2].text}}</p>
+            <p style="font-weight:bold;">{{questions[2].text}}</p style="font-weight:bold;">
             <small *ngIf="questions[2].check != null && questions[2].check != true" style="color:red;"> {{questions[2].check}}</small>
             <mat-form-field appearance="outline">
               <mat-label>{{questions[2].label}}</mat-label>
@@ -37,7 +37,7 @@
             </mat-form-field>
 
             <div *ngFor="let question of questions | slice:3:10">
-              <p>{{question.text}}</p>
+              <p style="font-weight:bold;">{{question.text}}</p style="font-weight:bold;">
               <small *ngIf="question.check != null && question.check != true" style="color:red;">{{question.check}}</small>
               <mat-radio-group color="primary" style="display:flex;flex-direction:column;" [(ngModel)]="question.answer" (change)="question.check=null;">
                 <mat-radio-button class="radio-button" *ngFor="let option of question.options" [value]="option.val">{{option.txt}}</mat-radio-button>
@@ -56,7 +56,7 @@
           </p>
 
           <div *ngFor="let question of questions | slice:10:13">
-            <h3>{{question.title}}</h3>
+            <h2 style="margin-top:30px;">{{question.title}}</h2>
             <p>The following questions relate to the selling and consumption of <em>{{question.tag}}</em>.</p>
             <p>{{question.text}}</p>
             <p>How good an idea do you think it is to prohibit (forbid by law) the selling of {{question.tag}} in Norway?</p>

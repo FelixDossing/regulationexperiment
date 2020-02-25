@@ -70,7 +70,7 @@ export class SurveytwoComponent implements OnInit {
   }
   faculty() {
     if (this.questions[1].answer == 'nonstudent') {
-      this.questions[2].answer = '-';
+      this.questions[1].answer = '-';
     }
   }
 
