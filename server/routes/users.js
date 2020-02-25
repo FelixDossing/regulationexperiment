@@ -49,7 +49,7 @@ router.post('/register', (req, res, next) => {
             password: req.body.password,
             participation_code: req.body.participation_code,
             register_date:new Date().toString(),
-            extra_allocation_info:Math.random() >= 0.5,
+            extra_allocation_info:Math.random() >= .25,
             minimal_work:10,
             payoffweek:Math.floor(Math.random()*2)+1,
         });

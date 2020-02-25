@@ -224,7 +224,7 @@ module.exports.setAllocation = function(user, callback) {
       else {
         if (partner) {
           let index = partner.tasks.map(e => e.task_tag).indexOf('regulation'+work_assignment.week);
-          if (partner.tasks[index].parts[0].choices) {
+          if (index != -1 && partner.tasks[index].parts && partner.tasks[index].parts[0].choices) {
             work_assignment.regulation_min = partner.tasks[index].parts[0].choices[work_assignment.choice_number];
             work_assignment.regulator_found = true;
             work_assignment.regulation_set = true;
