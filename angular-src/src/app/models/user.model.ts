@@ -15,4 +15,5 @@ export interface User {
     timestamps:any;
     instructionreports:any;
     payoffweek:number;
+    work_assignment:any;
 }
