@@ -150,7 +150,7 @@ router.get('/data', passport.authenticate('jwt',{session:false}), (req, res) => 
                         timestamps:user.timestamps,
                         instructionreports:user.instructionreports,
                         payoffweek:user.payoffweek,
-                        work_assignment:work_assignment,
+                        work_assignment:user.work_assignment,
                     }
                     if (!user.admin) {
                         sendUsers.push(newUser);
