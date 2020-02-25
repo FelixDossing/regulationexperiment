@@ -34,13 +34,16 @@
       <mat-step editable="false" label="Step 3" completed="false">
         <div style="text-align: initial;">
           <app-allocation-info [work_assignment]="work_assignment" [user]="user"></app-allocation-info>
-          <div style="margin-top:50px;" class="input-content tab-content">
-            <h3 style="text-align: center;">How satisfied are you with this allocation?</h3>
-            <div style="display:flex;width:50%;margin:0 auto;min-width:300px;">
-              <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_dissatisfied</mat-icon>
-              <input [(ngModel)]="sentiment_after" class="dist_slider" [ngClass]="sentiment_after == null ? 'idle_slider' : ''" [min]="0" max="10" style="width:100%;" type="range" (click)="sentiment_after = sentiment_after==null ? 5 : sentiment_after" onclick="blur(this)">
-              <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_satisfied</mat-icon>
-            </div>
+          <div class="input-container" style="text-align:left;margin-top:20px">
+            <label id="sentiment">How staisfied are you with the regulation you have set?</label>
+            <mat-radio-group color="primary" aria-labelledby="sentimentradio" [(ngModel)]="sentiment" style="display:flex;flex-direction:column;margin:15px 0;">
+              <mat-radio-button value="0" style="margin:5px;">0 Very unsatisfied</mat-radio-button>
+              <mat-radio-button value="1" style="margin:5px;">1</mat-radio-button>
+              <mat-radio-button value="2" style="margin:5px;">2</mat-radio-button>
+              <mat-radio-button value="3" style="margin:5px;">3</mat-radio-button>
+              <mat-radio-button value="4" style="margin:5px;">4</mat-radio-button>
+              <mat-radio-button value="5" style="margin:5px;">5 Very satisfied</mat-radio-button>
+            </mat-radio-group>
           </div>
           <div class="button-box">
             <p>Please complete all choices in order to move forward in the experiment.</p>
