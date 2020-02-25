@@ -129,8 +129,8 @@ export class DataComponent implements OnInit {
       // Survey 2
       this.datahead += "; gender; faculty; field; leftright; equalincomes; publicownership; responsibility; compitition; hardwork; zerosum; prohibitsugar; taxsugar; hidesugar"+
                                     "; prohibitalcohol; taxalcohol; hidealcohol; prohibittobacco; taxtobacco; hidetobacco; reginterests; vote"
-      // Choice that counts
-      this.datahead += "; "
+      // Assignment
+      this.datahead += "; assignedweek; assignedchoice; regfound; regset";
       // Allocation 1+2
       for (let i = 1; i<3; i++) {
         this.datahead += `; allocation${i}.choice1; allocation${i}.choice2; allocation${i}.choice3; allocation${i}.choice4; allocation${i}.choice5; allocation${i}.freetext`;
@@ -176,6 +176,14 @@ export class DataComponent implements OnInit {
         } else {
           this.data[i] += "; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .";
         }
+        // Assignment
+        let assignment = par.work_assignment;
+        if (assignment) {
+          this.data[i] += `; ${assignment.week}; ${assignment.choice_number}; ${assignment.regulator_found}; ${assignment.regulation_set}`;
+        } else {
+          this.data[i] += '; .; .; .; .';
+        }
+
         // Allocation 1 & 2
         for (let j = 1; j < 3; j++) {
           let allocation = par.tasks[par.tasks.map(e=>e.task_tag).indexOf('allocation'+j)];

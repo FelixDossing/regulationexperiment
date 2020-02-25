@@ -1973,6 +1973,8 @@ var DataComponent = /** @class */ (function () {
             // Survey 2
             _this.datahead += "; gender; faculty; field; leftright; equalincomes; publicownership; responsibility; compitition; hardwork; zerosum; prohibitsugar; taxsugar; hidesugar" +
                 "; prohibitalcohol; taxalcohol; hidealcohol; prohibittobacco; taxtobacco; hidetobacco; reginterests; vote";
+            // Assignment
+            _this.datahead += "; assignedweek; assignedchoice; regfound; regset";
             // Allocation 1+2
             for (var i = 1; i < 3; i++) {
                 _this.datahead += "; allocation" + i + ".choice1; allocation" + i + ".choice2; allocation" + i + ".choice3; allocation" + i + ".choice4; allocation" + i + ".choice5; allocation" + i + ".freetext";
@@ -2017,6 +2019,14 @@ var DataComponent = /** @class */ (function () {
                 }
                 else {
                     _this.data[i] += "; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .; .";
+                }
+                // Assignment
+                var assignment = par.work_assignment;
+                if (assignment) {
+                    _this.data[i] += "; " + assignment.week + "; " + assignment.choice_number + "; " + assignment.regulator_found + "; " + assignment.regulation_set;
+                }
+                else {
+                    _this.data[i] += '; .; .; .; .';
                 }
                 // Allocation 1 & 2
                 for (var j = 1; j < 3; j++) {
