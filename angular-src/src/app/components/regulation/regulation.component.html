@@ -174,14 +174,25 @@
     </mat-step>
 
     <mat-step editable="false" label="Step 3" completed="false">
-      <div class="input-content">
+      <div class="input-container" style="text-align:left;">
+        <label id="sentiment">How staisfied are you with the regulation you have set?</label>
+        <mat-radio-group aria-labelledby="sentimentradio" [(ngModel)]="sentiment" style="display:flex;flex-direction:column;margin:15px 0;">
+          <mat-radio-button value="0" style="margin:5px;">0 Very unsatisfied</mat-radio-button>
+          <mat-radio-button value="1" style="margin:5px;">1</mat-radio-button>
+          <mat-radio-button value="2" style="margin:5px;">2</mat-radio-button>
+          <mat-radio-button value="3" style="margin:5px;">3</mat-radio-button>
+          <mat-radio-button value="4" style="margin:5px;">4</mat-radio-button>
+          <mat-radio-button value="5" style="margin:5px;">5 Very satisfied</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <!-- <div class="input-content">
         <p style="text-align: center;">How satisfied are you with the regulation you have set?</p>
         <div style="display:flex;width:50%;margin:0 auto;min-width:300px;">
           <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_dissatisfied</mat-icon>
           <input [(ngModel)]="sentiment" class="dist_slider" [ngClass]="sentiment == null ? 'idle_slider' : ''" [min]="0" max="10" step="1" style="width:100%;" type="range" onclick="blur(this)">
           <mat-icon style="transform: scale(2);padding:20px;">sentiment_very_satisfied</mat-icon>
         </div>
-      </div>
+      </div> -->
       <div class="input-container" style="text-align: left;">
         <p>Please explain why you made the regulation choices that you did</p>
         <textarea [(ngModel)]="free_text" style="width:100%;height:300px;padding:12px 20px; box-sizing:border-box;resize:none;border:2px solid #ccc;font-size:16px;font-family:'Roboto'" placeholder="Input answer here"></textarea>

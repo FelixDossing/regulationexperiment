@@ -23,7 +23,7 @@
             <p>{{questions[1].text}}</p>
             <mat-form-field appearance="outline">
               <mat-label>{{questions[1].label}}</mat-label>
-              <mat-select [(ngModel)]="questions[1].answer" (selectionChange)="questions[1].check=null;">
+              <mat-select [(ngModel)]="questions[1].answer" (selectionChange)="questions[1].check=null;faculty()">
                 <mat-option *ngFor="let option of questions[1].options" [value]="option.val">{{option.txt}}</mat-option>
               </mat-select>          
               <small *ngIf="questions[1].check != null && questions[1].check != true" style="color:red;"> {{questions[1].check}}</small>

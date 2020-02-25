@@ -68,6 +68,12 @@ export class SurveytwoComponent implements OnInit {
 
     })
   }
+  faculty() {
+    if (this.questions[1].answer == 'nonstudent') {
+      this.questions[2].answer = '-';
+    }
+  }
+
   nextTab() { this.selected_tab += 1; }
   tabClicked(val:number) { this.selected_tab=val; }
 
