@@ -7,9 +7,9 @@
     <div *ngIf="user && user.role=='worker' && work_assignment">
         <p>The regulator chose to set a minimum of:</p>
         <div style="text-align:center"><span class="mat-h2">{{work_assignment.regulation_min}} pages</span> in week {{work_assignment.week}}.</div>
-        <p *ngIf="work_assignment.choice >= work_assignment.regulation_min">The regulation does therefore not affect your allocation</p>
-        <p *ngIf="work_assignment.regulation_min > work_assignment.choice">The regulation therefore changes your final allocation to:</p>
-        <div *ngIf="work_assignment.regulation_min > work_assignment.choice" style="text-align:center"><p><span class="mat-h2">Week 2: {{work_assignment.week2}} pages<br>Week 3: {{ work_assignment.week3 }} pages</span></p></div*ngIf="work_assignment.regulation_min > work_assignment.choice">
-        <p *ngIf="work_assignment.regulation_min > work_assignment.choice">This is not including the minimal work of 10 pages per week. In week 3 the minimal work will be added to the work task.</p*ngIf="work_assignment.regulation_min > work_assignment.choice">
+        <p *ngIf="!reg_binding">The regulation does therefore not affect your allocation</p>
+        <p *ngIf="reg_binding">The regulation therefore changes your final allocation to:</p>
+        <div *ngIf="reg_binding" style="text-align:center"><p><span class="mat-h2">Week 2: {{work_assignment.week2}} pages<br>Week 3: {{ work_assignment.week3 }} pages</span></p></div*ngIf="work_assignment.regulation_min > work_assignment.choice">
+        <p *ngIf="reg_binding">This is not including the minimal work of 10 pages per week. In week 3 the minimal work will be added to the work task.</p*ngIf="work_assignment.regulation_min > work_assignment.choice">
     </div>
 </mat-card>
