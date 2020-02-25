@@ -63,7 +63,7 @@ export class SurveytwoComponent implements OnInit {
       this.survey_completed = tasks[tasks.map(e => e.task_tag).indexOf('survey2')].completed ? true : false;
 
       let register_date = moment(this.user.register_date)
-      if (!moment(this.current_date).isSame(register_date.add({weeks:2}), 'day')) this.router.navigate(['/dashboard']);
+      // if (!moment(this.current_date).isSame(register_date.add({weeks:2}), 'day')) this.router.navigate(['/dashboard']);
 
     })
   }

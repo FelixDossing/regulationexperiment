@@ -1115,7 +1115,6 @@ var AdminComponent = /** @class */ (function () {
     AdminComponent.prototype.getAdminData = function () {
         var _this = this;
         this.adminService.getData().subscribe(function (data) {
-            console.log(data);
             _this.displayedColumns = ['session', 'first_name', 'last_name', 'email', 'role', 'register_date', 'instructions',
                 'allocation1', 'regulation1', 'allocation2', 'regulation2', 'survey1', 'survey2'];
             _this.dataSource = data.map(function (p) {

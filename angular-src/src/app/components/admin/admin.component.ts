@@ -77,7 +77,6 @@ export class AdminComponent implements OnInit {
   };
   getAdminData() {
     this.adminService.getData().subscribe(data => {
-      console.log(data)
       this.displayedColumns = ['session','first_name', 'last_name', 'email','role','register_date','instructions',
       'allocation1','regulation1','allocation2','regulation2','survey1','survey2'];
       this.dataSource = data.map(p => {

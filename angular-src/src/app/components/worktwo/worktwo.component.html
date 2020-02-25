@@ -1,4 +1,11 @@
 <div class="container">
+  <mat-form-field>
+    <h3>{{week}}</h3>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="picker_date" (dateChange)="setDate()">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>    
+
   <h1 class="main-heading">Work week 2</h1>
 
   <mat-horizontal-stepper color="warn" [linear]="true" #stepper>

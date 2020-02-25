@@ -96,7 +96,7 @@ export class AllocationComponent implements OnInit {
       this.drawChoice()   
     }
   }
-
+  
   getSuggestions() {
     if (this.user.role=="worker") {
       this.interactionService.getSuggestion(this.user, this.allocation_number).subscribe(res => {

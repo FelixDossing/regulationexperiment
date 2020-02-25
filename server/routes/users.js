@@ -137,27 +137,60 @@ router.post('/register', (req, res, next) => {
     
                         let date1 = moment(newUser.register_date).add({weeks:1, days:newUser.role =='regulator' ? 0 : 1});
                         let date2 = moment(date1).add(1,'weeks');
+
+                        // let transporter = nodemailer.createTransport({
+                        //     host: "?",
+                        //     port: 0,
+                        //     secure: false,
+                        //     auth: {
+                        //         user: "fsd@econ.ku.dk",
+                        //         pass: "password"
+                        //     }
+                        // });
+                        
+                        // transporter.sendMail({
+                        //     from: "Experiment <fsd@econ.ku.dk>",
+                        //     to: newUser.email,
+                        //     subject: "Experiment signup",
+                        //     text: `Dear ${newUser.first_name},
+                        //     Thank you for participating in our experiment. In order to sign in, you may use the following link:
+                            
+                        //     ${url}
+                            
+                        //     In order to complete the experiment, you must sign in and complete tasks on the following dates: ${date1.format("MMM Do YYYY")} and ${date2.format("MMM Do YYYY")}.
+                            
+                        //     If you have any questions, please contact uc.experiment2019@gmail.com
+                            
+                        //     Thank you`
+                        // }, (error, info) => {
+                        //     if (error) {
+                        //         return console.log(error);
+                        //     }
+                        //     console.log('Message sent: %s', info.messageId);
+                        //     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+                        // });
+                        
     
-                        const DOMAIN = "sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org";
-                        const mg = mailgun({apiKey: "77f75174a3f4cc3adabc29491b91b379-7238b007-7a0849c6", domain: DOMAIN});
-                        const data = {
-                            from: "Experiment <postmaster@sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org>",
-                            to: newUser.email,
-                            subject: "Experiment signup",
-                            text: `Dear ${newUser.first_name},
-                            Thank you for participating in our experiment. In order to sign in, you may use the following link:
+                        // const DOMAIN = "sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org";
+                        // const mg = mailgun({apiKey: "77f75174a3f4cc3adabc29491b91b379-7238b007-7a0849c6", domain: DOMAIN});
+                        // const data = {
+                        //     from: "Experiment <postmaster@sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org>",
+                        //     to: newUser.email,
+                        //     subject: "Experiment signup",
+                        //     text: `Dear ${newUser.first_name},
+                        //     Thank you for participating in our experiment. In order to sign in, you may use the following link:
                             
-                            ${url}
+                        //     ${url}
                             
-                            In order to complete the experiment, you must sign in and complete tasks on the following dates: ${date1.format("MMM Do YYYY")} and ${date2.format("MMM Do YYYY")}.
+                        //     In order to complete the experiment, you must sign in and complete tasks on the following dates: ${date1.format("MMM Do YYYY")} and ${date2.format("MMM Do YYYY")}.
                             
-                            If you have any questions, please contact uc.experiment2019@gmail.com
+                        //     If you have any questions, please contact uc.experiment2019@gmail.com
                             
-                            Thank you`
-                        };
-                        mg.messages().send(data, function (error, body) {
-                            console.log(body);
-                        });
+                        //     Thank you`
+                        // };
+                        // mg.messages().send(data, function (error, body) {
+                        //     console.log(body);
+                        // });
                     }
                 });
     
@@ -427,29 +460,30 @@ router.post('/resetpassword', (req, res) => {{
                         res.json({success:false, msg:'Error updating'})
                     }
                     else {
+                        res.json({success:true, msg:'Should be sending email'})
                         // Send email
-                        let link = `${url}/newpassword/${resetcode}`;
+                        // let link = `${url}/newpassword/${resetcode}`;
 
-                        const DOMAIN = "sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org";
-                        const mg = mailgun({apiKey: "77f75174a3f4cc3adabc29491b91b379-7238b007-7a0849c6", domain: DOMAIN});
-                        const data = {
-                            from: "Experiment <postmaster@sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org>",
-                            to: email,
-                            subject: "Reset experiment password",
-                            text: `Dear participant,
+                        // const DOMAIN = "sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org";
+                        // const mg = mailgun({apiKey: "77f75174a3f4cc3adabc29491b91b379-7238b007-7a0849c6", domain: DOMAIN});
+                        // const data = {
+                        //     from: "Experiment <postmaster@sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org>",
+                        //     to: email,
+                        //     subject: "Reset experiment password",
+                        //     text: `Dear participant,
 
-                                Please click the link below in order to reset your password:
+                        //         Please click the link below in order to reset your password:
     
-                                ${link}
+                        //         ${link}
     
-                                If you are still having trouble, you are welcome to contact us at uc.experiment.2019@gmail.com.
+                        //         If you are still having trouble, you are welcome to contact us at uc.experiment.2019@gmail.com.
     
-                                Thank you
-                                `
-                        };
-                        mg.messages().send(data, function (error, body) {
-                            console.log(body);
-                        });
+                        //         Thank you
+                        //         `
+                        // };
+                        // mg.messages().send(data, function (error, body) {
+                        //     console.log(body);
+                        // });
                     }
                 });
             }
