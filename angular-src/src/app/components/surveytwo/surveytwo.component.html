@@ -29,7 +29,7 @@
               <small *ngIf="questions[1].check != null && questions[1].check != true" style="color:red;"> {{questions[1].check}}</small>
             </mat-form-field>
 
-            <p style="font-weight:bold;">{{questions[2].text}}</p style="font-weight:bold;">
+            <p style="font-weight:bold;">{{questions[2].text}}</p>
             <small *ngIf="questions[2].check != null && questions[2].check != true" style="color:red;"> {{questions[2].check}}</small>
             <mat-form-field appearance="outline">
               <mat-label>{{questions[2].label}}</mat-label>
@@ -37,7 +37,7 @@
             </mat-form-field>
 
             <div *ngFor="let question of questions | slice:3:10">
-              <p style="font-weight:bold;">{{question.text}}</p style="font-weight:bold;">
+              <p style="font-weight:bold;">{{question.text}}</p>
               <small *ngIf="question.check != null && question.check != true" style="color:red;">{{question.check}}</small>
               <mat-radio-group color="primary" style="display:flex;flex-direction:column;" [(ngModel)]="question.answer" (change)="question.check=null;">
                 <mat-radio-button class="radio-button" *ngFor="let option of question.options" [value]="option.val">{{option.txt}}</mat-radio-button>
