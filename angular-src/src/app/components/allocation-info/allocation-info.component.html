@@ -5,10 +5,10 @@
     <p>The allocation that you chose was:</p>
         <div style="text-align:center"><p><span class="mat-h2">Week 2: {{work_assignment.choice}} pages<br>Week 3: {{ (50 - work_assignment.choice) * work_assignment.exchange_rate }} pages</span></p></div>
     <p *ngIf="user && user.role=='regulator'">This is not including the minimal work of 10 pages per week. In week 3 the minimal work will be added to the work task.</p>
-</mat-card>
-<mat-card style="margin:20px;background:rgb(252, 199, 53);" *ngIf="user && user.role=='worker' && work_assignment" class="mat-elevation-z5">
-    <h2>Final allocation</h2>
-    <p>The regulator chose to set a minimum choice of {{work_assignment.regulation_min-10}} pages in week 2. So your final allocation is:</p>
-    <div style="text-align:center"><p><span class="mat-h2">Week 2: {{work_assignment.week2}} pages<br>Week 3: {{ work_assignment.week3 }} pages</span></p></div>
-    <p>This is not including the minimal work of 10 pages per week. In week 3 the minimal work will be added to the work task.</p>
+    <div *ngIf="user && user.role=='worker' && work_assignment">
+        <h2>Regulation</h2>
+        <p>The regulator chose to set a minimum choice of {{work_assignment.regulation_min}} pages in week 2. So your final allocation is:</p>
+        <div style="text-align:center"><p><span class="mat-h2">Week 2: {{work_assignment.week2}} pages<br>Week 3: {{ work_assignment.week3 }} pages</span></p></div>
+        <p>This is not including the minimal work of 10 pages per week. In week 3 the minimal work will be added to the work task.</p>
+    </div>
 </mat-card>

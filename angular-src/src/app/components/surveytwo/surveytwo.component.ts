@@ -18,7 +18,7 @@ export class SurveytwoComponent implements OnInit {
 
   payment_method:string;
 
-  party_options = [{txt:"Socialdemokratiet (A)",val:"A"},{txt:"Radikale Venstre (B)",val:'B'}, {txt:"Det Konservative Folkeparti (C)",val:"C"},{txt:"Nye Borgerlige (D)",val:"D"}, {txt:"Klaus Riskær Pedersen (E)",val:"E"},{txt:"SF- Socialistisk Folkeparti (F)",val:"F"},{txt:"Liberal Alliance (I)",val:"I"}, {txt:"Kristendemokraterne (K)",val:"K"}, {txt:"Dansk Folkeparti (O)",val:"O"}, {txt:"Stramp Kurs (P)",val:"P"},{txt:"Venstre (V)",val:"V"},{txt:"Enhedslisten (Ø)",val:"Ø"},{txt:"Alternativeet (Å)",val:"Å"},{txt:"None of the above",val:"none"},{txt:"I am not allowed to vote in Denmark",val:"nonvoter"}]
+  party_options = [{txt:"Socialdemokratiet (A)",val:"A"},{txt:"Radikale Venstre (B)",val:'B'}, {txt:"Det Konservative Folkeparti (C)",val:"C"},{txt:"Nye Borgerlige (D)",val:"D"}, {txt:"Klaus Riskær Pedersen (E)",val:"E"},{txt:"SF- Socialistisk Folkeparti (F)",val:"F"},{txt:"Liberal Alliance (I)",val:"I"}, {txt:"Kristendemokraterne (K)",val:"K"}, {txt:"Dansk Folkeparti (O)",val:"O"}, {txt:"Stramp Kurs (P)",val:"P"},{txt:"Venstre (V)",val:"V"},{txt:"Enhedslisten (Ø)",val:"Ø"},{txt:"Alternativeet (Å)",val:"Å"},{txt:"None of the above",val:"none"},{txt:'I am allowed to vote in Denmark, but chose not to',val:'abstained'},{txt:"I am not allowed to vote in Denmark",val:"nonvoter"}]
 
   five_scale = ['Very good', 'Good', 'Neither good nor bad', 'Bad', 'Very bad']
   numbers = [...Array(8).keys()].map(e => { return { val:(e+2).toString(), txt:(e+2).toString()} })
@@ -29,6 +29,7 @@ export class SurveytwoComponent implements OnInit {
     { name:"faculty", text:"Which faculty do you study at?", label:"Select faculty" , options:[{val:'hum',txt:'Humanities'},
                                                                                {val:'jur',txt:'Law'},
                                                                                {val:'science',txt:'Science'},
+                                                                               {val:'social',txt:'Social sciences'},
                                                                                {val:'health',txt:'Health'},
                                                                                {val:'theol', txt:'Theology'},
                                                                                {val:'nonstudent',txt:'I am not a student'}], answer:null, check:null },
