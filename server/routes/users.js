@@ -57,6 +57,7 @@ router.post('/register', (req, res, next) => {
         if (req.body.ku_id) {
             newUser.ku_id = req.body.ku_id;
         }
+        newUser.work_assignment = req.body.work_assignment ? req.body.work_assignment : null;
     
         Session.find({}, (err, sessions) => {
             let user_found = false;

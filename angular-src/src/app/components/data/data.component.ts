@@ -129,6 +129,8 @@ export class DataComponent implements OnInit {
       // Survey 2
       this.datahead += "; gender; faculty; field; leftright; equalincomes; publicownership; responsibility; compitition; hardwork; zerosum; prohibitsugar; taxsugar; hidesugar"+
                                     "; prohibitalcohol; taxalcohol; hidealcohol; prohibittobacco; taxtobacco; hidetobacco; reginterests; vote"
+      // Choice that counts
+      this.datahead += "; "
       // Allocation 1+2
       for (let i = 1; i<3; i++) {
         this.datahead += `; allocation${i}.choice1; allocation${i}.choice2; allocation${i}.choice3; allocation${i}.choice4; allocation${i}.choice5; allocation${i}.freetext`;
