@@ -344,7 +344,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<mat-card style=\"margin:20px;background:rgb(255, 239, 186);\" *ngIf=\"work_assignment\" class=\"mat-elevation-z5\">\n    <h2>Allocation info</h2>\n    <p><em>The choice that counts</em> has randomly been selected to be:</p>\n    <div style=\"text-align:center\"><p><span class=\"mat-h2\">Choice {{work_assignment.choice_number+1}} in week {{work_assignment.week}}</span></p></div>\n    <p>The allocation that you chose was:</p>\n        <div style=\"text-align:center\"><p><span class=\"mat-h2\">Week 2: {{work_assignment.choice}} pages<br>Week 3: {{ (50 - work_assignment.choice) * work_assignment.exchange_rate }} pages</span></p></div>\n    <p *ngIf=\"user && user.role=='regulator'\">This is not including the minimal work of 10 pages per week. In week 3 the minimal work will be added to the work task.</p>\n    <div *ngIf=\"user && user.role=='worker' && work_assignment\">\n        <h2>Regulation</h2>\n        <p>The regulator chose to set a minimum choice of {{work_assignment.regulation_min}} pages in week 2. So your final allocation is:</p>\n        <div style=\"text-align:center\"><p><span class=\"mat-h2\">Week 2: {{work_assignment.week2}} pages<br>Week 3: {{ work_assignment.week3 }} pages</span></p></div>\n        <p>This is not including the minimal work of 10 pages per week. In week 3 the minimal work will be added to the work task.</p>\n    </div>\n</mat-card>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<mat-card style=\"margin:20px;background:rgb(255, 239, 186);\" *ngIf=\"work_assignment\" class=\"mat-elevation-z5\">\n    <h2>Allocation info</h2>\n    <p><em>The choice that counts</em> has randomly been selected to be:</p>\n    <div style=\"text-align:center\"><p><span class=\"mat-h2\">Choice {{work_assignment.choice_number+1}} in week {{work_assignment.week}}</span></p></div>\n    <p>The allocation that you chose was:</p>\n        <div style=\"text-align:center\"><p><span class=\"mat-h2\">Week 2: {{work_assignment.choice}} pages<br>Week 3: {{ (50 - work_assignment.choice) * work_assignment.exchange_rate }} pages</span></p></div>\n    <p *ngIf=\"user && user.role=='regulator'\">This is not including the minimal work of 10 pages per week. In week 3 the minimal work will be added to the work task.</p>\n    <div *ngIf=\"user && user.role=='worker' && work_assignment\">\n        <h2>Regulation</h2>\n        <p>The regulator chose to set a minimum of {{work_assignment.regulation_min}} pages in week 2. So your final allocation is:</p>\n        <div style=\"text-align:center\"><p><span class=\"mat-h2\">Week 2: {{work_assignment.week2}} pages<br>Week 3: {{ work_assignment.week3 }} pages</span></p></div>\n        <p>This is not including the minimal work of 10 pages per week. In week 3 the minimal work will be added to the work task.</p>\n    </div>\n</mat-card>\n");
 
 /***/ }),
 
@@ -1963,6 +1963,7 @@ var DataComponent = /** @class */ (function () {
     DataComponent.prototype.displayUserData = function () {
         var _this = this;
         this.adminService.getData().subscribe(function (data) {
+            console.log(data);
             _this.datahead = "";
             _this.data = [];
             // User data
