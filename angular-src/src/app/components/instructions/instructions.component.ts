@@ -48,7 +48,7 @@ export class InstructionsComponent implements OnInit {
       let w3 = moment(w2).add(1, 'weeks')
       this.complete_dates = [w1.format("dddd, MMMM Do"), w2.format("dddd, MMMM Do"), w3.format("dddd, MMMM Do")];
       this.correct_answers = ['3','1 day',this.user.role=='regulator' ? '1 week' : '1 week and 1 day', 'regoneother','regbyoneother',
-                                   this.user.role,"week12","week2", "14", "36", "50", "0"];
+                                   this.user.role,"week12","week2", "25", "50", "22", "35"];
     })
   }
 
