@@ -198,8 +198,8 @@
         <textarea [(ngModel)]="free_text" style="width:100%;height:300px;padding:12px 20px; box-sizing:border-box;resize:none;border:2px solid #ccc;font-size:16px;font-family:'Roboto'" placeholder="Input answer here"></textarea>
       </div>
       <div class="input-container" style="text-align:left;margin-top:50px;">
-        <p>Introduction to ranking</p>
-        <div class="raking-container">
+        <p>Below you see a number of explanations for why, participants might choose to postpone work until the later date. Please rank the explanations according to how important you think that explanation is. You can choose you rank by dragging and dropping each explanation in the list to the box in the right side.</p>
+        <div class="ranking-container">
           <h2>Options</h2>
           <div cdkDropList #optionList="cdkDropList" [cdkDropListData]="explain_options" [cdkDropListConnectedTo]="[rankList]" class="ranking-list" (cdkDropListDropped)="drop($event)">
             <div class="ranking-box" *ngFor="let item of explain_options" cdkDrag>{{item}}</div>
