@@ -24,28 +24,31 @@
           <table>
             <tr>
               <th>Week 1</th>
+              <td>Choose allocations</td>
+              <td><span *ngIf="user && user.role=='regulator'">Choose Regulation</span></td>
+              <td>
+                <span *ngIf="user && user.role=='worker'">Complete survey 1</span>
+              </td>
+            </tr>
+            <tr>
               <th>Week 2</th>
+              <td>Choose allocation</td>
+              <td>
+                <span *ngIf="user && user.role=='regulator'">Choose regulation</span>
+                <span *ngIf="user && user.role=='worker'">Complete work</span>
+              </td>
+              <td>
+                <span *ngIf="user && user.role=='regulator'">Complete work</span>
+              </td>
+            </tr>
+            <tr>
               <th>Week 3</th>
-            </tr>
-            <tr>
-              <td>Choose allocation</td>
-              <td>Choose allocation</td>
               <td></td>
-            </tr>
-            <tr *ngIf="user && user.role == 'regulator'">
-              <td>Choose regulation</td>
-              <td>Choose regulation</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>Complete work</td>
-              <td>Complete work</td>
-            </tr>
-            <tr>
-              <td><span *ngIf="user && user.role=='worker'">Complete survey 1</span></td>
-              <td></td>
-              <td *ngIf="user && user.role=='worker'">Complete survey 2</td>
+              <td><span *ngIf="user && user.role=='worker'">Complete work</span></td>
+              <td>
+                <span *ngIf="user && user.role=='regulator'">Complete work</span>
+                <span *ngIf="user && user.role=='worker'">Complete survey 2</span>
+              </td>
               <td *ngIf="user && user.role=='regulator'">Complete surveys</td>
             </tr>
           </table>
