@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="main-heading">Instructions</h1>
   <p>Please read the following instructions carefully.<br><br>If you at some point need to review the instructions, you can access this page through the "instructions"- button in the navigation bar above. To complete the first part of the experiment, correctly answer all the questions under the "Control questions" 
-    tab. If you have any questions while reading the instructions in the lab, please raise your hand and a lab assistent will be over to help you.
+    tab. If you have any questions while reading the instructions in the lab, please raise your hand and a lab assistent will help you.
   </p>
   <div style="width:100%;margin-top:50px;">
     <mat-tab-group color="warn" dynamicHeight [selectedIndex]="selected_tab" (selectedIndexChange)="tabClicked($event)">
@@ -19,8 +19,36 @@
             <strong>Week 3:</strong> {{complete_dates[2]}}
           </p>
           <p>
-            You will complete week 1 in the lab and the next two parts online.
+            You will complete week 1 in the lab and the next two parts online. The tasks to complete in each week is as follows:
           </p>
+          <table>
+            <tr>
+              <th>Week 1</th>
+              <th>Week 2</th>
+              <th>Week 3</th>
+            </tr>
+            <tr>
+              <td>Choose allocation</td>
+              <td>Choose allocation</td>
+              <td></td>
+            </tr>
+            <tr *ngIf="user && user.role == 'regulator'">
+              <td>Choose regulation</td>
+              <td>Choose regulation</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Complete work</td>
+              <td>Complete work</td>
+            </tr>
+            <tr>
+              <td><span *ngIf="user && user.role=='worker'">Complete survey 1</span></td>
+              <td></td>
+              <td *ngIf="user && user.role=='worker'">Complete survey 2</td>
+              <td *ngIf="user && user.role=='regulator'">Complete surveys</td>
+            </tr>
+          </table>
 
           <h1>Work</h1>
           <p>
