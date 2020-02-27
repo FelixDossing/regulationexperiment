@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="main-heading" style="text-align:center;">Instructions</h1>
+  <h1 class="main-heading">Instructions</h1>
   <p>Please read the following instructions carefully.<br><br>If you at some point need to review the instructions, you can access this page through the "instructions"- button in the navigation bar above. To complete the first part of the experiment, correctly answer all the questions under the "Control questions"
     tab. If you have any questions while reading the instructions in the lab, please raise your hand and a lab assistent will be over to help you.
   </p>
@@ -8,50 +8,23 @@
       <mat-tab label="Introduction">
         <div class="instructions-part">
           <h1>Welcome</h1>
-          <p>Thank you for participating in our choice experiment. In this experiment, you will choose an allocation of work between a “sooner” and a “later” date. What is meant by work will be specified shortly.</p>
+          <p>Thank you for participating in our choice experiment. In this experiment, you will choose an allocation of work between a “sooner” and a “later” date. Choosing an allocation means choosing how much to work at the sooner date and how much to work at the later date.</p>
 
-          <h1>Payment</h1>
-          <p>You will recieve {{experiment_pay}} for completing the entire experiment. This amount may increase or decrease depending on choices you make<span *ngIf="user && user.role=='worker'"> and choices made by another participant</span>. You will not receive payment unless you complete the entire experiment.
+          <h1>Parts in the experiment</h1>
+          <p *ngIf="complete_dates">
+            The experiment has three parts, which run over three weeks: <em>Week 1, Week 2 and Week 3</em>. Each part has a number of tasks, which must be completed <strong>before midnight</strong> on the specific day.<br><br>
+            You must log in and complete tasks at the following dates:<br><br>
+            <strong>Week 1:</strong> {{complete_dates[0]}}<br><br>
+            <strong>Week 2:</strong> {{complete_dates[1]}}<br><br>
+            <strong>Week 3:</strong> {{complete_dates[2]}}
           </p>
-
-          <h1>Parts and timing</h1>
           <p>
-            The experiment runs over three weeks and thus has the following three parts: Week 1, Week 2 and Week 3. Each part has a number of tasks, which must be completed <strong>before midnight</strong> on the specific day.
-          </p>
-
-          <table style="margin:20px auto;">
-            <tr>
-              <th>Part</th>
-              <th>Tasks</th>
-              <th>When</th>
-              <th>Where</th>
-            </tr>
-            <tr>
-              <td>Week 1</td>
-              <td>Introduction<br><span *ngIf="user && user.role=='worker'">Survey 1<br></span>Allocation 1<span *ngIf="user && user.role=='regulator'"><br>Regulation 1</span></td>
-              <td><span *ngIf="complete_dates">{{complete_dates[0] }}</span></td>
-              <td>In the laboratory</td>
-            </tr>
-            <tr>
-              <td>Week 2</td>
-              <td>Allocation 2<span *ngIf="user && user.role == 'regulator'"><br>Regulation 2</span><br>Work 1</td>
-              <td><span *ngIf="complete_dates">{{complete_dates[1] }}</span></td>
-              <td>Online</td>
-            </tr>
-            <tr>
-              <td>Week 3</td>
-              <td>Work 2<span *ngIf="user && user.role=='regulator'"><br>Survey 1</span><br>Survey 2</td>
-              <td><span *ngIf="complete_dates">{{complete_dates[2] }}</span></td>
-              <td>Online</td>
-            </tr>
-          </table>
-          <p>
-            You will complete the first part of the experiment in the lab and the next two parts online.
+            You will complete week 1 in the lab and the next two parts online.
           </p>
 
           <h1>Work</h1>
           <p>
-            You will complete work in week 2 and week 3 of the experiment. Work consists in completing “pages” with 16 sliders on each. You complete a page by <strong>moving all sliders from 0 to 50</strong>.<br>
+            You will complete work in week 2 and week 3 of the experiment. Work consists in completing “pages” with 16 sliders on each. You complete a page by <strong>moving all sliders from 0 to 50</strong>.<br><br>
             In order to move the sliders, you press the <strong>SPACE BAR</strong> to select the next slider and then use the <strong>ARROW KEYS</strong> to move the slider.
           </p>
           <p *ngIf="!work_completed">Please complete the
@@ -61,6 +34,22 @@
           <p>
             A full page is 16 sliders. A half page is 8 sliders and a quarter page is 4 sliders.
           </p>
+
+          <h1>Roles</h1>
+          <p>
+            Each participant is randomly assigned to one of two roles: <em>Worker or Regulator</em>.<br><br>You have been randomly selected to be a <strong *ngIf="user">{{ user.role | titlecase}}</strong>. <br><br>
+            Workers and regulators both allocate work between “sooner” (week 2) and “later” (week 3) and complete the work assigned to these two dates. Regulators may set a minimum on the amount of work the worker must complete at the “sooner” date.<br>
+            <span *ngIf="user && user.role == 'worker'">Since you are a worker, you will choose an allocation for yourself, which may be changed by the regulator</span>
+            <span *ngIf="user && user.role == 'regulator'">Since you are a regulator, you will choose an allocation for yourself and may affect the choice of your randomly assigned worker. You will not be affect by any choices by other participants</span>.
+          </p>
+
+          <h1>Recap</h1>
+          <ul>
+            <li>All participants allocate (divide) work between a "sooner" and a "later" date.</li>
+            <li>Work consists in completing pages with 16 sliders on each.</li>
+            <li>Workers only choose a work allocation for themselves.</li>
+            <li>Regulators choose a work allocation for themselves, but may also set a minimum on the amount of work, that the worker must complete at the sooner date.</li>
+          </ul>
 
           <button class="active-button" mat-raised-button (click)="nextTab()">Next</button>
         </div>
@@ -74,16 +63,9 @@
             "Completed". Make sure that every card has been completed on the relevant days.
           </p> -->
 
-          <h1>Roles</h1>
-          <p>
-            Each participant is randomly assigned to one of two roles: Worker or Regulator.<br><br>You have been randomly selected to be a <strong *ngIf="user">{{ user.role | titlecase}}</strong>. <br><br>
-            Workers and regulators both allocate work between “sooner” (week 2) and “later” (week 3) and complete the work assigned to these two dates. Regulators may set a minimum on the amount of work the worker must complete at the “sooner” date.<br>
-            <span *ngIf="user && user.role == 'worker'">Since you are a worker, you will choose an allocation for yourself, which may be changed by the regulator</span>
-            <span *ngIf="user && user.role == 'regulator'">Since you are a regulator, you will choose an allocation for yourself and may affect the choice of your randomly assigned worker. You will not be affect by any choices by other participants</span>.
-          </p>
 
           <h1>Allocations</h1>
-          <p>You will be asked to choose an allocation of work between week 2 and week 3. You will make five allocation choices, each for a different “exchange rate”.</p>
+          <p>Your “allocation choice” is your choice of how much to work in week 2 and week 3. You will make five allocation choices, each for a different “exchange rate”.</p>
           <div style="margin: 10px 10%; padding:15px; border:1px solid black;">
             <strong>Exchange rates: </strong>The number of pages you will have to complete in week 3 for each page you choose not to complete in week 2.
           </div>
@@ -114,11 +96,12 @@
           <h1>Regulation</h1>
           <p>
             Each regulator is randomly matched with one worker. For each allocation choice, the regulator may choose to set a minimum on week 2 pages. The minimum is the smallest amount of pages the worker can choose to complete in week 2.<br><br>
-            <strong><em>Example: </em></strong>Choice 4 is randomly selected to be the choice that counts. The worker chose to do 20 pages in week 2 and 22.5 pages in week 3. The regulator however set a minimum of 30 pages in week 2. Since the worker chose to do less pages in week 2 than the minimum set by the regulator, the regulator’s minimum is the one that counts. The worker will thus have to complete 30 pages in week 2 and 15 pages in week 3.
           </p>
           <p>
-            If the worker chooses to do more pages in week 2 than the minimum set by the regulator, then the worker’s own choice will be implemented.
+            If the worker chooses to do more pages in week 2 than the minimum set by the regulator, then the worker’s own choice will be implemented.<br><br>
+            Please set a minimum using the slider below:
           </p>
+
           <h2>
             Suggestions
           </h2>
@@ -130,6 +113,16 @@
             The suggested minimum does not affect the worker’s allocation directly.
           </p>
 
+          <h1>Recap</h1>
+          <ul>
+            <li>You make five allocation choices, each for a different exchange rate.</li>
+            <li>The exchange rate is the number of pages you will have to complete in week 3, for each page you choose not to complete in week 2.</li>
+            <li>One of the five choices is randomly chosen to be the "choice that counts"</li>
+            <li>You will complete 10 pages of "minimal work" on each day (week 1, week 2 and week 3)</li>
+            <li>The regulator may set a minimum on the worker's allocation fo work to week 2.</li>
+            <li>The regulator can also choose a "suggested minimum"</li>
+          </ul>
+
           <button class="active-button" mat-raised-button (click)="nextTab()">Next</button>
         </div>
       </mat-tab>
@@ -137,29 +130,67 @@
         <div class="instructions-part">
           <h1>Timing</h1>
           <p>
-            Participants make allocation choices in both week 1 and week 2. In week 2, one of these is randomly chosen to be the one that counts.<br>
-            Regulators also make regulation choices in both week 1 and week 2. If week 1 is chosen to be the one that counts for the worker, then the regulation choices made in week 1 will count. Likewise, if week 2 is chosen to count for the worker, then the regulation choices made in week 2 will count.
+            You will make allocation choices in both week 1 and week 2. The choices made in week 1 are called “Allocation task 1” and the choices made in week 2 are called “Allocation task 2”.
           </p>
-          <table style="margin:20px auto;">
+          <table class="timing-table">
             <tr>
-              <td>Week 1</td>
-              <td>Allocation 1<br>Regulation 1</td>
+              <th>Week 1</th>
+              <th>Week 2</th>
+              <th>Week 3</th>
             </tr>
             <tr>
-              <td>Week 2</td>
-              <td>Allocation 2<br>Regulation 2<br>Work 1</td>
+              <td>Allocation task 1</td>
+              <td>Allocation task 2</td>
+              <td></td>
             </tr>
             <tr>
-              <td>Week 3</td>
+              <td></td>
+              <td>Work 1</td>
               <td>Work 2</td>
             </tr>
           </table>
           <p>
-            The allocation choices in week 1 are thus made one week <span *ngIf="user && user.role=='worker'">and one day</span> before work 1 must be completed. The allocation choices in week 2 are made on the same day as work 1 must be completed.
+            The allocation choices in week 1 are thus made one week <span *ngIf="user && user.role=='worker'">and one day</span> before work 1 must be completed. The allocation choices in week 2 are made on the same day as work 1 must be completed. It is randomly determined whether the choice that counts is taken from "Allocation task 1" or "Allocation task 2"
           </p>
+          <p>The regulator makes regulation choices in both week 1 and week 2. The regulation choices in week 1 are called "Regulation task 1" and the regulation choices in week 2 are called "Regulation task 2".</p>
+          <table class="timing-table timing2">
+            <tr>
+              <th>Week 1</th>
+              <th>Week 2</th>
+            </tr>
+            <tr>
+              <td>Regulation task 1</td>
+              <td>Regulation task 2</td>
+            </tr>
+            <tr>
+              <td><mat-icon>arrow_downward</mat-icon></td>
+              <td><mat-icon>arrow_downward</mat-icon></td>
+            </tr>
+            <tr>
+              <td>Allocation task 1</td>
+              <td>Allocation task 2</td>
+            </tr>
+          </table>
+          <p>"Regulation task 1"-choices apply to the worker’s choices in “Allocation task 1” and “Regulation task 2”-choices apply to the worker’s choices in “Allocation task 2”. </p>
 
-          <button *ngIf="!control_completed || control_completed" class="active-button" mat-raised-button (click)="nextTab()">Next</button>
+          <h1>Recap</h1>
+          <ul>
+            <li>Workers and regulators make allocation choices for themselves in week 1 and week 2.</li>
+            <li>Regulators make regulation choices in week 1 and week 2.</li>
+            <li>It is randomly determined whether week 1-choices or week 2-choices count.</li>
+            <li>Regulation choices made in the same week as the allocation choice that counts are the ones that apply.</li>
+          </ul>
+          <button class="active-button" mat-raised-button (click)="nextTab()">Next</button>
+
         </div>
+      </mat-tab>
+      <mat-tab label="Payment">
+        <div class="instructions-part">
+          <h1>Payment</h1>
+          <p>You will recieve {{experiment_pay}} for completing the entire experiment. This amount may increase or decrease depending on choices you make<span *ngIf="user && user.role=='worker'"> and choices made by another participant</span>. You will not receive payment unless you complete the entire experiment.
+          </p>
+          <button *ngIf="!control_completed || control_completed" class="active-button" mat-raised-button (click)="nextTab()">Next</button>
+          </div>
       </mat-tab>
       <mat-tab *ngIf="!control_completed || control_completed" label="Control questions">
         <div class="instructions-part">
@@ -261,20 +292,20 @@
               <table class="example-table" style="margin:0 auto;">
                 <tr>
                   <th>Choice #</th>
-                  <th>Allocation 1</th>
-                  <th>Allocation 2</th>
+                  <th>Allocation task 1</th>
+                  <th>Allocation task 2</th>
                   <th>Exchange rate</th>
                 </tr>
                 <tr>
                   <td>1</td>
-                  <td>Week 2: 30<br>Week 3: {{ (50-30)*exchange_rates[0] }}</td>
-                  <td>Week 2: 10<br>Week 3: {{ (50-10)*exchange_rates[0] }}</td>
+                  <td>Week 2: 30 pages</td>
+                  <td>Week 2: 10 pages</td>
                   <td>{{exchange_rates[0]}}</td>
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>Week 2: 22<br>Week 3: {{ (50-22)*exchange_rates[1] }}</td>
-                  <td>Week 2: 40<br>Week 3: {{ (50-40)*exchange_rates[1] }}</td>
+                  <td>Week 2: 50 pages</td>
+                  <td>Week 2: 40 pages</td>
                   <td>{{exchange_rates[1]}}</td>
                 </tr>
                 <tr>
@@ -286,8 +317,8 @@
               <table style="margin:0 auto;" class="example-table">
                 <tr>
                   <th>Choice #</th>
-                  <th>Regulation 1</th>
-                  <th>Regulation 2</th>
+                  <th>Regulation task 1</th>
+                  <th>Regulation task 2</th>
                 </tr>
                 <tr>
                   <td>1</td>
@@ -296,7 +327,7 @@
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>10</td>
+                  <td>40</td>
                   <td>0</td>
                 </tr>
                 <tr>
@@ -306,7 +337,7 @@
             </mat-card>
             <div style="margin-top:20px;">
               <p>How many pages will the worker have to do in week 2 and week 3 if <em>the choice that counts</em> is chosen to be choice 1 in
-              week 2 (Allocation 2)?</p>
+              week 2 (Allocation task 2)?</p>
               <mat-form-field appearance="outline" style="margin:10px;">
                 <mat-label>Week 2</mat-label>
                 <input matInput [(ngModel)]="answers[8]" (change)="answers_check[8]=null;">
@@ -323,7 +354,7 @@
               <div><small>Remember that the number of pages in week 3 is given by (50 - pages in week 2) * Exchange rate</small></div>
             </div>
             <div style="margin-top:20px;">
-              <p>How many pages will the worker have to do in week 2 and week 3 if <em>the choice that counts</em> is chosen to be choice 2 in week 1 (Allocation 1)?</p>
+              <p>How many pages will the worker have to do in week 2 and week 3 if <em>the choice that counts</em> is chosen to be choice 2 in week 1 (Allocation task 1)?</p>
               <mat-form-field appearance="outline" style="margin:10px;">
                 <mat-label>Week 2</mat-label>
                 <input matInput [(ngModel)]="answers[10]" (change)="answers_check[10]=null;">

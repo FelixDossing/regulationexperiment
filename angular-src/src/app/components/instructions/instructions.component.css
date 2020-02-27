@@ -9,9 +9,30 @@ th, td {
     vertical-align:top;
     border-bottom:1px solid #ddd;
 }
+.timing-table th, .timing-table td {
+    border:0px;
+}
+.timing2 th, .timing2 td {
+    text-align:center;
+}
+
 h1, h2 {
     font-weight:normal;
 }
+h1 {
+    margin-block-start: 1.5em;
+}
+h2 {
+    font-size:1.3em;
+    margin-block-start:1.4em;
+}
+ul li {
+    margin:15px;
+}
+button {
+    margin: 20px 0;
+}
+
 .main-heading {
     font-weight:lighter;
     font-size:2rem;
