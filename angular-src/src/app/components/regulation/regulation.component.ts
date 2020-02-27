@@ -9,6 +9,7 @@ import * as nouislider from 'nouislider';
 import * as moment from 'moment';
 import { DataRowOutlet } from '@angular/cdk/table';
 import { MatStepper } from '@angular/material/stepper';
+import { DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-regulation',
@@ -21,6 +22,16 @@ export class RegulationComponent implements OnInit {
 
   user:any;
   totally_completed = false;
+
+  explain_options = [
+                      'It is nicer to spread it out than do everything at once',
+                      'Impatience',
+                      'Having better time on the later date',
+                      'Being confused',
+                      'Wanting to complete more work in total',
+                      'Other reasons'
+                    ];
+  explain_ranking = [];
 
   free_text:String;
   help:String;
@@ -123,6 +134,14 @@ export class RegulationComponent implements OnInit {
       }
 
     });
+  }
+
+  drop(event:CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+    }
   }
 
   setDate() {

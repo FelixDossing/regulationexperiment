@@ -80,7 +80,7 @@
                       "I choose to do <strong>{{choice.choices[opt_index].worker_w2_choice}}</strong> pages in week 2 and <strong>{{choice.choices[opt_index].worker_w3_choice}}</strong> pages in week 3"
                     </div>
                     <canvas [id]="choice.chartId[opt_index]"></canvas>
-                    <p style="margin-bottom:0;">Which choice do you think makes this person better off <em>in the long run</em>?</p>     
+                    <p style="margin-bottom:0;">Which choice do you think would have been best for this worker?</p>     
                     <div *ngIf="choice.choices.length>0">
                       <div style="display:flex;justify-content:space-between;margin-top:30px;text-align:center;">
                         <span>Week 2<br><strong>{{choice.choices[opt_index].input}}</strong></span>
@@ -196,6 +196,21 @@
       <div class="input-container" style="text-align: left;margin-top:25px;">
         <p>Please explain why you made the regulation choices that you did</p>
         <textarea [(ngModel)]="free_text" style="width:100%;height:300px;padding:12px 20px; box-sizing:border-box;resize:none;border:2px solid #ccc;font-size:16px;font-family:'Roboto'" placeholder="Input answer here"></textarea>
+      </div>
+      <div class="input-container" style="text-align:left;margin-top:50px;">
+        <p>Introduction to ranking</p>
+        <div class="raking-container">
+          <h2>Options</h2>
+          <div cdkDropList #optionList="cdkDropList" [cdkDropListData]="explain_options" [cdkDropListConnectedTo]="[rankList]" class="ranking-list" (cdkDropListDropped)="drop($event)">
+            <div class="ranking-box" *ngFor="let item of explain_options" cdkDrag>{{item}}</div>
+          </div>
+        </div>
+        <div class="ranking-container">
+          <h2>Your ranking</h2>
+          <div cdkDropList #rankList="cdkDropList" [cdkDropListData]="explain_ranking" [cdkDropListConnectedTo]="[optionList]" class="ranking-list" (cdkDropListDropped)="drop($event)">
+            <div class="ranking-box" *ngFor="let item of explain_ranking" cdkDrag>{{item}}</div>
+          </div>
+        </div>
       </div>
       <div class="input-container" style="text-align: left; margin-top:50px;">
         <p>Do you wish to add 50 DKK to the total earnings of another worker (not the one you have regulated)? Your choice will not affect your own payment.</p>
