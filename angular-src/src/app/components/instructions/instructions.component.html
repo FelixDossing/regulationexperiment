@@ -15,7 +15,7 @@
             The experiment has three parts, which run over three weeks: <em>Week 1, Week 2 and Week 3</em>. Each part has a number of tasks, which must be completed <strong>before midnight</strong> on the specific day.<br><br>
             You must log in and complete tasks at the following dates:
           </p>
-          <table class="timing-table">
+          <table class="timing-table" *ngIf="complete_dates">
             <tr><th>Week 1</th><td>{{complete_dates[0]}}</td></tr>
             <tr><th>Week 2</th><td>{{complete_dates[1]}}</td></tr>
             <tr><th>Week 3</th><td>{{complete_dates[2]}}</td></tr>
