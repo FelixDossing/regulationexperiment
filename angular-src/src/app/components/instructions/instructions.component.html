@@ -23,7 +23,7 @@
           <p>
             You will complete week 1 in the lab and the next two parts online. The tasks to complete in each week is as follows:
           </p>
-          <table style="margin:0 auto;">
+          <table>
             <tr>
               <th>Week 1</th>
               <td>Choose allocations</td>
@@ -73,7 +73,7 @@
             Each participant is randomly assigned to one of two roles: <em>Worker or Regulator</em>.<br><br>You have been randomly selected to be a <strong *ngIf="user">{{ user.role | titlecase}}</strong>. <br><br>
             Workers and regulators both allocate work between “sooner” (week 2) and “later” (week 3) and complete the work assigned to these two dates. Regulators may set a minimum on the amount of work the worker must complete at the “sooner” date.<br>
             <span *ngIf="user && user.role == 'worker'">Since you are a worker, you will choose an allocation for yourself, which may be changed by the regulator</span>
-            <span *ngIf="user && user.role == 'regulator'">Since you are a regulator, you will choose an allocation for yourself and may affect the choice of your randomly assigned worker. You will not be affect by any choices by other participants</span>.
+            <span *ngIf="user && user.role == 'regulator'">Since you are a regulator, you will choose an allocation for yourself. You will also make regulation choices which may affect the choice of your randomly assigned worker. You will not be affect by any choices by other participants</span>.
           </p>
 
           <h1>Recap</h1>
@@ -81,7 +81,7 @@
             <li>All participants allocate (divide) work between a "sooner" and a "later" date.</li>
             <li>Work consists in completing pages with 16 sliders on each.</li>
             <li>Workers only choose a work allocation for themselves.</li>
-            <li>Regulators choose a work allocation for themselves, but may also set a minimum on the amount of work, that the worker must complete at the sooner date.</li>
+            <li>Regulators choose a work allocation for themselves, but may also set a minimum on the amount of work that the worker must complete at the sooner date.</li>
           </ul>
 
           <button class="active-button" mat-raised-button (click)="nextTab()">Next</button>
@@ -113,7 +113,7 @@
           </table>
           <p>
             When the exchange rate is above 1, moving pages from week 2 to week 3 increases the total amount of work. When the exchange rate is below 1, moving pages from week 2 to week 3 decreases the total amount of work.<br><br>
-            <strong><em>Example: </em></strong>If the exchange rate is 2, then choosing to complete 20 pages in week 2 means that you will complete (50-20)*2 = 60 pages in week 3.
+            <strong><em>Example: </em></strong>If the exchange rate is 2, then choosing to complete 20 pages in week 2 means that there were 30 pages, which you chose not to complete in week 2. With an exchange rate of 2, this means that you will have to complete 60 pages in week 3. The formula is: (50-20)*2 = 60 pages in week 3.
           </p>
           
           <h2>The choice that counts</h2>
@@ -147,7 +147,7 @@
             <input class="reverseSlider" [ngClass]="regchoice == null ? 'idle_slider' : ''" type="range" min="0" max="50" step="1" [(ngModel)]="regchoice" style="flex:1;width:96.5%;margin-left:3.5%;margin-top:20px;" (click)="choiceClick()" onclick="blur(this)">
             <p *ngIf="regchoice" style="text-align:center;font-weight:300;font-size:0.8em;">If you do not wish to restrict the choice of the worker, move the slider to the far right.</p>
             <div *ngIf="regchoice!=null" style="width:100%;text-align:center;">
-              <h2 *ngIf="regchoice" style="color:green;">If the worker choose to complete less than {{ regchoice }} pages in week 2, then he/she will be forced to complete {{ regchoice }} pages in week 2 and {{ (50-regchoice)*2 }} pages in week 3.</h2>
+              <h2 *ngIf="regchoice" style="color:green;">If the worker chooses to complete less than {{ regchoice }} pages in week 2, then he/she will be forced to complete {{ regchoice }} pages in week 2 and {{ (50-regchoice)*2 }} pages in week 3.</h2>
               <h2 *ngIf="regchoice===0" style="color:green;">The worker will be allowed to make any choice that he/she wishes.</h2>
             </div>
           </div>
@@ -222,7 +222,7 @@
               <td>Allocation task 2</td>
             </tr>
           </table>
-          <p>"Regulation task 1"-choices apply to the worker’s choices in “Allocation task 1” and “Regulation task 2”-choices apply to the worker’s choices in “Allocation task 2”. </p>
+          <p>"Regulation task 1"-choices apply to the worker’s choices in “Allocation task 1”. “Regulation task 2”-choices apply to the worker’s choices in “Allocation task 2”. </p>
 
           <h1>Recap</h1>
           <ul>
