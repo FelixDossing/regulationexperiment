@@ -55,6 +55,22 @@ button {
     margin:5px;
     margin-left:10px;
 }
+.idle_slider::-webkit-slider-thumb {
+    visibility:hidden;
+}
+.idle_slider::-moz-range-thumb {
+    visibility:hidden;
+}
+.reverseSlider {
+    direction:rtl;
+}
+
+.idle_slider::-webkit-slider-thumb {
+    visibility:hidden;
+}
+.idle_slider::-moz-range-thumb {
+    visibility:hidden;
+}
 
 @media(min-width: 600px) {
     .container {

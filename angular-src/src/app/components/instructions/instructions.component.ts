@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import * as moment from 'moment';
+import { Chart } from 'chart.js';
 import { InteractionService } from 'src/app/services/interaction.service';
 
 @Component({
@@ -27,6 +28,8 @@ export class InstructionsComponent implements OnInit {
 
   exchange_rates = [2, 1.25, 1, 0.75, 0.5];
 
+  regchoice:number = null;
+
   experiment_pay:String = '500 DKK';
   answers = [null,null,null,null,null,null,null,null,null,null, null, null];
   answers_check = [null,null,null,null,null,null,null,null,null,null, null, null];
@@ -48,8 +51,12 @@ export class InstructionsComponent implements OnInit {
       let w3 = moment(w2).add(1, 'weeks')
       this.complete_dates = [w1.format("dddd, MMMM Do"), w2.format("dddd, MMMM Do"), w3.format("dddd, MMMM Do")];
       this.correct_answers = ['3','1 day',this.user.role=='regulator' ? '1 week' : '1 week and 1 day', 'regoneother','regbyoneother',
-                                   this.user.role,"week12","week2", "25", "50", "22", "35"];
+                                   this.user.role,"week12","week2", "25", "50", "50", "0"];
     })
+
+  }
+  choiceClick() {
+    this.regchoice = this.regchoice===null ? 25 : this.regchoice;
   }
 
   addWork() {
