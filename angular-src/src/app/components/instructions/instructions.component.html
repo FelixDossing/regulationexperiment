@@ -13,15 +13,17 @@
           <h1>Parts in the experiment</h1>
           <p *ngIf="complete_dates">
             The experiment has three parts, which run over three weeks: <em>Week 1, Week 2 and Week 3</em>. Each part has a number of tasks, which must be completed <strong>before midnight</strong> on the specific day.<br><br>
-            You must log in and complete tasks at the following dates:<br><br>
-            <strong>Week 1:</strong> {{complete_dates[0]}}<br><br>
-            <strong>Week 2:</strong> {{complete_dates[1]}}<br><br>
-            <strong>Week 3:</strong> {{complete_dates[2]}}
+            You must log in and complete tasks at the following dates:
           </p>
+          <table class="timing-table">
+            <tr><th>Week 1</th><td>{{complete_dates[0]}}</td></tr>
+            <tr><th>Week 2</th><td>{{complete_dates[1]}}</td></tr>
+            <tr><th>Week 3</th><td>{{complete_dates[2]}}</td></tr>
+          </table>
           <p>
             You will complete week 1 in the lab and the next two parts online. The tasks to complete in each week is as follows:
           </p>
-          <table>
+          <table style="margin:0 auto;">
             <tr>
               <th>Week 1</th>
               <td>Choose allocations</td>
@@ -32,7 +34,7 @@
             </tr>
             <tr>
               <th>Week 2</th>
-              <td>Choose allocation</td>
+              <td>Choose allocations</td>
               <td>
                 <span *ngIf="user && user.role=='regulator'">Choose regulation</span>
                 <span *ngIf="user && user.role=='worker'">Complete work</span>
