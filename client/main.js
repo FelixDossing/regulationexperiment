@@ -862,29 +862,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material_stepper__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! @angular/material/stepper */ "./node_modules/@angular/material/esm5/stepper.es5.js");
 /* harmony import */ var _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! @angular/material/button-toggle */ "./node_modules/@angular/material/esm5/button-toggle.es5.js");
 /* harmony import */ var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! @angular/material/dialog */ "./node_modules/@angular/material/esm5/dialog.es5.js");
-/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
-/* harmony import */ var _services_admin_service__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./services/admin.service */ "./src/app/services/admin.service.ts");
-/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
-/* harmony import */ var _services_interaction_service__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./services/interaction.service */ "./src/app/services/interaction.service.ts");
-/* harmony import */ var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./guards/auth.guard */ "./src/app/guards/auth.guard.ts");
-/* harmony import */ var _guards_admin_guard__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./guards/admin.guard */ "./src/app/guards/admin.guard.ts");
-/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
-/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
-/* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
-/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
-/* harmony import */ var _components_admin_admin_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./components/admin/admin.component */ "./src/app/components/admin/admin.component.ts");
-/* harmony import */ var _components_newpassword_newpassword_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./components/newpassword/newpassword.component */ "./src/app/components/newpassword/newpassword.component.ts");
-/* harmony import */ var _components_instructions_instructions_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./components/instructions/instructions.component */ "./src/app/components/instructions/instructions.component.ts");
-/* harmony import */ var _components_session_session_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./components/session/session.component */ "./src/app/components/session/session.component.ts");
-/* harmony import */ var _components_allocation_allocation_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./components/allocation/allocation.component */ "./src/app/components/allocation/allocation.component.ts");
-/* harmony import */ var _components_regulation_regulation_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./components/regulation/regulation.component */ "./src/app/components/regulation/regulation.component.ts");
-/* harmony import */ var _components_work_work_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./components/work/work.component */ "./src/app/components/work/work.component.ts");
-/* harmony import */ var _components_workone_workone_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./components/workone/workone.component */ "./src/app/components/workone/workone.component.ts");
-/* harmony import */ var _components_worktwo_worktwo_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./components/worktwo/worktwo.component */ "./src/app/components/worktwo/worktwo.component.ts");
-/* harmony import */ var _components_surveyone_surveyone_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./components/surveyone/surveyone.component */ "./src/app/components/surveyone/surveyone.component.ts");
-/* harmony import */ var _components_surveytwo_surveytwo_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./components/surveytwo/surveytwo.component */ "./src/app/components/surveytwo/surveytwo.component.ts");
-/* harmony import */ var _components_allocation_info_allocation_info_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./components/allocation-info/allocation-info.component */ "./src/app/components/allocation-info/allocation-info.component.ts");
-/* harmony import */ var _components_data_data_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./components/data/data.component */ "./src/app/components/data/data.component.ts");
+/* harmony import */ var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! @angular/cdk/drag-drop */ "./node_modules/@angular/cdk/esm5/drag-drop.es5.js");
+/* harmony import */ var _services_validate_service__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./services/validate.service */ "./src/app/services/validate.service.ts");
+/* harmony import */ var _services_admin_service__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./services/admin.service */ "./src/app/services/admin.service.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _services_interaction_service__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./services/interaction.service */ "./src/app/services/interaction.service.ts");
+/* harmony import */ var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./guards/auth.guard */ "./src/app/guards/auth.guard.ts");
+/* harmony import */ var _guards_admin_guard__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./guards/admin.guard */ "./src/app/guards/admin.guard.ts");
+/* harmony import */ var _components_login_login_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./components/login/login.component */ "./src/app/components/login/login.component.ts");
+/* harmony import */ var _components_register_register_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./components/register/register.component */ "./src/app/components/register/register.component.ts");
+/* harmony import */ var _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./components/navbar/navbar.component */ "./src/app/components/navbar/navbar.component.ts");
+/* harmony import */ var _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./components/dashboard/dashboard.component */ "./src/app/components/dashboard/dashboard.component.ts");
+/* harmony import */ var _components_admin_admin_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./components/admin/admin.component */ "./src/app/components/admin/admin.component.ts");
+/* harmony import */ var _components_newpassword_newpassword_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./components/newpassword/newpassword.component */ "./src/app/components/newpassword/newpassword.component.ts");
+/* harmony import */ var _components_instructions_instructions_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./components/instructions/instructions.component */ "./src/app/components/instructions/instructions.component.ts");
+/* harmony import */ var _components_session_session_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./components/session/session.component */ "./src/app/components/session/session.component.ts");
+/* harmony import */ var _components_allocation_allocation_component__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./components/allocation/allocation.component */ "./src/app/components/allocation/allocation.component.ts");
+/* harmony import */ var _components_regulation_regulation_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./components/regulation/regulation.component */ "./src/app/components/regulation/regulation.component.ts");
+/* harmony import */ var _components_work_work_component__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./components/work/work.component */ "./src/app/components/work/work.component.ts");
+/* harmony import */ var _components_workone_workone_component__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ./components/workone/workone.component */ "./src/app/components/workone/workone.component.ts");
+/* harmony import */ var _components_worktwo_worktwo_component__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ./components/worktwo/worktwo.component */ "./src/app/components/worktwo/worktwo.component.ts");
+/* harmony import */ var _components_surveyone_surveyone_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./components/surveyone/surveyone.component */ "./src/app/components/surveyone/surveyone.component.ts");
+/* harmony import */ var _components_surveytwo_surveytwo_component__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./components/surveytwo/surveytwo.component */ "./src/app/components/surveytwo/surveytwo.component.ts");
+/* harmony import */ var _components_allocation_info_allocation_info_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./components/allocation-info/allocation-info.component */ "./src/app/components/allocation-info/allocation-info.component.ts");
+/* harmony import */ var _components_data_data_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./components/data/data.component */ "./src/app/components/data/data.component.ts");
 
 
 
@@ -940,22 +941,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var appRoutes = [
-    { path: 'login', component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_37__["LoginComponent"] },
-    { path: 'newpassword/:resetcode', component: _components_newpassword_newpassword_component__WEBPACK_IMPORTED_MODULE_42__["NewpasswordComponent"] },
-    { path: 'register', component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_38__["RegisterComponent"] },
+    { path: 'login', component: _components_login_login_component__WEBPACK_IMPORTED_MODULE_38__["LoginComponent"] },
+    { path: 'newpassword/:resetcode', component: _components_newpassword_newpassword_component__WEBPACK_IMPORTED_MODULE_43__["NewpasswordComponent"] },
+    { path: 'register', component: _components_register_register_component__WEBPACK_IMPORTED_MODULE_39__["RegisterComponent"] },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    { path: 'dashboard', component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_40__["DashboardComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_35__["AuthGuard"]] },
-    { path: 'instructions', component: _components_instructions_instructions_component__WEBPACK_IMPORTED_MODULE_43__["InstructionsComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_35__["AuthGuard"]] },
-    { path: 'admin', component: _components_admin_admin_component__WEBPACK_IMPORTED_MODULE_41__["AdminComponent"], canActivate: [_guards_admin_guard__WEBPACK_IMPORTED_MODULE_36__["AdminGuard"]] },
-    { path: 'session', component: _components_session_session_component__WEBPACK_IMPORTED_MODULE_44__["SessionComponent"], canActivate: [_guards_admin_guard__WEBPACK_IMPORTED_MODULE_36__["AdminGuard"]] },
-    { path: 'allocation', component: _components_allocation_allocation_component__WEBPACK_IMPORTED_MODULE_45__["AllocationComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_35__["AuthGuard"]] },
-    { path: 'regulation', component: _components_regulation_regulation_component__WEBPACK_IMPORTED_MODULE_46__["RegulationComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_35__["AuthGuard"]] },
-    { path: 'workweek2', component: _components_workone_workone_component__WEBPACK_IMPORTED_MODULE_48__["WorkoneComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_35__["AuthGuard"]] },
-    { path: 'workweek3', component: _components_worktwo_worktwo_component__WEBPACK_IMPORTED_MODULE_49__["WorktwoComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_35__["AuthGuard"]] },
-    { path: 'surveyone', component: _components_surveyone_surveyone_component__WEBPACK_IMPORTED_MODULE_50__["SurveyoneComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_35__["AuthGuard"]] },
-    { path: 'surveytwo', component: _components_surveytwo_surveytwo_component__WEBPACK_IMPORTED_MODULE_51__["SurveytwoComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_35__["AuthGuard"]] },
-    { path: 'data', component: _components_data_data_component__WEBPACK_IMPORTED_MODULE_53__["DataComponent"], canActivate: [_guards_admin_guard__WEBPACK_IMPORTED_MODULE_36__["AdminGuard"]] }
+    { path: 'dashboard', component: _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_41__["DashboardComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_36__["AuthGuard"]] },
+    { path: 'instructions', component: _components_instructions_instructions_component__WEBPACK_IMPORTED_MODULE_44__["InstructionsComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_36__["AuthGuard"]] },
+    { path: 'admin', component: _components_admin_admin_component__WEBPACK_IMPORTED_MODULE_42__["AdminComponent"], canActivate: [_guards_admin_guard__WEBPACK_IMPORTED_MODULE_37__["AdminGuard"]] },
+    { path: 'session', component: _components_session_session_component__WEBPACK_IMPORTED_MODULE_45__["SessionComponent"], canActivate: [_guards_admin_guard__WEBPACK_IMPORTED_MODULE_37__["AdminGuard"]] },
+    { path: 'allocation', component: _components_allocation_allocation_component__WEBPACK_IMPORTED_MODULE_46__["AllocationComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_36__["AuthGuard"]] },
+    { path: 'regulation', component: _components_regulation_regulation_component__WEBPACK_IMPORTED_MODULE_47__["RegulationComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_36__["AuthGuard"]] },
+    { path: 'workweek2', component: _components_workone_workone_component__WEBPACK_IMPORTED_MODULE_49__["WorkoneComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_36__["AuthGuard"]] },
+    { path: 'workweek3', component: _components_worktwo_worktwo_component__WEBPACK_IMPORTED_MODULE_50__["WorktwoComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_36__["AuthGuard"]] },
+    { path: 'surveyone', component: _components_surveyone_surveyone_component__WEBPACK_IMPORTED_MODULE_51__["SurveyoneComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_36__["AuthGuard"]] },
+    { path: 'surveytwo', component: _components_surveytwo_surveytwo_component__WEBPACK_IMPORTED_MODULE_52__["SurveytwoComponent"], canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_36__["AuthGuard"]] },
+    { path: 'data', component: _components_data_data_component__WEBPACK_IMPORTED_MODULE_54__["DataComponent"], canActivate: [_guards_admin_guard__WEBPACK_IMPORTED_MODULE_37__["AdminGuard"]] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -964,23 +966,23 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
-                _components_login_login_component__WEBPACK_IMPORTED_MODULE_37__["LoginComponent"],
-                _components_register_register_component__WEBPACK_IMPORTED_MODULE_38__["RegisterComponent"],
-                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_39__["NavbarComponent"],
-                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_40__["DashboardComponent"],
-                _components_admin_admin_component__WEBPACK_IMPORTED_MODULE_41__["AdminComponent"],
-                _components_newpassword_newpassword_component__WEBPACK_IMPORTED_MODULE_42__["NewpasswordComponent"],
-                _components_instructions_instructions_component__WEBPACK_IMPORTED_MODULE_43__["InstructionsComponent"],
-                _components_session_session_component__WEBPACK_IMPORTED_MODULE_44__["SessionComponent"],
-                _components_allocation_allocation_component__WEBPACK_IMPORTED_MODULE_45__["AllocationComponent"],
-                _components_regulation_regulation_component__WEBPACK_IMPORTED_MODULE_46__["RegulationComponent"],
-                _components_work_work_component__WEBPACK_IMPORTED_MODULE_47__["WorkComponent"],
-                _components_workone_workone_component__WEBPACK_IMPORTED_MODULE_48__["WorkoneComponent"],
-                _components_worktwo_worktwo_component__WEBPACK_IMPORTED_MODULE_49__["WorktwoComponent"],
-                _components_surveyone_surveyone_component__WEBPACK_IMPORTED_MODULE_50__["SurveyoneComponent"],
-                _components_surveytwo_surveytwo_component__WEBPACK_IMPORTED_MODULE_51__["SurveytwoComponent"],
-                _components_allocation_info_allocation_info_component__WEBPACK_IMPORTED_MODULE_52__["AllocationInfoComponent"],
-                _components_data_data_component__WEBPACK_IMPORTED_MODULE_53__["DataComponent"]
+                _components_login_login_component__WEBPACK_IMPORTED_MODULE_38__["LoginComponent"],
+                _components_register_register_component__WEBPACK_IMPORTED_MODULE_39__["RegisterComponent"],
+                _components_navbar_navbar_component__WEBPACK_IMPORTED_MODULE_40__["NavbarComponent"],
+                _components_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_41__["DashboardComponent"],
+                _components_admin_admin_component__WEBPACK_IMPORTED_MODULE_42__["AdminComponent"],
+                _components_newpassword_newpassword_component__WEBPACK_IMPORTED_MODULE_43__["NewpasswordComponent"],
+                _components_instructions_instructions_component__WEBPACK_IMPORTED_MODULE_44__["InstructionsComponent"],
+                _components_session_session_component__WEBPACK_IMPORTED_MODULE_45__["SessionComponent"],
+                _components_allocation_allocation_component__WEBPACK_IMPORTED_MODULE_46__["AllocationComponent"],
+                _components_regulation_regulation_component__WEBPACK_IMPORTED_MODULE_47__["RegulationComponent"],
+                _components_work_work_component__WEBPACK_IMPORTED_MODULE_48__["WorkComponent"],
+                _components_workone_workone_component__WEBPACK_IMPORTED_MODULE_49__["WorkoneComponent"],
+                _components_worktwo_worktwo_component__WEBPACK_IMPORTED_MODULE_50__["WorktwoComponent"],
+                _components_surveyone_surveyone_component__WEBPACK_IMPORTED_MODULE_51__["SurveyoneComponent"],
+                _components_surveytwo_surveytwo_component__WEBPACK_IMPORTED_MODULE_52__["SurveytwoComponent"],
+                _components_allocation_info_allocation_info_component__WEBPACK_IMPORTED_MODULE_53__["AllocationInfoComponent"],
+                _components_data_data_component__WEBPACK_IMPORTED_MODULE_54__["DataComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -1011,14 +1013,15 @@ var AppModule = /** @class */ (function () {
                 _angular_material_stepper__WEBPACK_IMPORTED_MODULE_28__["MatStepperModule"],
                 _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_29__["MatButtonToggleModule"],
                 _angular_material_dialog__WEBPACK_IMPORTED_MODULE_30__["MatDialogModule"],
+                _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_31__["DragDropModule"],
             ],
             providers: [
-                _services_validate_service__WEBPACK_IMPORTED_MODULE_31__["ValidateService"],
-                _services_auth_service__WEBPACK_IMPORTED_MODULE_33__["AuthService"],
-                _services_admin_service__WEBPACK_IMPORTED_MODULE_32__["AdminService"],
-                _services_interaction_service__WEBPACK_IMPORTED_MODULE_34__["InteractionService"],
-                _guards_auth_guard__WEBPACK_IMPORTED_MODULE_35__["AuthGuard"],
-                _guards_admin_guard__WEBPACK_IMPORTED_MODULE_36__["AdminGuard"],
+                _services_validate_service__WEBPACK_IMPORTED_MODULE_32__["ValidateService"],
+                _services_auth_service__WEBPACK_IMPORTED_MODULE_34__["AuthService"],
+                _services_admin_service__WEBPACK_IMPORTED_MODULE_33__["AdminService"],
+                _services_interaction_service__WEBPACK_IMPORTED_MODULE_35__["InteractionService"],
+                _guards_auth_guard__WEBPACK_IMPORTED_MODULE_36__["AuthGuard"],
+                _guards_admin_guard__WEBPACK_IMPORTED_MODULE_37__["AdminGuard"],
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })

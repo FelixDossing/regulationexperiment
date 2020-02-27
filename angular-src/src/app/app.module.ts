@@ -33,6 +33,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 import { ValidateService } from './services/validate.service';
 import { AdminService } from './services/admin.service';
 import { AuthService } from './services/auth.service';
@@ -127,6 +129,8 @@ const appRoutes: Routes = [
     MatStepperModule,
     MatButtonToggleModule,
     MatDialogModule,
+
+    DragDropModule,
   ],
   providers: [
     ValidateService,
