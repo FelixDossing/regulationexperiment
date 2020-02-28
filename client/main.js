@@ -2058,8 +2058,8 @@ var DataComponent = /** @class */ (function () {
                         _this.data[i] += "; " + part4.choices[0].sentiment + "; " + part4.choices[0].free_text + "; " + part4.choices[0].help + "; " + part4.choices[0].harm;
                         if (part4.choices[0].explain_ranking) {
                             _this.data[i] += "; " + part4.choices[0].explain_ranking.indexOf('It is nicer to spread it out, than to do everything at once') + "; " + part4.choices[0].explain_ranking.indexOf('Being too impatient') +
-                                ("; " + part4.choices[0].explain_ranking.indexOf('Having better time on the later date') + "; " + part4.choices[0].explain_ranking.indexOf('Being confused or inattentive') + ";") +
-                                ("; " + part4.choices[0].explain_ranking.indexOf('Implementing the wrong choice by mistake') + "; " + part4.choices[0].explain_ranking.indexOf('Wanting to complete more work in total') + ";") +
+                                ("; " + part4.choices[0].explain_ranking.indexOf('Having better time on the later date') + "; " + part4.choices[0].explain_ranking.indexOf('Being confused or inattentive')) +
+                                ("; " + part4.choices[0].explain_ranking.indexOf('Implementing the wrong choice by mistake') + "; " + part4.choices[0].explain_ranking.indexOf('Wanting to complete more work in total')) +
                                 ("; " + part4.choices[0].explain_ranking.indexOf('Other reasons'));
                         }
                         else {
