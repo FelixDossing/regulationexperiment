@@ -51,25 +51,14 @@ export class WorkoneComponent implements OnInit {
       // this.min_pages_to_complete = this.user.minimal_work;
       let register_date = moment(this.user.register_date)
       if (moment(this.current_date).isSame(register_date.add({weeks:1, days:this.user.role=='worker' ? 1 : 0}), 'day')) this.right_date = true;
-      // else { this.right_date=false; this.router.navigate(['/dashboard']); }
+      else { this.right_date=false; this.router.navigate(['/dashboard']); }
 
       let tasks = this.user.tasks;
       if (this.user.work_assignment) {
         this.work_assignment = this.user.work_assignment;
         this.assignWork();
         this.checkIfDone();
-      } else {
-        this.router.navigate(['/dashboard']);
       }
-    })
-  }
-  setDate() {
-    // This function is just for the picker
-    this.current_date = moment(this.picker_date.toISOString());
-    this.getUser(() => {
-      // this.min_pages_to_complete = this.user.minimal_work;
-      let register_date = moment(this.user.register_date)
-      if (moment(this.current_date).isSame(register_date.add({weeks:1, days:this.user.role=='worker' ? 1 : 0}), 'day')) this.right_date = true;
     })
   }
 

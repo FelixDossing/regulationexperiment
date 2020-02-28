@@ -122,44 +122,6 @@ export class AllocationComponent implements OnInit {
     }    
   }
   
-  setDate() {
-    this.authService.getProfile().subscribe(profile => {
-      this.current_date = moment(this.picker_date.toISOString());
-
-      this.user = profile.user;
-      this.pages_to_complete = this.user.minimal_work;
-      let tasks = this.user.tasks;
-
-      // Get allocation number
-      let register_date = moment(this.user.register_date)
-      if (moment(this.current_date).isSame(register_date, 'day')) this.allocation_number = 1;
-      else if (this.user.role == 'regulator' && moment(this.current_date).isSame(register_date.add(1, 'week'), 'day')) this.allocation_number = 2;
-      else if (this.user.role == 'worker' && moment(this.current_date).isSame(register_date.add(8, 'days'),'day')) this.allocation_number = 2;
-
-      // Check if open text has been submitted
-      this.totally_done = false;
-      if (this.user.tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).completed) this.totally_done = true;
-      // Check if allocation has already been chosen
-      else if (this.user.tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).allocation) {
-        this.totally_done = false;
-        this.work_done = true;
-        this.allocation_done = true;
-        this.selected_tab = 2;
-      }
-      else if (this.allocation_number && tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).work_completed) {
-        this.totally_done = false;
-        this.work_completed = tasks.find(e => e.task_tag === 'allocation'+this.allocation_number).work_completed;
-        this.checkIfDone();
-      }
-      this.getSuggestions();
-    });
-    // for (let i = 0; i < this.allocation_choices.length; i++) {
-    //   for (let j = 0; j <= 50; j++) {
-    //     this.allocation_choices[i].w2_options.push(j);
-    //     this.allocation_choices[i].w3_options.push(Math.round( 10*(50-j)/this.allocation_choices[i].exchange_rate)/10 );
-    //   }
-    // }
-}
 
 
   drawChoice() {
@@ -298,7 +260,6 @@ export class AllocationComponent implements OnInit {
         this.flashMessage.show(res.msg, {cssClass: 'my-flash-message success-flash', timeout: 5000 });
         this.selected_tab = 2;
         this.allocation_done = true;
-        // this.router.navigate(['/dashboard']);
       } else {
         this.flashMessage.show(res.msg, {cssClass: 'my-flash-message alert-flash', timeout: 5000 });
       }

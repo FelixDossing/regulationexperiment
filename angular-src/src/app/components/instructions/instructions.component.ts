@@ -30,7 +30,17 @@ export class InstructionsComponent implements OnInit {
 
   regchoice:number = null;
 
-  experiment_pay:String = '500 DKK';
+  regulator_payment:any = {
+    base:'450 DKK',
+    min:'450 DKK',
+    max:'599 DKK'
+  }
+  worker_payment:any = {
+    base:'400 DKK',
+    Min:'370 DKK',
+    Max:'529 DKK'
+  }
+
   answers = [null,null,null,null,null,null,null,null,null,null, null, null];
   answers_check = [null,null,null,null,null,null,null,null,null,null, null, null];
 

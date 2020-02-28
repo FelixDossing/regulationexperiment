@@ -129,12 +129,6 @@ export class DashboardComponent {
     });
   }
 
-  setDate() {
-    // This function is just for the picker
-    this.current_date = moment(this.picker_date.toISOString())
-    this.current_date.minutes(1);
-  }
-
   checkWork() {
     // this.work1_active = this.cards.find(e => e.tag == 'work1').active;
     this.work1_active = this.cards.find(e => e.tag === 'work1').active;

@@ -238,8 +238,8 @@
       <mat-tab label="Payment">
         <div class="instructions-part">
           <h1>Payment</h1>
-          <p>You will recieve {{experiment_pay}} for completing the entire experiment. This amount may increase or decrease depending on choices you make<span *ngIf="user && user.role=='worker'"> and choices made by another participant</span>. You will not receive payment unless you complete the entire experiment.
-          </p>
+          <p *ngIf="user && user.role=='worker'">You will receive {{worker_payment.base}} as a base payment for participating in the experiment. Your final payment may however be between {{{worker_payment.min}} and {{worker_payment.max}} depending on choice you make and choices made by other participants.</p>
+          <p *ngIf="user && user.role=='regulator'">You will receive {{regulator_payment.base}} as a base payment for participanting in the experiment. Your final payment may however be between {{ regulator_payment.min }} and {{regulator_payment.max}} depending on choices you make.</p>
           <button *ngIf="!control_completed || control_completed" class="active-button" mat-raised-button (click)="nextTab()">Next</button>
           </div>
       </mat-tab>

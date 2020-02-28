@@ -39,7 +39,7 @@ export class SurveyoneComponent implements OnInit {
 
       let register_date = moment(this.user.register_date)
 
-      // if (!moment(this.current_date).isSame(register_date.add({weeks:this.user.role == 'regulator' ? 2 : 0}), 'day')) this.router.navigate(['/dashboard']);
+      if (!moment(this.current_date).isSame(register_date.add({weeks:this.user.role == 'regulator' ? 2 : 0}), 'day')) this.router.navigate(['/dashboard']);
     })
   }
   nextTab() { this.selected_tab += 1; }

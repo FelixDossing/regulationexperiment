@@ -145,25 +145,10 @@ export class RegulationComponent implements OnInit {
     }
   }
 
-  setDate() {
-    // This function is just for the picker
-    this.current_date = moment(this.picker_date.toISOString());
-    let register_date = moment(this.user.register_date).hours(0);
-    if (moment(this.current_date).isSame(register_date, 'day')) {
-      this.week = 1;
-    } else if (this.current_date.isSame(register_date.add({ weeks:1 }), 'day' )) {
-      this.week = 2;
-    } else {
-      this.week = null;
-    }
-    this.task = this.user.tasks.find(e => e.task_tag === 'regulation'+this.week)
-    this.totally_completed = false;
-    this.navigate();
-  }
   navigate() {
     if (this.task.parts && this.task.parts[3]) {
       this.totally_completed = true;
-      // this.router.navigate(['/dashboard'])
+      this.router.navigate(['/dashboard'])
     }
     else if (this.task.parts && this.task.parts[2]) {
       this.stepper.selected.completed=true;
