@@ -104,7 +104,8 @@
           <strong>Example</strong>: Your guess regarding the range "0-30" for Choice 1 is randomly chosen. Here you guessed that 20% of the participants would choose in this range for Choice 1 in this week. The 
           actual number was 40%, so you get 30 DKK added to your final payment.<br><br>
           Notice as you go down the list, that the ranges include the previous range. You will therefore not be able to choose a smaller percentage than you did for the previous range. 
-          This is due to the fact that if you believe that 10% will choose between 0 and 10, then you must also believe that <em>at least</em> 10% will choose between 0 and 20.
+          This is due to the fact that if you believe that 10% will choose between 0 and 10, then you must also believe that <em>at least</em> 10% will choose between 0 and 20.<br><br>
+          You will make this choice in both week 1 and week 2. One guess from one week will be randomly selected to determine how much is added to your total payment.
           </p>
         </mat-card>
 
@@ -206,14 +207,14 @@
         </div>
       </div>
       <div class="input-container" style="text-align: left; margin-top:50px;">
-        <p>Do you wish to add 50 DKK to the total earnings of another worker (not the one you have regulated)? Your choice will not affect your own payment.</p>
+        <p>Do you wish to add 30 DKK to the total earnings of another worker (not the one you have regulated)? Your choice will not affect your own payment.</p>
         <mat-radio-group color="warn" [(ngModel)]="help" aria-label="Do you wish to add 30 DKK to the total earnings of another worker (not the one you have regulated)?">
           <mat-radio-button style="margin-left:10px;" value="yes">Yes</mat-radio-button><br>
           <mat-radio-button value="no" style="margin-left:10px;margin-top:10px;">No</mat-radio-button>
         </mat-radio-group>
       </div>
       <div class="input-container" style="text-align: left; margin-top:50px;">
-        <p>Do you wish to subtract 50 DKK from the total earnings of a third worker (not the one you have regulated and not the one you affect above)? Your choice will not 
+        <p>Do you wish to subtract 30 DKK from the total earnings of a third worker (not the one you have regulated and not the one you affect above)? Your choice will not 
           affect your own payment.
         </p>
         <mat-radio-group color="warn" [(ngModel)]="harm" aria-label="Do you wish to add 30 DKK to the total earnings of another worker (not the one you have regulated)?">
