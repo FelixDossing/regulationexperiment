@@ -91,37 +91,7 @@ router.get('/session', passport.authenticate('jwt',{session:false}), (req, res) 
 
 // Send reminder
 router.post('/sendreminder', passport.authenticate('jwt',{session:false}), (req, res) => {
-    let recievers = req.body;
-    let success = true;
-    recievers.forEach(r => {
-        const DOMAIN = "sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org";
-        const mg = mailgun({apiKey: "77f75174a3f4cc3adabc29491b91b379-7238b007-7a0849c6", domain: DOMAIN});
-        const data = {
-            from: "Experiment <postmaster@sandbox91d1cf210a154a5489a09502321e87f6.mailgun.org>",
-            to: r.email,
-            subject: "Experiment reminder",
-            text: `Dear ${r.name},
-            We are writing to remind you that you have tasks to complete in our experiment today. Today's tasks must be completed before midnight. If you have not already completed them, follow the link above to sign in:
-            
-            ${url}
-            
-            If you have any questions, please contact uc.experiment2019@gmail.com
-            
-            Thank you`
-        };
-        mg.messages().send(data, function (error, body) {
-            if (error) {
-                success = false;
-            } else {
-                success = true;
-            }
-        });
-        if (success) {
-            res.json({success:true, msg:"Emails sent"})
-        } else {
-            res.json({success:false, msg:"Something went wrong"})
-        }
-    })
+    res.json({success:true, msg:"We don't send reminders any more"})
 })
 
 // Get data
