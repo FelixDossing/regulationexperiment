@@ -38,6 +38,8 @@ export class LoginComponent implements OnInit {
   newPasswordSubmit() {
     if (this.password != this.repeat_password) {
       this.flashMessage.show("The passwords are not identical", {cssClass:"my-flash-message alert-flash", timeout:3000});
+    } else if (!this.reset_answer) {
+      this.flashMessage.show("Please answer the reset question", {cssClass:"my-flash-message alert-flash", timeout:3000})
     } else {
       this.authService.setNewPassword({email:this.email, password:this.password, answer:this.reset_answer}).subscribe(response => {
         if (response.success == false) {
