@@ -500,12 +500,11 @@ export class RegulationComponent implements OnInit {
 
   submit(index) {
     // Send to server
-    let submit_choices = { name:'part'+(index+1), week: this.week, choices:[], suggestions:{ min:[], text:[] } }
+    let submit_choices = { name:'part'+(index+1), week: this.week, choices:[], suggestions:{ min:[] } }
     if (index == 0) {
       this.regulation_choices.forEach((choice,i) => {
         submit_choices.choices.push(choice.choice);
         submit_choices.suggestions.min.push(choice.suggestion_min);
-        submit_choices.suggestions.text.push(choice.suggestion_text);
       })
     }
     else if (index == 1) {
@@ -519,7 +518,7 @@ export class RegulationComponent implements OnInit {
       })
     }
     else if (index == 3) {
-      submit_choices.choices.push({sentiment:this.sentiment,free_text:this.free_text,help:this.help,harm:this.harm})
+      submit_choices.choices.push({sentiment:this.sentiment,free_text:this.free_text,help:this.help,harm:this.harm,explain_ranking:this.explain_ranking})
     }
     this.interactionService.registerRegChoice(submit_choices).subscribe(res => {
       if (res.success) {

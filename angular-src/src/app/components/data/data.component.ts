@@ -143,7 +143,8 @@ export class DataComponent implements OnInit {
                                       `; reg${i}.c2.optimala; reg${i}.c2.optimalb; reg${i}.c2.optimalc; reg${i}.c2.optimald; reg${i}.c2.optimale; reg${i}.c2.optimalf`+
                                       `; reg${i}.c1.below0; reg${i}.c1.below10; reg${i}.c1.below20; reg${i}.c1.below30; reg${i}.c1.below40; reg${i}.c1.below50`+
                                       `; reg${i}.c2.below0; reg${i}.c2.below10; reg${i}.c2.below20; reg${i}.c2.below30; reg${i}.c2.below40; reg${i}.c2.below50`+
-                                      `; reg${i}.sentiment; reg${i}.free_text; reg${i}.help; reg${i}.harm`;
+                                      `; reg${i}.sentiment; reg${i}.free_text; reg${i}.help; reg${i}.harm; reg${i}.rank_spread; reg${i}.rank_impatiance; reg${i}.rank_practical`+
+                                      `; reg${i}.rank_confused; reg${i}.rank_mistake; reg${i}.rank_lovework; reg${i}.rank_other`;
       }
       // work 1 & 2
       for (let i = 1; i < 3; i++) {

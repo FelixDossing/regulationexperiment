@@ -1989,7 +1989,8 @@ var DataComponent = /** @class */ (function () {
                     ("; reg" + i + ".c2.optimala; reg" + i + ".c2.optimalb; reg" + i + ".c2.optimalc; reg" + i + ".c2.optimald; reg" + i + ".c2.optimale; reg" + i + ".c2.optimalf") +
                     ("; reg" + i + ".c1.below0; reg" + i + ".c1.below10; reg" + i + ".c1.below20; reg" + i + ".c1.below30; reg" + i + ".c1.below40; reg" + i + ".c1.below50") +
                     ("; reg" + i + ".c2.below0; reg" + i + ".c2.below10; reg" + i + ".c2.below20; reg" + i + ".c2.below30; reg" + i + ".c2.below40; reg" + i + ".c2.below50") +
-                    ("; reg" + i + ".sentiment; reg" + i + ".free_text; reg" + i + ".help; reg" + i + ".harm");
+                    ("; reg" + i + ".sentiment; reg" + i + ".free_text; reg" + i + ".help; reg" + i + ".harm; reg" + i + ".rank_spread; reg" + i + ".rank_impatiance; reg" + i + ".rank_practical") +
+                    ("; reg" + i + ".rank_confused; reg" + i + ".rank_mistake; reg" + i + ".rank_lovework; reg" + i + ".rank_other");
             }
             // work 1 & 2
             for (var i = 1; i < 3; i++) {
@@ -3123,12 +3124,11 @@ var RegulationComponent = /** @class */ (function () {
     RegulationComponent.prototype.submit = function (index) {
         var _this = this;
         // Send to server
-        var submit_choices = { name: 'part' + (index + 1), week: this.week, choices: [], suggestions: { min: [], text: [] } };
+        var submit_choices = { name: 'part' + (index + 1), week: this.week, choices: [], suggestions: { min: [] } };
         if (index == 0) {
             this.regulation_choices.forEach(function (choice, i) {
                 submit_choices.choices.push(choice.choice);
                 submit_choices.suggestions.min.push(choice.suggestion_min);
-                submit_choices.suggestions.text.push(choice.suggestion_text);
             });
         }
         else if (index == 1) {
@@ -3142,7 +3142,7 @@ var RegulationComponent = /** @class */ (function () {
             });
         }
         else if (index == 3) {
-            submit_choices.choices.push({ sentiment: this.sentiment, free_text: this.free_text, help: this.help, harm: this.harm });
+            submit_choices.choices.push({ sentiment: this.sentiment, free_text: this.free_text, help: this.help, harm: this.harm, explain_ranking: this.explain_ranking });
         }
         this.interactionService.registerRegChoice(submit_choices).subscribe(function (res) {
             if (res.success) {
