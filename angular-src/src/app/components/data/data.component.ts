@@ -119,6 +119,7 @@ export class DataComponent implements OnInit {
 
   displayUserData() {
     this.adminService.getData().subscribe(data => {
+      console.log(data);
       this.datahead = "";
       this.data = [];
       // User data

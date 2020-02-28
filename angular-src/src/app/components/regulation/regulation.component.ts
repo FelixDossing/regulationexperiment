@@ -9,7 +9,7 @@ import * as nouislider from 'nouislider';
 import * as moment from 'moment';
 import { DataRowOutlet } from '@angular/cdk/table';
 import { MatStepper } from '@angular/material/stepper';
-import { DragDropModule, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-regulation',
@@ -24,10 +24,11 @@ export class RegulationComponent implements OnInit {
   totally_completed = false;
 
   explain_options = [
-                      'It is nicer to spread it out than do everything at once',
-                      'Impatience',
+                      'It is nicer to spread it out, than to do everything at once',
+                      'Being too impatient',
                       'Having better time on the later date',
-                      'Being confused',
+                      'Being confused or inattentive',
+                      'Implementing the wrong choice by mistake',
                       'Wanting to complete more work in total',
                       'Other reasons'
                     ];
