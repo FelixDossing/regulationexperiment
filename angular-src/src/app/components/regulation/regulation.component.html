@@ -12,7 +12,7 @@
   <div type="range" id="slider"></div>
   <p *ngIf="totally_completed">You have already completed this part of the experiment.</p>
   <p *ngIf="!week && !totally_completed">Please return on the correct date</p>
-  <mat-horizontal-stepper [@.disabled]="true" color="accent" [linear]="true" #stepper [style.display]="week && !totally_completed">
+  <mat-horizontal-stepper [@.disabled]="true" color="accent" [linear]="true" #stepper [style.display]="week && !totally_completed ? 'initial' : 'none'">
     <mat-step editable="false" label="Step 1" completed="false">
       <div class="tab-content input-content">
         <mat-card style="background:rgb(0, 109, 64)">
