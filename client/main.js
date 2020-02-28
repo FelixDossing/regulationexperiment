@@ -2303,7 +2303,9 @@ var LoginComponent = /** @class */ (function () {
                 }
                 else {
                     _this.flashMessage.show(response.msg, { cssClass: 'my-flash-message success-flash', timeout: 5000 });
-                    window.location.reload();
+                    _this.password = null;
+                    _this.reset_info = null;
+                    _this.reset_answer = null;
                 }
             });
         }

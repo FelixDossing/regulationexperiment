@@ -44,7 +44,9 @@ export class LoginComponent implements OnInit {
           this.flashMessage.show(response.msg, {cssClass: 'my-flash-message alert-flash', timeout:5000});      
         } else {
           this.flashMessage.show(response.msg, {cssClass: 'my-flash-message success-flash', timeout:5000});
-          window.location.reload()
+          this.password = null;
+          this.reset_info = null;
+          this.reset_answer = null;
         }
       })
     }
