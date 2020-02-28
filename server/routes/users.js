@@ -388,13 +388,12 @@ router.post('/registerregchoice', passport.authenticate('jwt',{session:false}), 
 
 // Reset password email
 router.post('/resetpassword', (req, res) => {{
-
     // Set reset domain-code for user
     let email = req.body.email;
     if (email) {
         // Find user, add resetcode, send email with link(/:resetcode)
         User.getUserByEmail(email, (err, user) => {
-            if (err || user.length == 0) {
+            if (err || !user || user.length == 0) {
                 res.json({success:false, msg:'Email not registered'})
             } else {
                 res.json({success:true, data:user.reset_info});
