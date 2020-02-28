@@ -209,9 +209,17 @@ export class DataComponent implements OnInit {
                                         `; ${part3.choices[1][0].input}; ${part3.choices[1][1].input}; ${part3.choices[1][2].input}; ${part3.choices[1][3].input}; ${part3.choices[1][4].input}; ${part3.choices[1][5].input}`;
             let part4 = regulation.parts[3];
             this.data[i] += `; ${part4.choices[0].sentiment}; ${part4.choices[0].free_text}; ${part4.choices[0].help}; ${part4.choices[0].harm}`;
+            if (part4.choices[0].explain_ranking) {
+              this.data[i] += `; ${part4.choices[0].explain_ranking.indexOf('It is nicer to spread it out, than to do everything at once')}; ${part4.choices[0].explain_ranking.indexOf('Being too impatient')}` +
+              `; ${part4.choices[0].explain_ranking.indexOf('Having better time on the later date')}; ${part4.choices[0].explain_ranking.indexOf('Being confused or inattentive')};` +
+              `; ${part4.choices[0].explain_ranking.indexOf('Implementing the wrong choice by mistake')}; ${part4.choices[0].explain_ranking.indexOf('Wanting to complete more work in total')};` +
+              `; ${part4.choices[0].explain_ranking.indexOf('Other reasons')}`;
+            } else {
+              this.data[i] += '; .; .; .; .; .; .; .'
+            }
           } else {
             let add = ""
-            for (let k = 0; k < 38; k++) {
+            for (let k = 0; k < 45; k++) {
               add += "; ."
             }
             this.data[i] += add;
