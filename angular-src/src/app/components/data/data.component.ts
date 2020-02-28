@@ -215,7 +215,7 @@ export class DataComponent implements OnInit {
               `; ${part4.choices[0].explain_ranking.indexOf('Implementing the wrong choice by mistake')}; ${part4.choices[0].explain_ranking.indexOf('Wanting to complete more work in total')}` +
               `; ${part4.choices[0].explain_ranking.indexOf('Other reasons')}`;
             } else {
-              this.data[i] += '; .; .; .; .; .; .; .'
+              this.data[i] += '; .; .; .; .; .; .; .';
             }
           } else {
             let add = ""

@@ -72,5 +72,8 @@ export class AuthService {
   newPassword(password, resetcode) {
     return this.http.post<any>('users/newpassword', {password, resetcode});
   }
+  setNewPassword(info) {
+    return this.http.post<any>('http://localhost:3000/users/setnewpassword', info);
+  }
 
 }

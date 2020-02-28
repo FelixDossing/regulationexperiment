@@ -409,7 +409,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\" style=\"height:100%;\">\n  <mat-card style=\"max-width:500px;display:block;margin-right:auto;margin-left:auto;top:10%;padding:4%;border-radius:10px;\">\n    <img mat-card-image src=\"https://designguide.ku.dk/download/co-branding/ku_logo_uk_h.png\" alt=\"ku_logo\">\n    <!-- <mat-card-header style=\"justify-content:center\">\n      <mat-card-title style=\"font-size:2rem;font-weight:normal\">Sign in</mat-card-title>\n    </mat-card-header> -->\n    <mat-card-content style=\"display:flex;flex-direction: column;\">\n      <!-- form -->\n      <mat-form-field appearance=\"outline\" style=\"flex:1;\">\n        <mat-label>Email</mat-label>\n        <input [(ngModel)]=\"email\" matInput (keyup)=\"keyUp($event)\">\n        <mat-icon matSuffix>mail_outline</mat-icon>\n      </mat-form-field>\n      <mat-form-field appearance=\"outline\" style=\"flex:1;\">\n        <mat-label>Password</mat-label>\n        <input [(ngModel)]=\"password\" matInput type=\"password\" (keyup)=\"keyUp($event)\">\n        <mat-icon matSuffix>lock_outline</mat-icon>\n      </mat-form-field>\n      <a (click)=\"resetPassword()\" style=\"text-align:center;margin-top:10px;color:blue;cursor:pointer;text-decoration: underline;\">Forgot your password?</a>\n    </mat-card-content>\n\n    <mat-card-actions>\n      <button (click)=\"loginSubmit()\" mat-raised-button style=\"width:100%;color:white;background:#901A1E;font-weight:normal;\">Sign in</button>\n    </mat-card-actions>\n  </mat-card>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\" style=\"height:100%;\">\n  <mat-card style=\"max-width:500px;display:block;margin-right:auto;margin-left:auto;top:10%;padding:4%;border-radius:10px;\">\n    <img mat-card-image src=\"https://designguide.ku.dk/download/co-branding/ku_logo_uk_h.png\" alt=\"ku_logo\">\n    <!-- <mat-card-header style=\"justify-content:center\">\n      <mat-card-title style=\"font-size:2rem;font-weight:normal\">Sign in</mat-card-title>\n    </mat-card-header> -->\n    <mat-card-content style=\"display:flex;flex-direction: column;\">\n      <!-- form -->\n      <mat-form-field appearance=\"outline\" style=\"flex:1;\">\n        <mat-label>Email</mat-label>\n        <input [(ngModel)]=\"email\" matInput (keyup)=\"keyUp($event)\">\n        <mat-icon matSuffix>mail_outline</mat-icon>\n      </mat-form-field>\n      <mat-form-field appearance=\"outline\" style=\"flex:1;\">\n        <mat-label *ngIf=\"!reset_info\">Password</mat-label>\n        <mat-label *ngIf=\"reset_info\">New password</mat-label>\n        <input [(ngModel)]=\"password\" matInput type=\"password\" (keyup)=\"keyUp($event)\">\n        <mat-icon matSuffix>lock_outline</mat-icon>\n      </mat-form-field>\n      <a *ngIf=\"!reset_info\" (click)=\"resetPassword()\" style=\"text-align:center;margin-top:10px;color:blue;cursor:pointer;text-decoration: underline;\">Forgot your password?</a>\n    </mat-card-content>\n    <mat-card-content *ngIf=\"reset_info\" style=\"display:flex;flex-direction: column;\">\n      <mat-form-field appearance=\"outline\" style=\"flex:1;\">\n        <mat-label >Repeat new password</mat-label>\n        <input [(ngModel)]=\"repeat_password\" matInput type=\"password\" (keyup)=\"keyUp($event)\">\n        <mat-icon matSuffix>lock_outline</mat-icon>\n      </mat-form-field>\n      <p><strong>Question: </strong>{{reset_info.question}}</p>\n      <mat-form-field appearance=\"outline\" style=\"flex:1;\">\n        <mat-label>Answer</mat-label>\n        <input [(ngModel)]=\"reset_answer\" type=\"text\" matInput>\n        <mat-icon matSuffix>perm_identity</mat-icon>\n      </mat-form-field>\n    </mat-card-content>\n    <mat-card-actions>\n      <button *ngIf=\"!reset_info\" (click)=\"loginSubmit()\" mat-raised-button style=\"width:100%;color:white;background:#901A1E;font-weight:normal;\">Sign in</button>\n      <button *ngIf=\"reset_info\" (click)=\"newPasswordSubmit()\" mat-raised-button style=\"width:100%;color:white;background:#901A1E;font-weight:normal;\">Submit new password</button>\n    </mat-card-actions>\n  </mat-card>\n</div>\n");
 
 /***/ }),
 
@@ -448,7 +448,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\" style=\"height:100%;\">\n    <mat-card style=\"max-width:550px;display:block;margin-right:auto;margin-left:auto;top:10%;padding:4%;border-radius:10px;\">\n      <!-- <img mat-card-image src=\"https://designguide.ku.dk/download/co-branding/ku_logo_uk_h.png\" alt=\"ku_logo\"> -->\n      <mat-card-header style=\"justify-content:center;\">\n        <mat-card-title style=\"font-weight:normal;font-size:1.6rem;\">Register</mat-card-title>\n      </mat-card-header>\n\n      <mat-card-content style=\"display:flex;flex-direction:column;margin-bottom:0;\">\n        <div style=\"display:flex;flex-direction:row\">\n          <mat-form-field style=\"flex:1;margin:10px;\">\n            <mat-label>First name</mat-label>\n            <input [(ngModel)]=\"first_name\" matInput (keyup)=\"keyUp($event)\">\n            <mat-icon matSuffix>person_outline</mat-icon>\n          </mat-form-field>\n          <mat-form-field style=\"flex:1;margin:10px;\">\n            <mat-label>Last name</mat-label>\n            <input [(ngModel)]=\"last_name\" matInput (keyup)=\"keyUp($event)\">\n            <mat-icon matSuffix>person_outline</mat-icon>\n          </mat-form-field>\n        </div>\n      </mat-card-content>\n  \n      <mat-card-content style=\"display:flex;flex-direction:column;margin-bottom:0;\">\n        <div style=\"display:flex;flex-direction:row\">\n          <mat-form-field style=\"flex:1;margin:10px;\">\n            <mat-label>Email</mat-label>\n            <input [(ngModel)]=\"email\" matInput (keyup)=\"keyUp($event)\">\n            <mat-icon matSuffix>mail_outline</mat-icon>\n          </mat-form-field>\n          <mat-form-field style=\"flex:1;margin:10px;\">\n            <mat-label>Repeat email</mat-label>\n            <input [(ngModel)]=\"email2\" matInput (keyup)=\"keyUp($event)\">\n            <mat-icon matSuffix>mail_outline</mat-icon>\n          </mat-form-field>\n        </div>\n      </mat-card-content>\n      <mat-card-content style=\"display:flex;flex-direction:column;margin-bottom:0;\">\n        <div style=\"display:flex;flex-direction:row\">\n          <mat-form-field style=\"flex:1;margin:10px;\">\n            <mat-label>Password</mat-label>\n            <input type=\"password\" [(ngModel)]=\"password\" matInput (keyup)=\"keyUp($event)\">\n            <mat-icon matSuffix>lock_outline</mat-icon>\n          </mat-form-field>\n          <mat-form-field style=\"flex:1;margin:10px;\">\n            <mat-label>Password</mat-label>\n            <input type=\"password\" [(ngModel)]=\"password2\" matInput (keyup)=\"keyUp($event)\">\n            <mat-icon matSuffix>lock_outline</mat-icon>\n          </mat-form-field>\n        </div>\n      </mat-card-content>\n      <mat-card-content style=\"display:flex;flex-direction:column;\">\n        <div style=\"display:flex;flex-direction:row\">\n          <mat-form-field style=\"flex:1;margin:10px;\">\n            <mat-label>Register code</mat-label>\n            <input type=\"password\" [(ngModel)]=\"participation_code\" matInput (keyup)=\"keyUp($event)\">\n            <mat-icon matSuffix>perm_identity</mat-icon>\n          </mat-form-field>\n          <mat-form-field style=\"flex:1;margin:10px;\">\n            <mat-label>KU ID</mat-label>\n            <input type=\"password\" [(ngModel)]=\"ku_id\" matInput (keyup)=\"keyUp($event)\">\n            <mat-icon matSuffix>perm_identity</mat-icon>\n            <mat-hint>Required if you are a KU student</mat-hint>\n          </mat-form-field>\n        </div>\n      </mat-card-content>\n      \n      <mat-card-actions>\n        <button (click)=\"register()\" mat-raised-button style=\"width:100%;color:white;background:#901A1E;font-weight:normal\">Register</button>\n      </mat-card-actions>\n    </mat-card>\n  </div>\n  ");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\" style=\"height:100%;\">\n  <mat-card style=\"max-width:550px;display:block;margin-right:auto;margin-left:auto;top:10%;padding:4%;border-radius:10px;\">\n    <!-- <img mat-card-image src=\"https://designguide.ku.dk/download/co-branding/ku_logo_uk_h.png\" alt=\"ku_logo\"> -->\n    <mat-card-header style=\"justify-content:center;\">\n      <mat-card-title style=\"font-weight:normal;font-size:1.6rem;\">Register</mat-card-title>\n    </mat-card-header>\n\n    <mat-card-content style=\"display:flex;flex-direction:column;margin-bottom:0;\">\n      <div style=\"display:flex;flex-direction:row\">\n        <mat-form-field style=\"flex:1;margin:10px;\">\n          <mat-label>First name</mat-label>\n          <input [(ngModel)]=\"first_name\" matInput (keyup)=\"keyUp($event)\">\n          <mat-icon matSuffix>person_outline</mat-icon>\n        </mat-form-field>\n        <mat-form-field style=\"flex:1;margin:10px;\">\n          <mat-label>Last name</mat-label>\n          <input [(ngModel)]=\"last_name\" matInput (keyup)=\"keyUp($event)\">\n          <mat-icon matSuffix>person_outline</mat-icon>\n        </mat-form-field>\n      </div>\n    </mat-card-content>\n\n    <mat-card-content style=\"display:flex;flex-direction:column;margin-bottom:0;\">\n      <div style=\"display:flex;flex-direction:row\">\n        <mat-form-field style=\"flex:1;margin:10px;\">\n          <mat-label>Email</mat-label>\n          <input [(ngModel)]=\"email\" matInput (keyup)=\"keyUp($event)\">\n          <mat-icon matSuffix>mail_outline</mat-icon>\n        </mat-form-field>\n        <mat-form-field style=\"flex:1;margin:10px;\">\n          <mat-label>Repeat email</mat-label>\n          <input [(ngModel)]=\"email2\" matInput (keyup)=\"keyUp($event)\">\n          <mat-icon matSuffix>mail_outline</mat-icon>\n        </mat-form-field>\n      </div>\n    </mat-card-content>\n    <mat-card-content style=\"display:flex;flex-direction:column;margin-bottom:0;\">\n      <div style=\"display:flex;flex-direction:row\">\n        <mat-form-field style=\"flex:1;margin:10px;\">\n          <mat-label>Password</mat-label>\n          <input type=\"password\" [(ngModel)]=\"password\" matInput (keyup)=\"keyUp($event)\">\n          <mat-icon matSuffix>lock_outline</mat-icon>\n        </mat-form-field>\n        <mat-form-field style=\"flex:1;margin:10px;\">\n          <mat-label>Password</mat-label>\n          <input type=\"password\" [(ngModel)]=\"password2\" matInput (keyup)=\"keyUp($event)\">\n          <mat-icon matSuffix>lock_outline</mat-icon>\n        </mat-form-field>\n      </div>\n    </mat-card-content>\n    <mat-card-content style=\"display:flex;flex-direction: column;\">\n      <div style=\"display:flex;flex-direction: row;\">\n        <mat-form-field style=\"flex:1;margin:10px;\">\n          <mat-label>Password reset question</mat-label>\n          <mat-select [(ngModel)]=\"reset_question\">\n            <mat-option *ngFor=\"let question of reset_questions\" [value]=\"question\">{{question}}</mat-option>\n          </mat-select>\n          <mat-hint>The reset question is used in case you forget your password.</mat-hint>\n        </mat-form-field>\n        <mat-form-field style=\"flex:1;margin:10px;\">\n          <mat-label>Answer</mat-label>\n          <input type=\"text\" [(ngModel)]=\"reset_answer\" matInput (keyup)=\"keyUp($event)\">\n          <mat-icon matSuffix>lock_open</mat-icon>\n        </mat-form-field>\n      </div>\n    </mat-card-content>\n\n    <mat-card-content style=\"display:flex;flex-direction:column;\">\n      <div style=\"display:flex;flex-direction:row\">\n        <mat-form-field style=\"flex:1;margin:10px;\">\n          <mat-label>Register code</mat-label>\n          <input type=\"password\" [(ngModel)]=\"participation_code\" matInput (keyup)=\"keyUp($event)\">\n          <mat-icon matSuffix>perm_identity</mat-icon>\n        </mat-form-field>\n        <mat-form-field style=\"flex:1;margin:10px;\">\n          <mat-label>KU ID</mat-label>\n          <input type=\"password\" [(ngModel)]=\"ku_id\" matInput (keyup)=\"keyUp($event)\">\n          <mat-icon matSuffix>perm_identity</mat-icon>\n          <mat-hint>Required if you are a KU student</mat-hint>\n        </mat-form-field>\n      </div>\n    </mat-card-content>\n    \n    <mat-card-actions>\n      <button (click)=\"register()\" mat-raised-button style=\"width:100%;color:white;background:#901A1E;font-weight:normal\">Register</button>\n    </mat-card-actions>\n  </mat-card>\n</div>\n");
 
 /***/ }),
 
@@ -2279,12 +2279,33 @@ var LoginComponent = /** @class */ (function () {
         this.validateService = validateService;
         this.router = router;
         this.flashMessage = flashMessage;
+        this.reset_info = null;
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.keyUp = function (event) {
-        if (event.key == 'Enter') {
+        if (event.key == 'Enter' && !this.reset_info) {
             this.loginSubmit();
+        }
+        else if (event.key == 'Enter') {
+            this.newPasswordSubmit();
+        }
+    };
+    LoginComponent.prototype.newPasswordSubmit = function () {
+        var _this = this;
+        if (this.password != this.repeat_password) {
+            this.flashMessage.show("The passwords are not identical", { cssClass: "my-flash-message alert-flash", timeout: 3000 });
+        }
+        else {
+            this.authService.setNewPassword({ email: this.email, password: this.password, answer: this.reset_answer }).subscribe(function (response) {
+                if (response.success == false) {
+                    _this.flashMessage.show(response.msg, { cssClass: 'my-flash-message alert-flash', timeout: 5000 });
+                }
+                else {
+                    _this.flashMessage.show(response.msg, { cssClass: 'my-flash-message success-flash', timeout: 5000 });
+                    window.location.reload();
+                }
+            });
         }
     };
     LoginComponent.prototype.loginSubmit = function () {
@@ -2326,12 +2347,12 @@ var LoginComponent = /** @class */ (function () {
             return false;
         }
         else {
-            this.authService.resetPassword(this.email).subscribe(function (data) {
-                if (data.success) {
-                    _this.flashMessage.show(data.msg, { cssClass: 'my-flash-message success-flash', timeout: 3000 });
+            this.authService.resetPassword(this.email).subscribe(function (response) {
+                if (response.success) {
+                    _this.reset_info = response.data;
                 }
-                else if (data && data.msg) {
-                    _this.flashMessage.show(data.msg, { cssClass: 'my-flash-message alert-flash', timeout: 3000 });
+                else if (response && response.msg) {
+                    _this.flashMessage.show(response.msg, { cssClass: 'my-flash-message alert-flash', timeout: 3000 });
                 }
                 else {
                     _this.flashMessage.show('Something went wrong', { cssClass: 'my-flash-message alert-flash', timeout: 3000 });
@@ -2556,6 +2577,15 @@ var RegisterComponent = /** @class */ (function () {
         this.adminService = adminService;
         this.flashMessage = flashMessage;
         this.router = router;
+        this.reset_questions = [
+            "What is your mother's maiden name?",
+            "Where did you go to high school?",
+            "What is the name of your first or favorite pet?",
+            "What is your favorite book?",
+            "What is the name of the first company you worked for?",
+        ];
+        this.reset_question = null;
+        this.reset_answer = null;
     }
     RegisterComponent.prototype.ngOnInit = function () {
     };
@@ -2573,6 +2603,7 @@ var RegisterComponent = /** @class */ (function () {
             password: this.password,
             participation_code: this.participation_code,
             ku_id: this.ku_id,
+            reset_info: { question: this.reset_question, answer: this.reset_answer }
         };
         // Validate
         if (!this.validateService.validateRegister(user)) {
@@ -2589,6 +2620,10 @@ var RegisterComponent = /** @class */ (function () {
         }
         if (this.password != this.password2) {
             this.flashMessage.show('The passwords do not match', { cssClass: 'my-flash-message alert-flash', timeout: 3000 });
+            return false;
+        }
+        if (this.reset_question == null || this.reset_answer == null) {
+            this.flashMessage.show('Please input a password reset question and answer', { cssClass: 'my-flash-message alert-flash', timeout: 3000 });
             return false;
         }
         // Create user
@@ -4383,6 +4418,9 @@ var AuthService = /** @class */ (function () {
     };
     AuthService.prototype.newPassword = function (password, resetcode) {
         return this.http.post('users/newpassword', { password: password, resetcode: resetcode });
+    };
+    AuthService.prototype.setNewPassword = function (info) {
+        return this.http.post('http://localhost:3000/users/setnewpassword', info);
     };
     AuthService.ctorParameters = function () { return [
         { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }

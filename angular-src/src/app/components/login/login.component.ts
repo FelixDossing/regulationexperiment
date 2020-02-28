@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { ValidateService } from '../../services/validate.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { yearsPerRow } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,10 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class LoginComponent implements OnInit {
 
   password:string;
+  repeat_password:string;
   email:string;
+  reset_info:any = null;
+  reset_answer:string;
 
   constructor(
     private authService:AuthService,
@@ -25,8 +29,24 @@ export class LoginComponent implements OnInit {
   }
 
   keyUp(event) {
-    if (event.key=='Enter') {
+    if (event.key=='Enter' && !this.reset_info) {
       this.loginSubmit();
+    } else if(event.key=='Enter') {
+      this.newPasswordSubmit()
+    }
+  }
+  newPasswordSubmit() {
+    if (this.password != this.repeat_password) {
+      this.flashMessage.show("The passwords are not identical", {cssClass:"my-flash-message alert-flash", timeout:3000});
+    } else {
+      this.authService.setNewPassword({email:this.email, password:this.password, answer:this.reset_answer}).subscribe(response => {
+        if (response.success == false) {
+          this.flashMessage.show(response.msg, {cssClass: 'my-flash-message alert-flash', timeout:5000});      
+        } else {
+          this.flashMessage.show(response.msg, {cssClass: 'my-flash-message success-flash', timeout:5000});
+          window.location.reload()
+        }
+      })
     }
   }
   loginSubmit() {
@@ -65,12 +85,12 @@ export class LoginComponent implements OnInit {
       return false;
     }
     else {
-      this.authService.resetPassword(this.email).subscribe(data => {
-        if (data.success) {
-          this.flashMessage.show(data.msg, { cssClass: 'my-flash-message success-flash', timeout:3000});
+      this.authService.resetPassword(this.email).subscribe(response => {
+        if (response.success) {
+          this.reset_info = response.data;
         }
-        else if (data && data.msg) {
-          this.flashMessage.show(data.msg, { cssClass: 'my-flash-message alert-flash', timeout:3000});
+        else if (response && response.msg) {
+          this.flashMessage.show(response.msg, { cssClass: 'my-flash-message alert-flash', timeout:3000});
         }
         else {
           this.flashMessage.show('Something went wrong', {cssClass: 'my-flash-message alert-flash', timeout:3000});

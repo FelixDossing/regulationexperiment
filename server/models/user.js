@@ -26,6 +26,7 @@ const UserSchema = mongoose.Schema({
     timestamps:{type:Array, required:false},
     instructionreports:{type:Array, required:false},
     payoffweek:{type:Number, required:false},
+    reset_info:{type:Object, required:false},
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
@@ -42,13 +43,13 @@ module.exports.addUser = function(newUser, callback){
   });
 }
 
-module.exports.newPassword = function(resetcode, password, callback) {
+module.exports.newPassword = function(email, password, callback) {
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(password, salt, (err, hash) => {
       if (err) {
         console.log(err);
       }
-      User.updateOne({resetcode:resetcode}, {$set:{ password:hash }}, callback)
+      User.updateOne({email:email}, {$set:{ password:hash }}, callback)
     })
   })
 }

@@ -21,6 +21,16 @@ export class RegisterComponent implements OnInit {
   participation_code:string;
   ku_id:string;
 
+  reset_questions:any[] = [
+    "What is your mother's maiden name?",
+    "Where did you go to high school?",
+    "What is the name of your first or favorite pet?",
+    "What is your favorite book?",
+    "What is the name of the first company you worked for?",
+  ]
+  reset_question:string = null;
+  reset_answer:string = null;
+
   constructor(private validateService:ValidateService,
     private authService:AuthService,
     private adminService:AdminService,
@@ -43,6 +53,7 @@ export class RegisterComponent implements OnInit {
       password:this.password,
       participation_code:this.participation_code,
       ku_id:this.ku_id,
+      reset_info:{question:this.reset_question, answer:this.reset_answer}
     }
     // Validate
     if (!this.validateService.validateRegister(user)) {
@@ -59,6 +70,10 @@ export class RegisterComponent implements OnInit {
     }
     if (this.password != this.password2) {
       this.flashMessage.show('The passwords do not match', {cssClass: 'my-flash-message alert-flash', timeout: 3000 });
+      return false;
+    }
+    if (this.reset_question == null || this.reset_answer == null) {
+      this.flashMessage.show('Please input a password reset question and answer', {cssClass:'my-flash-message alert-flash', timeout:3000})
       return false;
     }
     // Create user
