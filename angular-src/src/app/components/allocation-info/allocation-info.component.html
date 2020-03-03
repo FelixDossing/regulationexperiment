@@ -11,7 +11,7 @@
         <div style="text-align:center"><span class="mat-h2">{{ work_assignment.regulation_min }} pages.</span></div>
         <p *ngIf="work_assignment.choice >= work_assignment.regulation_min">The regulation does therefore not affect your allocation</p>
         <p *ngIf="work_assignment.regulation_min > work_assignment.choice">The regulation therefore changes your final allocation to:</p>
-        <div *ngIf="reg_binding" style="text-align:center"><p><span class="mat-h2">Week 2: {{work_assignment.week2}} pages<br>Week 3: {{ work_assignment.week3 }} 
+        <div *ngIf="work_assignment.regulation_min > work_assignment.choice" style="text-align:center"><p><span class="mat-h2">Week 2: {{work_assignment.week2}} pages<br>Week 3: {{ work_assignment.week3 }} 
             pages</span></p></div>
         <p *ngIf="work_assignment.regulation_min > work_assignment.choice">This is not including the minimal work of 10 pages per week. In week 3 the minimal work 
             will be added to the work task.</p>
