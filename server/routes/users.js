@@ -450,7 +450,7 @@ router.post('/getsuggestion', (req, res) => {
             res.json({success:false, suggestions:null})
         } else {
             let index = partner.tasks.map(e => e.task_tag).indexOf('regulation'+week);
-            if (partner.tasks[index].parts) {
+            if (index != undefined && index > -1 && partner.tasks[index].parts) {
                 res.json({success:true, suggestions:partner.tasks[index].parts.filter(e => e.name == 'part1')[0].suggestions.min})
             } else {
                 res.json({success: true, suggestions:null})

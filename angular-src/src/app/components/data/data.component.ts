@@ -55,7 +55,7 @@ export class DataComponent implements OnInit {
   }
   displayPaymentData() {
     this.adminService.getData().subscribe(data => {
-      this.datahead = "userid; groupid; session; firstname; lastname; email; role; payoffweek; payment_method; regnum; accnum; phonenum; instr_completed; allo1_completed; allo2_copmleted; work1_completed; work2_completed; survey1_completed; survey2_completed; reg1_completed; reg2_completed; bombchoice; bombplacement; distr_payoffchoice; distr_payoffname; distr_guess";
+      this.datahead = "userid; groupid; session; firstname; lastname; email; role; payoffweek; payment_method; regnum; accnum; phonenum; instr_completed; allo1_completed; allo2_copmleted; work1_completed; work2_completed; survey1_completed; survey2_completed; reg1_completed; reg2_completed; bombchoice; bombplacement; distr_payoffchoice; distr_payoffname; distr_guess; help; harm;";
 
       this.data = [];
       for (let i = 0; i < data.length; i++) {
@@ -93,7 +93,7 @@ export class DataComponent implements OnInit {
         if (data[i].role === "regulator" && reg_payoffweek && reg_payoffweek.completed) {
           let regulation = data[i].tasks.find(e => e.task_tag === "regulation"+data[i].payoffweek);
           let dist_payoffchoice = regulation.parts[2].choices[Math.floor(reg_payoffweek.payoffchoice/6)][reg_payoffweek.payoffchoice - Math.floor(reg_payoffweek.payoffchoice/6)*6]
-          this.data[i] += `; ${dist_payoffchoice.name}; ${dist_payoffchoice.input}`
+          this.data[i] += `; ${dist_payoffchoice.name}; ${dist_payoffchoice.input}; ${regulation.parts[3].choices[0].help}; ${regulation.parts[3].choices[0].harm}`
         } else {
           this.data[i] += "; .; .";
         }
