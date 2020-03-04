@@ -10,11 +10,12 @@
       <div class="tab-content input-content">
         <mat-card style="background:rgb(0, 109, 64)">
           <h1 style="color:white;">Instructions for step 1</h1>
-          <p style="color:white;line-height:1.5;">Here you may set a minimum on the amount of pages the worker can choose to complete in week 2. This is equivalent to setting a maximum on the amount of work 
-          which the worker can choose to postpone. The exchange rates are the same as the ones, which applied to your own allocation choices. If you do not wish to set a minimum on week 2 tasks for the worker, 
-          then please move the slider all the way to the right side. You may also set a suggestion. If you choose to set a suggestion, then the following message will be shown clearly on the screen 
-          when the worker makes his/her allocation choice: "The regulator suggests that you choose to do no less than X pages in week 2", where X is your chosen suggestion. It is possible to set 
-          both a minimum and a suggestion.</p>
+          <p style="color:white;line-height:1.5;">Here you may set a minimum on the amount of pages the worker can choose to complete in week 2. This is equivalent to setting a maximum on the amount of work
+          which the worker can choose to postpone. The exchange rates are the same as the ones, which applied to your own allocation choices. If you do not wish to set a minimum on week 2 tasks for the worker,
+          then please move the slider all the way to the right side. You may also set a suggestion. If you choose to set a suggestion, then the following message will be shown clearly on the screen
+          when the worker makes his/her allocation choice: "The regulator suggests that you choose to do no less than X pages in week 2", where X is your chosen suggestion. It is possible to set
+          both a minimum and a suggestion.<br>
+          The worker's choices do not affect you.</p>
         </mat-card>
 
         <div *ngFor="let choice of regulation_choices;let index = index">
@@ -49,8 +50,8 @@
       <div class="input-content tab-content">
         <mat-card style="background:rgb(0, 109, 64)">
           <h1 style="color:white;">Instructions for step 2</h1>
-          <p style="color:white;line-height:1.5;">Each of the following cards illustrates a scenario where a worker has made a certain choice. For each scenario we would like 
-          to know what you think would have been the best choice for the worker to make. The first 6 cards relate to choice 1, which has an exhange rate of {{optimal_choices[0].exchange_rate}} and the last 6 cards 
+          <p style="color:white;line-height:1.5;">Each of the following cards illustrates a scenario where a worker has made a certain choice. For each scenario we would like
+          to know what you think would have been the best choice for the worker to make. The first 6 cards relate to choice 1, which has an exhange rate of {{optimal_choices[0].exchange_rate}} and the last 6 cards
           relate to choice 2, which has an exchange rate of {{optimal_choices[1].exchange_rate}}. So in both cases moving pages from week 2 to week 3 increases the total amount of work.</p>
         </mat-card>
 
@@ -73,7 +74,7 @@
                       "I choose to do <strong>{{choice.choices[opt_index].worker_w2_choice}}</strong> pages in week 2 and <strong>{{choice.choices[opt_index].worker_w3_choice}}</strong> pages in week 3"
                     </div>
                     <canvas [id]="choice.chartId[opt_index]"></canvas>
-                    <p style="margin-bottom:0;">Which choice do you think would have been best for this worker?</p>     
+                    <p style="margin-bottom:0;">Which choice do you think would have been best for this worker?</p>
                     <div *ngIf="choice.choices.length>0">
                       <div style="display:flex;justify-content:space-between;margin-top:30px;text-align:center;">
                         <span>Week 2<br><strong>{{choice.choices[opt_index].input}}</strong></span>
@@ -98,12 +99,12 @@
       <div class="input-content tab-content">
         <mat-card style="background:rgb(0, 109, 64)">
           <h1 style="color:white;">Instructions for step 3</h1>
-          <p style="color:white;line-height:1.5;">At the end of the experiment, we will randomly choose 100 participants. Please state what percentage of these you think will 
+          <p style="color:white;line-height:1.5;">At the end of the experiment, we will randomly choose 100 participants. Please state what percentage of these you think will
           have made a choice in each of the following ranges. One of your guesses will be randomly selected and 50 DKK minus the difference between your guess and the actual percentage
           (down to a minimum of 0) will be added to your total payment.<br><br>
-          <strong>Example</strong>: Your guess regarding the range "0-30" for Choice 1 is randomly chosen. Here you guessed that 20% of the participants would choose in this range for Choice 1 in this week. The 
+          <strong>Example</strong>: Your guess regarding the range "0-30" for Choice 1 is randomly chosen. Here you guessed that 20% of the participants would choose in this range for Choice 1 in this week. The
           actual number was 40%, so you get 30 DKK added to your final payment.<br><br>
-          Notice as you go down the list, that the ranges include the previous range. You will therefore not be able to choose a smaller percentage than you did for the previous range. 
+          Notice as you go down the list, that the ranges include the previous range. You will therefore not be able to choose a smaller percentage than you did for the previous range.
           This is due to the fact that if you believe that 10% will choose between 0 and 10, then you must also believe that <em>at least</em> 10% will choose between 0 and 20.<br><br>
           You will make this choice in both week 1 and week 2. One guess from one week will be randomly selected to determine how much is added to your total payment.
           </p>
@@ -151,8 +152,8 @@
                     <button mat-icon-button (click)="distrClick(index,j,+1)">+</button>
                   </mat-chip>
                 </mat-chip-list>
-                <p>The choices you have made above correspond to the visualisation above. The bar at the top shows the percentages as the area of each color. The chart below with the 
-                  <mat-icon>accessibility</mat-icon>-icons shows for each choice how many persons out of 100 you think will make that choice. If you wish, you can use the buttons above 
+                <p>The choices you have made above correspond to the visualisation above. The bar at the top shows the percentages as the area of each color. The chart below with the
+                  <mat-icon>accessibility</mat-icon>-icons shows for each choice how many persons out of 100 you think will make that choice. If you wish, you can use the buttons above
                   to adjust the distribution of choices.
                 </p>
               </div>
@@ -169,7 +170,7 @@
 
     <mat-step editable="false" label="Step 3" completed="false">
       <div class="input-container" style="text-align:left;margin-top:20px">
-        <label id="sentiment">How staisfied are you with the regulation you have set?</label>
+        <label id="sentiment">How satisfied are you with the regulation you have set?</label>
         <mat-radio-group color="primary" aria-labelledby="sentimentradio" [(ngModel)]="sentiment" style="display:flex;flex-direction:column;margin:15px 0;">
           <mat-radio-button value="0" style="margin:5px;">0 Very unsatisfied</mat-radio-button>
           <mat-radio-button value="1" style="margin:5px;">1</mat-radio-button>
@@ -192,17 +193,19 @@
         <textarea [(ngModel)]="free_text" style="width:100%;height:300px;padding:12px 20px; box-sizing:border-box;resize:none;border:2px solid #ccc;font-size:16px;font-family:'Roboto'" placeholder="Input answer here"></textarea>
       </div>
       <div class="input-container" style="text-align:left;margin-top:50px;">
-        <p>Below you see a number of explanations for why, participants might choose to postpone work until the later date. Please rank the explanations according to how important you think that explanation is. You can choose your ranking by dragging and dropping each explanation in the list to the box in the right side.</p>
-        <div class="ranking-container">
-          <h2>Options</h2>
-          <div cdkDropList #optionList="cdkDropList" [cdkDropListData]="explain_options" [cdkDropListConnectedTo]="[rankList]" class="ranking-list" (cdkDropListDropped)="drop($event)">
-            <div class="ranking-box" *ngFor="let item of explain_options" cdkDrag>{{item}}</div>
+        <p>Below you see a number of explanations for why participants might choose to postpone work until the later date. Please rank the explanations according to how important you think each explanation is. You can choose your ranking by dragging and dropping each explanation in the list to the box in the right side.</p>
+        <div style="display:flex;">
+          <div class="ranking-container">
+            <h2>Options</h2>
+            <div cdkDropList #optionList="cdkDropList" [cdkDropListData]="explain_options" [cdkDropListConnectedTo]="[rankList]" class="ranking-list" (cdkDropListDropped)="drop($event)">
+              <div class="ranking-box" *ngFor="let item of explain_options" cdkDrag>{{item}}</div>
+            </div>
           </div>
-        </div>
-        <div class="ranking-container">
-          <h2>Your ranking</h2>
-          <div cdkDropList #rankList="cdkDropList" [cdkDropListData]="explain_ranking" [cdkDropListConnectedTo]="[optionList]" class="ranking-list" (cdkDropListDropped)="drop($event)">
-            <div class="ranking-box" *ngFor="let item of explain_ranking" cdkDrag>{{item}}</div>
+          <div class="ranking-container">
+            <h2>Your ranking</h2>
+            <div cdkDropList #rankList="cdkDropList" [cdkDropListData]="explain_ranking" [cdkDropListConnectedTo]="[optionList]" class="ranking-list" (cdkDropListDropped)="drop($event)">
+              <div class="ranking-box" *ngFor="let item of explain_ranking" cdkDrag>{{item}}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -214,7 +217,7 @@
         </mat-radio-group>
       </div>
       <div class="input-container" style="text-align: left; margin-top:50px;">
-        <p>Do you wish to subtract 30 DKK from the total earnings of a third worker (not the one you have regulated and not the one you affect above)? Your choice will not 
+        <p>Do you wish to subtract 30 DKK from the total earnings of a third worker (not the one you have regulated and not the one you affect above)? Your choice will not
           affect your own payment.
         </p>
         <mat-radio-group color="warn" [(ngModel)]="harm" aria-label="Do you wish to add 30 DKK to the total earnings of another worker (not the one you have regulated)?">

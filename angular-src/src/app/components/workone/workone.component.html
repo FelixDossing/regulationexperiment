@@ -16,7 +16,7 @@
             <mat-radio-button value="5" style="margin:5px;">5 Very satisfied</mat-radio-button>
           </mat-radio-group>
         </div>
-        <div class="button-box">
+        <div class="button-box" style="text-align:left;">
           <p>Please complete all choices in order to move forward in the experiment.</p>
           <button [disabled]="sentiment_before==null" class="active-button" mat-raised-button (click)="submit(0)">Submit</button>
         </div>
@@ -40,7 +40,7 @@
               <mat-radio-button value="5" style="margin:5px;">5 Very satisfied</mat-radio-button>
             </mat-radio-group>
           </div>
-          <div class="button-box">
+          <div class="button-box" style="text-align:left;">
             <p>Please complete all choices in order to move forward in the experiment.</p>
             <button [disabled]="sentiment_after==null" class="active-button" mat-raised-button (click)="submit(2)">Submit</button>
           </div>
@@ -48,4 +48,3 @@
       </mat-step>
     </mat-horizontal-stepper>
   </div>
-  
