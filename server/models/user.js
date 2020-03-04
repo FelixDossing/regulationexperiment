@@ -186,7 +186,7 @@ module.exports.registerRegChoice = function(submit, user, callback) {
       }
       updateTasks.find(e => e.task_tag === 'regulation'+submit.week).parts.push(submit)
       if (submit.name == 'part4') {
-        updateTasks.find(e => e.task_tag === 'regulation'+submit.week).payoffchoice = Math.floor(Math.random()*2)+1;
+        updateTasks.find(e => e.task_tag === 'regulation'+submit.week).payoffchoice = Math.floor(Math.random()*12);
         updateTasks.find(e => e.task_tag === 'regulation'+submit.week).completed = true;
       }
       User.updateOne({_id: user.id}, {$set: {tasks:updateTasks }}, callback)

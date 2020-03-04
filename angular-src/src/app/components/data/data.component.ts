@@ -55,13 +55,8 @@ export class DataComponent implements OnInit {
   }
   displayPaymentData() {
     this.adminService.getData().subscribe(data => {
-      this.datahead = "userid; groupid; session; firstname; lastname; email; role; payoffweek; payment_method; regnum; accnum; phonenum; instr_completed; allo1_completed; allo2_copmleted; work1_completed; work2_completed; survey1_completed; survey2_completed; reg1_completed; reg2_completed; bombchoice; bombplacement; payoffchoice";
+      this.datahead = "userid; groupid; session; firstname; lastname; email; role; payoffweek; payment_method; regnum; accnum; phonenum; instr_completed; allo1_completed; allo2_copmleted; work1_completed; work2_completed; survey1_completed; survey2_completed; reg1_completed; reg2_completed; bombchoice; bombplacement; distr_payoffchoice; distr_payoffname; distr_guess";
 
-      for (let i = 1; i<3; i++) {
-        this.datahead += `; reg${i}.choice1; reg${i}.choice2; reg${i}.choice3; reg${i}.choice4; reg${i}.choice5`+
-                                      `; reg${i}.c1.below0; reg${i}.c1.below10; reg${i}.c1.below20; reg${i}.c1.below30; reg${i}.c1.below40; reg${i}.c1.below50`+
-                                      `; reg${i}.c2.below0; reg${i}.c2.below10; reg${i}.c2.below20; reg${i}.c2.below30; reg${i}.c2.below40; reg${i}.c2.below50`;
-      }
       this.data = [];
       for (let i = 0; i < data.length; i++) {
         this.data.push(`${data[i]._id}; ${data[i].group_id}; ${data[i].session}; ${data[i].first_name}; ${data[i].last_name}; ${data[i].email}; ${data[i].role}; ${data[i].payoffweek}`);
@@ -76,7 +71,8 @@ export class DataComponent implements OnInit {
                         `; ${data[i].tasks.find(e => e.task_tag =='allocation2').completed ? 'true' : 'false'}; ${data[i].tasks.find(e => e.task_tag =='work1').completed ? 'true' : 'false'}`+
                         `; ${data[i].tasks.find(e => e.task_tag =='work2').completed ? 'true' : 'false'}; ${data[i].tasks.find(e => e.task_tag =='survey1').completed ? 'true' : 'false'}`+
                         `; ${data[i].tasks.find(e => e.task_tag =='survey2').completed ? 'true' : 'false'}`;
-        if (this.data[i].role == 'regulator') {
+
+        if (data[i].role == 'regulator') {
           this.data[i] += `; ${data[i].tasks.find(e => e.task_tag == 'regulation1').completed ? 'true' : 'false'}; ${data[i].tasks.find(e => e.task_tag == 'regulation2').completed ? 'true' : 'false'}`
         } else {
           this.data[i] += "; .; ."
@@ -87,31 +83,39 @@ export class DataComponent implements OnInit {
         } else {
           this.data[i] += '; .; .';
         }
-        // Regulation 1 & 2
+        // Payoff week
         let reg_payoffweek = data[i].tasks.find(e => e.task_tag === 'regulation'+data[i].payoffweek);
         if (reg_payoffweek && reg_payoffweek.completed) {
           this.data[i] += `; ${reg_payoffweek.payoffchoice}`;
         } else {
           this.data[i] += "; .";
         }
-
-        for (let j = 1; j < 3; j++) {
-          let regulation = data[i].tasks[data[i].tasks.map(e=>e.task_tag).indexOf('regulation'+j)];
-          if(regulation && regulation.completed == true) {
-
-            let part1 = regulation.parts[0];
-            this.data[i] += `; ${part1.choices[0]}; ${part1.choices[1]}; ${part1.choices[2]}; ${part1.choices[3]}; ${part1.choices[4]}; ${part1.suggestions.min[0]}; ${part1.suggestions.min[1]}; ${part1.suggestions.min[2]}; ${part1.suggestions.min[3]}; ${part1.suggestions.min[4]}`;
-            let part3 = regulation.parts[2];
-            this.data[i] += `; ${part3.choices[0][0].input}; ${part3.choices[0][1].input}; ${part3.choices[0][2].input}; ${part3.choices[0][3].input}; ${part3.choices[0][4].input}; ${part3.choices[0][5].input}`+
-                                        `; ${part3.choices[1][0].input}; ${part3.choices[1][1].input}; ${part3.choices[1][2].input}; ${part3.choices[1][3].input}; ${part3.choices[1][4].input}; ${part3.choices[1][5].input}`;
-          } else {
-            let add = ""
-            for (let k = 0; k < 17; k++) {
-              add += "; ."
-            }
-            this.data[i] += add;
-          }
+        if (data[i].role === "regulator" && reg_payoffweek && reg_payoffweek.completed) {
+          let regulation = data[i].tasks.find(e => e.task_tag === "regulation"+data[i].payoffweek);
+          let dist_payoffchoice = regulation.parts[2].choices[Math.floor(reg_payoffweek.payoffchoice/6)][reg_payoffweek.payoffchoice - Math.floor(reg_payoffweek.payoffchoice/6)*6]
+          this.data[i] += `; ${dist_payoffchoice.name}; ${dist_payoffchoice.input}`
+        } else {
+          this.data[i] += "; .; .";
         }
+
+
+        // for (let j = 1; j < 3; j++) {
+        //   let regulation = data[i].tasks[data[i].tasks.map(e=>e.task_tag).indexOf('regulation'+j)];
+        //   if(regulation && regulation.completed == true) {
+
+        //     let part1 = regulation.parts[0];
+        //     this.data[i] += `; ${part1.choices[0]}; ${part1.choices[1]}; ${part1.choices[2]}; ${part1.choices[3]}; ${part1.choices[4]}; ${part1.suggestions.min[0]}; ${part1.suggestions.min[1]}; ${part1.suggestions.min[2]}; ${part1.suggestions.min[3]}; ${part1.suggestions.min[4]}`;
+        //     let part3 = regulation.parts[2];
+        //     this.data[i] += `; ${part3.choices[0][0].input}; ${part3.choices[0][1].input}; ${part3.choices[0][2].input}; ${part3.choices[0][3].input}; ${part3.choices[0][4].input}; ${part3.choices[0][5].input}`+
+        //                                 `; ${part3.choices[1][0].input}; ${part3.choices[1][1].input}; ${part3.choices[1][2].input}; ${part3.choices[1][3].input}; ${part3.choices[1][4].input}; ${part3.choices[1][5].input}`;
+        //   } else {
+        //     let add = ""
+        //     for (let k = 0; k < 17; k++) {
+        //       add += "; ."
+        //     }
+        //     this.data[i] += add;
+        //   }
+        // }
 
       }
     })
