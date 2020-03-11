@@ -50,7 +50,7 @@ export class AuthService {
     this.loadToken();
     let email = JSON.parse(localStorage.getItem('user')).email
     let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
-    return this.http.get<any>('users/profile', { headers:headers });
+    return this.http.post<any>('users/profile', email, { headers:headers });
   }
   signOut() {
     this.authToken = null;
