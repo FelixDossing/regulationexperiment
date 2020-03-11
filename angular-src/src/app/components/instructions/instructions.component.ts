@@ -53,22 +53,23 @@ export class InstructionsComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
-      if (typeof this.user == "string") {
-        this.user = JSON.parse(this.user)
-      }
-      else if (!this.user) {
-        this.user = JSON.parse(localStorage.getItem('user'))
-      }
       this.user = profile.user;
-      let tasks = this.user.tasks;
-      this.control_completed = tasks[tasks.map(e => e.task_tag).indexOf('instructions')].completed ? true : false;
-      let w1 = moment(this.user.register_date, 'YYYY-MM-DD')
-      let w2 = moment(w1.format()).add({weeks:1,days:this.user.role == 'worker' ? 1 : 0})
-      let w3 = moment(w2).add(1, 'weeks')
-      this.complete_dates = [w1.format("dddd, MMMM Do"), w2.format("dddd, MMMM Do"), w3.format("dddd, MMMM Do")];
-      this.correct_answers = ['3','1 day',this.user.role=='regulator' ? '1 week' : '1 week and 1 day', 'regoneother','regbyoneother',
-                                   this.user.role,"week12","week2", "25", "50", "50", "0"];
+      this.userReady()
+    },
+    err => {
+      this.user = JSON.parse(localStorage.getItem('user'))
+      this.userReady()
     })
+  }
+  userReady() {
+    let tasks = this.user.tasks;
+    this.control_completed = tasks[tasks.map(e => e.task_tag).indexOf('instructions')].completed ? true : false;
+    let w1 = moment(this.user.register_date, 'YYYY-MM-DD')
+    let w2 = moment(w1.format()).add({weeks:1,days:this.user.role == 'worker' ? 1 : 0})
+    let w3 = moment(w2).add(1, 'weeks')
+    this.complete_dates = [w1.format("dddd, MMMM Do"), w2.format("dddd, MMMM Do"), w3.format("dddd, MMMM Do")];
+    this.correct_answers = ['3','1 day',this.user.role=='regulator' ? '1 week' : '1 week and 1 day', 'regoneother','regbyoneother',
+                                 this.user.role,"week12","week2", "25", "50", "50", "0"];
 
   }
   choiceClick() {

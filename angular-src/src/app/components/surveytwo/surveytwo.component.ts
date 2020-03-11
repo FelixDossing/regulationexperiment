@@ -60,20 +60,26 @@ export class SurveytwoComponent implements OnInit {
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
-      if (typeof this.user == "string") {
-        this.user = JSON.parse(this.user)
-      }
-      else if (!this.user) {
-        this.user = JSON.parse(localStorage.getItem('user'))
-      }
-
-      let tasks = this.user.tasks;
-      this.survey_completed = tasks[tasks.map(e => e.task_tag).indexOf('survey2')].completed ? true : false;
-
-      let register_date = moment(this.user.register_date)
-      if (!moment(this.current_date).isSame(register_date.add({weeks:2}), 'day')) this.router.navigate(['/dashboard']);
-
+      this.userReady()
+    },
+    err => {
+      this.user = JSON.parse(localStorage.getItem('user'))
+      this.userReady()
     })
+  }
+  userReady() {
+    if (typeof this.user == "string") {
+      this.user = JSON.parse(this.user)
+    }
+    else if (!this.user) {
+      this.user = JSON.parse(localStorage.getItem('user'))
+    }
+
+    let tasks = this.user.tasks;
+    this.survey_completed = tasks[tasks.map(e => e.task_tag).indexOf('survey2')].completed ? true : false;
+
+    let register_date = moment(this.user.register_date)
+    if (!moment(this.current_date).isSame(register_date.add({weeks:2}), 'day')) this.router.navigate(['/dashboard']);
   }
   faculty() {
     console.log('fac')

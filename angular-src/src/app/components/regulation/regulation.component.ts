@@ -87,60 +87,66 @@ export class RegulationComponent implements OnInit {
     // Check if we are in week 2 or week 3 or not at any valid date
     this.authService.getProfile().subscribe(response => {
       this.user = response.user;
-      if (typeof this.user == "string") {
-        this.user = JSON.parse(this.user)
-      }
-      else if (!this.user) {
-        this.user = JSON.parse(localStorage.getItem('user'))
-      }
-
-      let register_date = moment(this.user.register_date)
-      if (moment(this.current_date).isSame(register_date, 'day')) {
-        this.week = 1;
-      } else if (this.current_date.isSame(register_date.add({ weeks:1 }), 'day' )) {
-        this.week = 2;
-      } else {
-        this.week = null;
-      }
-  
-      // If not this.week then we just want to render at screen that says when they can complete the assignment
-      if (this.week) {
-        this.task = this.user.tasks.find(e => e.task_tag === 'regulation'+this.week)
-
-        this.regulation_choices.forEach((choice, index) => {
-          for (let i = 0; i <= 50; i++) {
-            choice.w2_options.push(i);
-            choice.w3_options.push( Math.round( 10*(50-i)*choice.exchange_rate)/10 );
-          }
-        });
-        this.optimal_choices.forEach((choice,i) => {
-          for (let i = 0; i <= 50; i++) {
-            choice.w2_options.push(i);
-            choice.w3_options.push( Math.round( 10*(50-i)*choice.exchange_rate)/10 );
-          }
-          for (let i = 0; i < this.sub_names.length; i++) {
-            choice.choices.push({ name:this.sub_names[i], input:null, worker_w2_choice:i*10, worker_w3_choice:Math.round(10*(50-i*10)*choice.exchange_rate)/10, selected:false });
-            // this.sub_opt_choices.push({ name:this.sub_names[i], input:null, worker_w2_choice:i*10, worker_w3_choice:Math.round(10*(50-i*10)/choice.exchange_rate)/10, selected:false });
-          }
-        })
-        this.distribution_choices.forEach((choice,i) => {
-          for (let i = 0; i <= 50; i++) {
-            choice.w2_options.push(i);
-            choice.w3_options.push( Math.round( 10*(50-i)*choice.exchange_rate)/10 );
-          }
-          for (let i = 0; i < this.beliefs.length; i++) {
-            choice.distribution_beliefs.push( { name:this.beliefs[i], input:null, min:0 } )
-          }
-          for (let i = 0; i < this.calc_beliefs.length; i++) {
-            choice.beliefs_calculated.push( { name:this.calc_beliefs[i], value:0 } )
-          }
-        })
-        this.navigate()    
-      } else {
-        this.router.navigate(['/dashboard']);
-      }
-
+      this.userReady()
+    },
+    err => {
+      this.user = JSON.parse(localStorage.getItem('user'))
+      this.userReady()
     });
+  }
+  userReady() {
+    if (typeof this.user == "string") {
+      this.user = JSON.parse(this.user)
+    }
+    else if (!this.user) {
+      this.user = JSON.parse(localStorage.getItem('user'))
+    }
+
+    let register_date = moment(this.user.register_date)
+    if (moment(this.current_date).isSame(register_date, 'day')) {
+      this.week = 1;
+    } else if (this.current_date.isSame(register_date.add({ weeks:1 }), 'day' )) {
+      this.week = 2;
+    } else {
+      this.week = null;
+    }
+
+    // If not this.week then we just want to render at screen that says when they can complete the assignment
+    if (this.week) {
+      this.task = this.user.tasks.find(e => e.task_tag === 'regulation'+this.week)
+
+      this.regulation_choices.forEach((choice, index) => {
+        for (let i = 0; i <= 50; i++) {
+          choice.w2_options.push(i);
+          choice.w3_options.push( Math.round( 10*(50-i)*choice.exchange_rate)/10 );
+        }
+      });
+      this.optimal_choices.forEach((choice,i) => {
+        for (let i = 0; i <= 50; i++) {
+          choice.w2_options.push(i);
+          choice.w3_options.push( Math.round( 10*(50-i)*choice.exchange_rate)/10 );
+        }
+        for (let i = 0; i < this.sub_names.length; i++) {
+          choice.choices.push({ name:this.sub_names[i], input:null, worker_w2_choice:i*10, worker_w3_choice:Math.round(10*(50-i*10)*choice.exchange_rate)/10, selected:false });
+          // this.sub_opt_choices.push({ name:this.sub_names[i], input:null, worker_w2_choice:i*10, worker_w3_choice:Math.round(10*(50-i*10)/choice.exchange_rate)/10, selected:false });
+        }
+      })
+      this.distribution_choices.forEach((choice,i) => {
+        for (let i = 0; i <= 50; i++) {
+          choice.w2_options.push(i);
+          choice.w3_options.push( Math.round( 10*(50-i)*choice.exchange_rate)/10 );
+        }
+        for (let i = 0; i < this.beliefs.length; i++) {
+          choice.distribution_beliefs.push( { name:this.beliefs[i], input:null, min:0 } )
+        }
+        for (let i = 0; i < this.calc_beliefs.length; i++) {
+          choice.beliefs_calculated.push( { name:this.calc_beliefs[i], value:0 } )
+        }
+      })
+      this.navigate()    
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   drop(event:CdkDragDrop<string[]>) {

@@ -118,17 +118,19 @@ export class DashboardComponent {
 
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
-
-      if (this.user.work_assignment && (this.user.role != 'regulator' || this.user.tasks.find(e => e.task_tag === 'regulation2').completed)) {
-        this.work_assignment = this.user.work_assignment;
-      }
-      this.setCards();
-      this.checkWork();
+      this.userReady()
     },
     err => {
       this.user = JSON.parse(localStorage.getItem('user'))
-      console.log(err);
+      this.userReady()
     });
+  }
+  userReady() {
+    if (this.user.work_assignment && (this.user.role != 'regulator' || this.user.tasks.find(e => e.task_tag === 'regulation2').completed)) {
+      this.work_assignment = this.user.work_assignment;
+    }
+    this.setCards();
+    this.checkWork();
   }
 
   checkWork() {

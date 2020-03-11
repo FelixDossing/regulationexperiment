@@ -34,20 +34,20 @@ export class SurveyoneComponent implements OnInit {
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
-      if (typeof this.user == "string") {
-        this.user = JSON.parse(this.user)
-      }
-      else if (!this.user) {
-        this.user = JSON.parse(localStorage.getItem('user'))
-      }
-
-      let tasks = this.user.tasks;
-      this.survey_completed = tasks[tasks.map(e => e.task_tag).indexOf('survey1')].completed ? true : false;
-
-      let register_date = moment(this.user.register_date)
-
-      if (!moment(this.current_date).isSame(register_date.add({weeks:this.user.role == 'regulator' ? 2 : 0}), 'day')) this.router.navigate(['/dashboard']);
+      this.userReady()
+    },
+    err => {
+      this.user = JSON.parse(localStorage.getItem('user'))
+      this.userReady()
     })
+  }
+  userReady() {
+    let tasks = this.user.tasks;
+    this.survey_completed = tasks[tasks.map(e => e.task_tag).indexOf('survey1')].completed ? true : false;
+
+    let register_date = moment(this.user.register_date)
+
+    if (!moment(this.current_date).isSame(register_date.add({weeks:this.user.role == 'regulator' ? 2 : 0}), 'day')) this.router.navigate(['/dashboard']);
   }
   nextTab() { this.selected_tab += 1; }
 
