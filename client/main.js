@@ -4371,10 +4371,8 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.getProfile = function () {
         this.loadToken();
         var email = JSON.parse(localStorage.getItem('user')).email;
-        console.log(email);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('Content-Type', 'application/json').append('Authorization', this.authToken);
-        console.log(headers);
-        return this.http.post('users/profile', email, { headers: headers });
+        return this.http.get('users/profile', { headers: headers });
     };
     AuthService.prototype.signOut = function () {
         this.authToken = null;
