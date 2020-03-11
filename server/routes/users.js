@@ -305,6 +305,7 @@ router.post('/registerwork', passport.authenticate('jwt',{session:false}), (req,
 // Register min work
 // router.post('/registerminwork', passport.authenticate('jwt',{session:false}), (req, res) => {
 router.post('/registerminwork', (req, res) => {
+    console.log(req.body)
     let task_info = req.body.task_info;
     let user = req.body.user;
     User.registerWork(task_info, user, (err, response) => {
