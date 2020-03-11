@@ -212,7 +212,7 @@ export class AllocationComponent implements OnInit {
   }
   addWork() {
     this.work_completed++;
-    if (["cp@cp.com"].indexOf(this.user.email) != -1) {
+    if (["pernille-s@live.dk","delkosavgerinos@gmail.com","clara@louper.dk"].indexOf(this.user.email) != -1) {
       this.work_completed = 10;
     }
     this.interactionService.registerMinWork('allocation'+this.allocation_number, this.work_completed).subscribe();
