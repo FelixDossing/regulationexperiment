@@ -31,8 +31,8 @@ export class InteractionService {
   registerMinWork(task_tag:string, work_completed:number) {
     let task_info = { tag: task_tag, completed: work_completed };
     this.loadToken();
-    let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
-    return this.http.post<any>('users/registerminwork', task_info, { headers:headers });
+    // let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
+    return this.http.post<any>('users/registerminwork', task_info);
   }
 
   registerChoice(allocation_tag:string, choices:any) {

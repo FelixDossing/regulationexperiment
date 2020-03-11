@@ -4442,8 +4442,8 @@ var InteractionService = /** @class */ (function () {
     InteractionService.prototype.registerMinWork = function (task_tag, work_completed) {
         var task_info = { tag: task_tag, completed: work_completed };
         this.loadToken();
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]().append('Content-Type', 'application/json').append('Authorization', this.authToken);
-        return this.http.post('users/registerminwork', task_info, { headers: headers });
+        // let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
+        return this.http.post('users/registerminwork', task_info);
     };
     InteractionService.prototype.registerChoice = function (allocation_tag, choices) {
         var choice_info = { tag: allocation_tag, choices: choices };
