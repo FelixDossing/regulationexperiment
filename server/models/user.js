@@ -95,15 +95,20 @@ module.exports.updateUser = function(info, callback) {
 module.exports.updateTimestamps = function(info, callback) {
     User.getUserById(info.user.id, (err, dbuser) => {
       if (err | !dbuser) {
-        console.log(err);
-      } else {
-        if (!dbuser.timestamps | dbuser.timestamps.map(e=>e.stamp_tag).indexOf(info.stamp_tag) == -1 | ['work','minwork'].indexOf(info.stamp_tag) != -1) {
-          let newstamps = [{time:info.time, stamp_tag:info.stamp_tag}];
-          if (dbuser && dbuser.timestamps.length > 0) {
-              newstamps = dbuser.timestamps.concat(newstamps);
+        User.getUserById(inf.user._id, (err, dbuser) => {
+          if (err) {
+            res.josn({success:false, msg:'Couldnt find user'})
           }
-          User.updateOne({ _id: info.user.id }, { $set: { timestamps:newstamps } }, callback)
-        }
+          else {
+            if (!dbuser.timestamps | dbuser.timestamps.map(e=>e.stamp_tag).indexOf(info.stamp_tag) == -1 | ['work','minwork'].indexOf(info.stamp_tag) != -1) {
+              let newstamps = [{time:info.time, stamp_tag:info.stamp_tag}];
+              if (dbuser && dbuser.timestamps.length > 0) {
+                  newstamps = dbuser.timestamps.concat(newstamps);
+              }
+              User.updateOne({ _id: info.user.id }, { $set: { timestamps:newstamps } }, callback)
+            }
+          }
+        })
       }
     })
 }
