@@ -60,13 +60,13 @@ export class AuthService {
   }
   completeControl(user:any) {
     this.loadToken();
-    let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
-    return this.http.post<any>('users/completeinstructions', user, {headers:headers});
+    // let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
+    return this.http.post<any>('users/completeinstructions', user);
   }
   completeSurvey(user:any, num:String, choices:any[]) {
     this.loadToken();
-    let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
-    return this.http.post<any>('users/completesurvey', {user:user, surveynum:num, choices}, {headers:headers});
+    // let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
+    return this.http.post<any>('users/completesurvey', {user:user, surveynum:num, choices});
   }
   resetPassword(email) {
     return this.http.post<any>('users/resetpassword', {email});

@@ -210,7 +210,7 @@ router.post('/profile', (req, res) => {
 });
 
 // Complete instructions
-router.post('/completeinstructions', passport.authenticate('jwt', {session:false}), (req, res) => {
+router.post('/completeinstructions', (req, res) => {
     let user = req.user;
     user.tasks[0].completed = true;
     const info = { update_type: 'complete_instructions', user:user }
@@ -231,7 +231,7 @@ router.post('/completeinstructions', passport.authenticate('jwt', {session:false
 });
 
 // Complete survey
-router.post('/completesurvey', passport.authenticate('jwt', {session:false}), (req, res) => {
+router.post('/completesurvey', (req, res) => {
     let num = req.body.surveynum;
     let user = req.user;
     let choices = req.body.choices;
@@ -259,9 +259,9 @@ router.post('/completesurvey', passport.authenticate('jwt', {session:false}), (r
 })
 
 // Register sentiment
-router.post('/sentiment',passport.authenticate('jwt',{session:false}), (req,res) => {
+router.post('/sentiment', (req,res) => {
     let info = req.body;
-    let user = req.user;
+    let user = info.user;
     User.registerSentiment(info, user, (err, response) => {
         if (err) {
             console.log(err);
@@ -280,9 +280,9 @@ router.post('/sentiment',passport.authenticate('jwt',{session:false}), (req,res)
 })
 
 // Register work
-router.post('/registerwork', passport.authenticate('jwt',{session:false}), (req, res) => {
-    let task_info = req.body;
-    let user = req.user;
+router.post('/registerwork', (req, res) => {
+    let task_info = req.body.task_info;
+    let user = req.body.user;
     User.registerWork(task_info, user, (err, response) => {
         if (err) {
             console.log(err);
@@ -303,7 +303,6 @@ router.post('/registerwork', passport.authenticate('jwt',{session:false}), (req,
 // Register min work
 // router.post('/registerminwork', passport.authenticate('jwt',{session:false}), (req, res) => {
 router.post('/registerminwork', (req, res) => {
-    console.log(req.body.user)
     let task_info = req.body.task_info;
     let user = req.body.user;
     User.registerWork(task_info, user, (err, response) => {
@@ -325,9 +324,9 @@ router.post('/registerminwork', (req, res) => {
 
 
 // Register allocation
-router.post('/registerchoice', passport.authenticate('jwt',{session:false}), (req, res) => {
-    let choice_info = req.body;
-    let user = req.user;
+router.post('/registerchoice', (req, res) => {
+    let choice_info = req.body.choice_info;
+    let user = req.body.user;
 
     // The problem previously was probably that I didn't use the updated user but used the user from here!!
 
@@ -348,9 +347,10 @@ router.post('/registerchoice', passport.authenticate('jwt',{session:false}), (re
 });
 
 // Register free text
-router.post('/registerAllocationText', passport.authenticate('jwt',{session:false}), (req, res) => {
-    let choice_info = req.body;
-    User.registerAllocationText(choice_info, req.user, (err, user) => {
+router.post('/registerAllocationText', (req, res) => {
+    let choice_info = req.body.choice_info;
+    let user = req.body.user;
+    User.registerAllocationText(choice_info, user, (err, user) => {
         if (err) {
             res.json({success:false, msg:'Error registering text...'});
         } else if (choice_info.tag == 'allocation2') {
@@ -377,9 +377,9 @@ router.post('/registerAllocationText', passport.authenticate('jwt',{session:fals
 
 
 // Register regulation choice
-router.post('/registerregchoice', passport.authenticate('jwt',{session:false}), (req, res) => {
-    let submit = req.body;
-    let user = req.user;
+router.post('/registerregchoice', (req, res) => {
+    let submit = req.body.submit;
+    let user = req.body.user;
     User.registerRegChoice(submit, user, err => {
         if (err) {
             res.json({success:false,msg:'Failed to submit choices'});
