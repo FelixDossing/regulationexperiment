@@ -117,7 +117,6 @@ export class DashboardComponent {
     // console.log(this.user$)
 
     this.authService.getProfile().subscribe(profile => {
-      console.log(profile)
       this.user = profile.user;
       this.userReady()
     },

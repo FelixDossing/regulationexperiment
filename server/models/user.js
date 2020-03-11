@@ -94,7 +94,7 @@ module.exports.updateUser = function(info, callback) {
 // Update timestamps
 module.exports.updateTimestamps = function(info, callback) {
     User.getUserById(info.user.id, (err, dbuser) => {
-      if (err) {
+      if (err | !dbuser) {
         console.log(err);
       } else {
         if (!dbuser.timestamps | dbuser.timestamps.map(e=>e.stamp_tag).indexOf(info.stamp_tag) == -1 | ['work','minwork'].indexOf(info.stamp_tag) != -1) {
