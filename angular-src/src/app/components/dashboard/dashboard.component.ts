@@ -118,12 +118,10 @@ export class DashboardComponent {
 
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
-      console.log('here')
       this.userReady()
     },
     err => {
-      this.user = JSON.parse(localStorage.getItem('user'))
-      this.userReady()
+      console.log(err)
     });
   }
   userReady() {

@@ -58,8 +58,7 @@ export class AllocationComponent implements OnInit {
       this.userReady()
     },
     err => {
-      this.user = JSON.parse(localStorage.getItem('user'))
-      this.userReady()
+      console.log(err)
     });
     for (let i = 0; i < this.allocation_choices.length; i++) {
       for (let j = 0; j <= 50; j++) {

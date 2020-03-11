@@ -90,8 +90,7 @@ export class RegulationComponent implements OnInit {
       this.userReady()
     },
     err => {
-      this.user = JSON.parse(localStorage.getItem('user'))
-      this.userReady()
+      console.log(err)
     });
   }
   userReady() {

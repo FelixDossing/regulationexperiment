@@ -100,10 +100,7 @@ export class WorktwoComponent implements OnInit {
       callback();
     },
     err => {
-      this.user = JSON.parse(localStorage.getItem('user'))
-      this.work_completed = this.user.tasks[this.user.tasks.map(e => e.task_tag).indexOf('work2')].work_completed;
-      this.work_completed = this.work_completed ? this.work_completed : 0;
-      callback();
+      console.log(err)
     });
   }
   assignWork() {
