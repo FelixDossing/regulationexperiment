@@ -200,14 +200,13 @@ router.post('/authenticate', (req, res, next) => {
 router.post('/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
     console.log('We are here in the server!')
     console.log(req.body.email)
-    res.json({user:req.user})
-    // User.getUserByEmail(req.body.email, (err, dbUser) => {
-    //     if (err) {
-    //         res.json({success:false});
-    //     } else {
-    //         res.json({success:true, user:dbUser});
-    //     }
-    // })
+    User.getUserByEmail(req.body.email, (err, dbUser) => {
+        if (err) {
+            res.json({success:false});
+        } else {
+            res.json({success:true, user:dbUser});
+        }
+    })
 });
 
 // Complete instructions
