@@ -170,13 +170,13 @@ router.post('/authenticate', (req, res, next) => {
                 });
                 sendUser = {
                     id: user._id,
-                    // first_name: user.first_name,
-                    // last_name: user.last_name,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
                     email: user.email,
-                    // role:user.role,
-                    // session:user.session,
-                    // register_date:user.register_date,
-                    // tasks: user.tasks,                    
+                    role:user.role,
+                    session:user.session,
+                    register_date:user.register_date,
+                    tasks: user.tasks,                    
                 }
                 if (user.admin) {
                     sendUser.admin = true;
@@ -198,7 +198,9 @@ router.post('/authenticate', (req, res, next) => {
 
 // Get profile
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
-    res.json({user:req.user});
+    res.json({user:{hello:"hello"}})
+    // console.log(req)
+    // res.json({user:req.user});
     // User.getUserByEmail(req.body.email, (err, dbUser) => {
     //     if (err) {
     //         res.json({success:false});

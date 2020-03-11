@@ -1681,6 +1681,7 @@ var DashboardComponent = /** @class */ (function () {
         // console.log(this.user$)
         var _this = this;
         this.authService.getProfile().subscribe(function (profile) {
+            console.log(profile);
             _this.user = profile.user;
             _this.userReady();
         }, function (err) {
