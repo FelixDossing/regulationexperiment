@@ -99,7 +99,7 @@ module.exports.updateTimestamps = function(info, callback) {
       } else {
         if (!dbuser.timestamps | dbuser.timestamps.map(e=>e.stamp_tag).indexOf(info.stamp_tag) == -1 | ['work','minwork'].indexOf(info.stamp_tag) != -1) {
           let newstamps = [{time:info.time, stamp_tag:info.stamp_tag}];
-          if (dbuser.timestamps.length > 0) {
+          if (dbuser && dbuser.timestamps.length > 0) {
               newstamps = dbuser.timestamps.concat(newstamps);
           }
           User.updateOne({ _id: info.user.id }, { $set: { timestamps:newstamps } }, callback)
