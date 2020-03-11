@@ -87,15 +87,16 @@ module.exports.findPartner = function(user, callback) {
 // Update user
 module.exports.updateUser = function(info, callback) {
   if (info.update_type == 'complete_instructions' || info.update_type == 'complete_survey') {
-    User.updateOne({ _id: info.user.id }, {$set: { tasks: info.user.tasks }}, callback)
+    User.updateOne({ _id: info.user._id }, {$set: { tasks: info.user.tasks }}, callback)
   }
 }
 
 // Update timestamps
 module.exports.updateTimestamps = function(info, callback) {
+    let userid = info.user.id ? info.user.id : info.user._id;
     User.getUserById(info.user.id, (err, dbuser) => {
       if (err | !dbuser) {
-        res.json({success:false, msg:"Could not find user"})
+        console.log(err)
       } else {
         if (!dbuser.timestamps | dbuser.timestamps.map(e=>e.stamp_tag).indexOf(info.stamp_tag) == -1 | ['work','minwork'].indexOf(info.stamp_tag) != -1) {
           let newstamps = [{time:info.time, stamp_tag:info.stamp_tag}];
