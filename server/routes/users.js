@@ -212,7 +212,7 @@ router.post('/profile', (req, res) => {
 // Complete instructions
 router.post('/completeinstructions', (req, res) => {
     let user = req.body;
-    user.id = user._id;
+    user._id = user.id;
     user.tasks[0].completed = true;
     const info = { update_type: 'complete_instructions', user:user }
     User.updateUser(info, (err, response) => {
