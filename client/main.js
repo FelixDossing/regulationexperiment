@@ -4361,7 +4361,7 @@ var AuthService = /** @class */ (function () {
         this.loadToken();
         var email = JSON.parse(localStorage.getItem('user')).email;
         // let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
-        return this.http.get('users/profile');
+        return this.http.post('users/profile', email);
     };
     AuthService.prototype.signOut = function () {
         this.authToken = null;
