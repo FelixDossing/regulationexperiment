@@ -198,6 +198,7 @@ router.post('/authenticate', (req, res, next) => {
 
 // Get profile
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
+    console.log(req)
     res.json({user:req.user});
     // User.getUserByEmail(req.body.email, (err, dbUser) => {
     //     if (err) {
