@@ -55,6 +55,12 @@ export class AllocationComponent implements OnInit {
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
+      if (typeof this.user == "string") {
+        this.user = JSON.parse(this.user)
+      }
+      else if (!this.user) {
+        this.user = JSON.parse(localStorage.getItem('user'))
+      }
       this.waitscreen = this.user.role == 'worker';
       this.pages_to_complete = this.user.minimal_work;
       let tasks = this.user.tasks;

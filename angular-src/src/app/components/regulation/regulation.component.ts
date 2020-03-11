@@ -86,8 +86,14 @@ export class RegulationComponent implements OnInit {
 
     // Check if we are in week 2 or week 3 or not at any valid date
     this.authService.getProfile().subscribe(response => {
-
       this.user = response.user;
+      if (typeof this.user == "string") {
+        this.user = JSON.parse(this.user)
+      }
+      else if (!this.user) {
+        this.user = JSON.parse(localStorage.getItem('user'))
+      }
+
       let register_date = moment(this.user.register_date)
       if (moment(this.current_date).isSame(register_date, 'day')) {
         this.week = 1;

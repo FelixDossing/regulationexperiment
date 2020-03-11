@@ -53,6 +53,12 @@ export class InstructionsComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
+      if (typeof this.user == "string") {
+        this.user = JSON.parse(this.user)
+      }
+      else if (!this.user) {
+        this.user = JSON.parse(localStorage.getItem('user'))
+      }
       this.user = profile.user;
       let tasks = this.user.tasks;
       this.control_completed = tasks[tasks.map(e => e.task_tag).indexOf('instructions')].completed ? true : false;

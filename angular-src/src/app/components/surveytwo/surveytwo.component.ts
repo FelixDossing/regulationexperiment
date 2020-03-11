@@ -60,6 +60,13 @@ export class SurveytwoComponent implements OnInit {
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
+      if (typeof this.user == "string") {
+        this.user = JSON.parse(this.user)
+      }
+      else if (!this.user) {
+        this.user = JSON.parse(localStorage.getItem('user'))
+      }
+
       let tasks = this.user.tasks;
       this.survey_completed = tasks[tasks.map(e => e.task_tag).indexOf('survey2')].completed ? true : false;
 
