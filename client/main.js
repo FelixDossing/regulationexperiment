@@ -4440,10 +4440,11 @@ var InteractionService = /** @class */ (function () {
         return this.http.post('users/sentiment', { task_tag: task_tag, type: type, sentiment: sentiment }, { headers: headers });
     };
     InteractionService.prototype.registerMinWork = function (task_tag, work_completed) {
+        var user = JSON.parse(localStorage.getItem('user'));
         var task_info = { tag: task_tag, completed: work_completed };
         this.loadToken();
         // let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
-        return this.http.post('users/registerminwork', task_info);
+        return this.http.post('users/registerminwork', { task_info: task_info, user: user });
     };
     InteractionService.prototype.registerChoice = function (allocation_tag, choices) {
         var choice_info = { tag: allocation_tag, choices: choices };

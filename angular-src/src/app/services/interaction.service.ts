@@ -29,10 +29,11 @@ export class InteractionService {
     return this.http.post<any>('users/sentiment', {task_tag, type, sentiment}, { headers:headers });
   }
   registerMinWork(task_tag:string, work_completed:number) {
+    let user = JSON.parse(localStorage.getItem('user'))
     let task_info = { tag: task_tag, completed: work_completed };
     this.loadToken();
     // let headers = new HttpHeaders().append('Content-Type','application/json').append('Authorization',this.authToken)
-    return this.http.post<any>('users/registerminwork', task_info);
+    return this.http.post<any>('users/registerminwork', {task_info,user});
   }
 
   registerChoice(allocation_tag:string, choices:any) {
