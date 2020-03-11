@@ -93,7 +93,7 @@ module.exports.updateUser = function(info, callback) {
 
 // Update timestamps
 module.exports.updateTimestamps = function(info, callback) {
-    User.getUserById(info.user._id, (err, dbuser) => {
+    User.getUserById(info.user.id, (err, dbuser) => {
       if (err) {
         console.log(err);
       } else {
@@ -102,7 +102,7 @@ module.exports.updateTimestamps = function(info, callback) {
           if (dbuser.timestamps.length > 0) {
               newstamps = dbuser.timestamps.concat(newstamps);
           }
-          User.updateOne({ _id: info.user._id }, { $set: { timestamps:newstamps } }, callback)
+          User.updateOne({ _id: info.user.id }, { $set: { timestamps:newstamps } }, callback)
         }
       }
     })
