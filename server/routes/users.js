@@ -211,7 +211,7 @@ router.post('/profile', (req, res) => {
 
 // Complete instructions
 router.post('/completeinstructions', (req, res) => {
-    let user = req.user;
+    let user = req.body;
     user.tasks[0].completed = true;
     const info = { update_type: 'complete_instructions', user:user }
     User.updateUser(info, (err, response) => {
@@ -233,7 +233,7 @@ router.post('/completeinstructions', (req, res) => {
 // Complete survey
 router.post('/completesurvey', (req, res) => {
     let num = req.body.surveynum;
-    let user = req.user;
+    let user = req.body.user;
     let choices = req.body.choices;
 
     let index = user.tasks.map(e => e.task_tag).indexOf('survey'+num)
