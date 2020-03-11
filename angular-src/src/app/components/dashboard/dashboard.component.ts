@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ɵConsole } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { AuthService } from 'src/app/services/auth.service';
@@ -118,12 +118,6 @@ export class DashboardComponent {
 
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
-      if (typeof this.user == "string") {
-        this.user = JSON.parse(this.user)
-      }
-      else if (!this.user) {
-        this.user = JSON.parse(localStorage.getItem('user'))
-      }
 
       if (this.user.work_assignment && (this.user.role != 'regulator' || this.user.tasks.find(e => e.task_tag === 'regulation2').completed)) {
         this.work_assignment = this.user.work_assignment;
@@ -132,7 +126,8 @@ export class DashboardComponent {
       this.checkWork();
     },
     err => {
-      return false;
+      this.user = JSON.parse(localStorage.getItem('user'))
+      console.log(err);
     });
   }
 
