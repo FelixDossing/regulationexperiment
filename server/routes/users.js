@@ -197,8 +197,14 @@ router.post('/authenticate', (req, res, next) => {
 // --> Get and post new password
 
 // Get profile
-router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
-    res.json({user: req.user });
+router.post('/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
+    User.getUserByEmail(req.body.email, (err, dbUser) => {
+        if (err) {
+            res.json({success:false, msg:"There wass a problem"})
+        }
+        else {
+            res.json({success:true, user: req.user });
+        }
 });
 
 // Complete instructions

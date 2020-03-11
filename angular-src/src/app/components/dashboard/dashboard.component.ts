@@ -118,6 +118,7 @@ export class DashboardComponent {
 
     this.authService.getProfile().subscribe(profile => {
       this.user = profile.user;
+      console.log('here')
       this.userReady()
     },
     err => {
